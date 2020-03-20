@@ -20,6 +20,8 @@ import ua.nure.ageev.finaltask4.web.command.CommandContainer;
 
 public class Controller extends HttpServlet {
 
+    private static final long serialVersionUID = 2423353715955164816L;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         proccessRequest(req, resp);
