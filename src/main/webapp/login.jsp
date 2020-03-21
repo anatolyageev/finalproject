@@ -5,7 +5,7 @@
 <body>
 
 
-<form method="post" action="controller?action=register">
+<form method="post" action="/controller?command=login">
 	<p><input type="text" name="name" size="10"/></p>
 	<p><input type="password" name="password" size="10" /></p>
 	<p>

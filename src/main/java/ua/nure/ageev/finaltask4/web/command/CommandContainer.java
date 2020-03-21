@@ -32,16 +32,16 @@ public class CommandContainer {
     /**
      * Returns command object with the given name.
      *
-     * @param request
-     *            HttpServletRequest.
+     * @param commandName
+     *            Name of the command.
      * @return Command object.
      */
-    public static Command get(HttpServletRequest request) {
-        String action = request.getParameter("action");
-        if (action == null || !commands.containsKey(action)) {
-            LOG.trace("Command not found, name --> " + action);
+    public static Command get(String commandName) {
+
+        if (commandName == null || !commands.containsKey(commandName)) {
+            LOG.trace("Command not found, name --> " + commandName);
             return commands.get("noCommand");
         }
-        return commands.get(action);
+        return commands.get(commandName);
     }
 }

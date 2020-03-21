@@ -1,0 +1,19 @@
+<!-- Change the lines below according your RDBMS and DB -->
+
+<Context>
+
+	<Resource name="jdbc/QuizDB"
+		auth="Container" 
+		type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000"
+		username="root"
+		password="1234"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		defaultAutoCommit="false"
+		defaultTransactionIsolation="READ_COMMITTED"
+		connectionProperties="useUnicode=yes;characterEncoding=utf8;"
+		url="jdbc:mysql://localhost:3306/quizdb"/>
+<!--		url="jdbc:mysql://10.7.0.9:3307/st4db"/>-->
+
+
+</Context>

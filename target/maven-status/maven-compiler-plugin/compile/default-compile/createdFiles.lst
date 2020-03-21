@@ -1,4 +1,9 @@
 ua\nure\ageev\finaltask4\web\command\Command.class
-ua\nure\ageev\finaltask4\web\Controller.class
 ua\nure\ageev\finaltask4\web\command\LoginCommand.class
+ua\nure\ageev\finaltask4\exception\AppException.class
+ua\nure\ageev\finaltask4\exception\DBException.class
+ua\nure\ageev\finaltask4\repository\db\DBManager.class
+ua\nure\ageev\finaltask4\exception\Messages.class
+ua\nure\ageev\finaltask4\web\Controller.class
+ua\nure\ageev\finaltask4\Path.class
 ua\nure\ageev\finaltask4\web\command\CommandContainer.class
