@@ -4,11 +4,11 @@ package ua.nure.ageev.finaltask4.repository.db;
 import org.apache.log4j.Logger;
 import ua.nure.ageev.finaltask4.exception.DBException;
 import ua.nure.ageev.finaltask4.exception.Messages;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +22,6 @@ import java.sql.Statement;
  */
 public class DBManager {
 
-
     // //////////////////////////////////////////////////////////
     // singleton
     // //////////////////////////////////////////////////////////
@@ -30,6 +29,7 @@ public class DBManager {
     private static DBManager instance;
 
     private static final Logger LOG = Logger.getLogger(DBManager.class);
+
     public static synchronized DBManager getInstance() throws DBException {
         if (instance == null) {
             instance = new DBManager();
@@ -39,18 +39,10 @@ public class DBManager {
 
     private DBManager() throws DBException {
         try {
-//            InitialContext initContext= new InitialContext();
-//            DataSource ds = (DataSource) initContext.lookup("java:comp/env/jdbc/dbconnect");
-//            Connection conn = ds.getConnection();
-
-
-
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:comp/env");
-            // ST4DB - the name of data source
+            // QuizDB - the name of data source
             ds = (DataSource) envContext.lookup("jdbc/QuizDB");
-
-
             LOG.trace("Data source ==> " + ds);
         } catch (NamingException ex) {
             LOG.error(Messages.ERR_CANNOT_OBTAIN_DATA_SOURCE, ex);
@@ -59,7 +51,6 @@ public class DBManager {
     }
 
     private DataSource ds;
-
 
     /**
      * Returns a DB connection from the Pool Connections. Before using this
@@ -78,7 +69,6 @@ public class DBManager {
         }
         return con;
     }
-
 
 public void printAllUsers(){
     Statement stmt = null;
@@ -104,9 +94,6 @@ public void printAllUsers(){
     }
 }
 
-    public static void main(String[] args) throws DBException {
-        DBManager.getInstance().printAllUsers();
-    }
     // //////////////////////////////////////////////////////////
     // DB util methods
     // //////////////////////////////////////////////////////////
@@ -157,7 +144,7 @@ public void printAllUsers(){
     /**
      * Closes resources.
      */
-    private void close(Connection con, Statement stmt, ResultSet rs) {
+    public void close(Connection con, Statement stmt, ResultSet rs) {
         close(rs);
         close(stmt);
         close(con);

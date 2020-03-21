@@ -1,21 +1,27 @@
 <html>
 <head>
-	<title>Title</title>
+    <title>Title</title>
 </head>
 <body>
 
 
-<form method="post" action="/quiz/controller?command=login">
-	<p><input type="text" name="name" size="10"/></p>
-	<p><input type="password" name="password" size="10" /></p>
-	<p>
-		<select size="3" name="admin">
-			<option value = "true">Admin</option>
-			<option value = "false">User</option>
-		</select>
-	</p>
-	<p><input type="submit" value="Register" /></p>
-	<p></p>
+<%--===========================================================================
+Defines the web form.
+===========================================================================--%>
+<%--<form id="login_form" method="post" action="/quiz/controller?command=login">--%>
+<form id="login_form" action="controller" method="post">
+
+    <%--===========================================================================
+    Hidden field. In the query it will act as command=login.
+    The purpose of this to define the command name, which have to be executed
+    after you submit current form.
+    ===========================================================================--%>
+    <input type="hidden" name="command" value="login"/>
+
+    <input type="text" name="login" /><br/>
+    <input type="password" name="password" /><br/>
+    <input type="submit" value="Register"/>
+
 </form>
 
 
