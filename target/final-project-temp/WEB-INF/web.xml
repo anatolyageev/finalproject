@@ -15,18 +15,18 @@
   </welcome-file-list>
 
 
-<!--  <resource-ref>-->
-<!--    <description>-->
-<!--      Resource reference to a factory for java.sql.Connection-->
-<!--      instances that may be used for talking to a particular-->
-<!--      database that is configured in the Context-->
-<!--      configuration for the web application.-->
-<!--    </description>-->
-<!--&lt;!&ndash;    DB Connection&ndash;&gt;-->
-<!--    <res-ref-name>jdbc/QuizDB</res-ref-name>-->
-<!--    <res-type>javax.sql.DataSource</res-type>-->
-<!--    <res-auth>Container</res-auth>-->
-<!--  </resource-ref>-->
+  <resource-ref>
+    <description>
+      Resource reference to a factory for java.sql.Connection
+      instances that may be used for talking to a particular
+      database that is configured in the Context
+      configuration for the web application.
+    </description>
+<!--    DB Connection-->
+    <res-ref-name>jdbc/QuizDB</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
 
 
 </web-app>
