@@ -53,11 +53,11 @@ public class LoginCommand extends Command {
         String forward = Path.PAGE_ERROR_PAGE;
 
         if (userRole == Role.ADMIN) {
-            forward = Path.COMMAND_LIST_ORDERS;
+            forward = Path.PAGE_ADMIN_PAGE;
         }
 
         if (userRole == Role.CLIENT) {
-            forward = Path.COMMAND_LIST_MENU;
+            forward = Path.PAGE_USER_PAGE;
         }
 
         session.setAttribute("user", user);

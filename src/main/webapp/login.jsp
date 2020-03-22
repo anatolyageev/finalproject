@@ -24,6 +24,6 @@ Defines the web form.
 
 </form>
 
-
+<%@ include file="/WEB-INF/jspf/footer.jspf"%>
 </body>
 </html>
