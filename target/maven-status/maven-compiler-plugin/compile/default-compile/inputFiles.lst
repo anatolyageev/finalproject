@@ -14,7 +14,9 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\User.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\AppException.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\impl\UserRepositoryImpl.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\LogoutCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\Messages.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\db\Fields.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\CommandContainer.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\DBException.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\ViewSettingsCommand.java

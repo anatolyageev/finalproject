@@ -12,12 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * Class for login .
+ *
+ * @author A.Ageev
+ *
+ */
 public class LoginCommand extends Command {
 
     private static final long serialVersionUID = 1L;
 
     private static final Logger LOG = Logger.getLogger(LoginCommand.class);
 
+    /**
+     * Execution method for command.
+     *
+     * @return Address to go once the command is executed.
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
 

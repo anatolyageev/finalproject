@@ -2,7 +2,6 @@ package ua.nure.ageev.finaltask4.web.command;
 
 import org.apache.log4j.Logger;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -15,8 +14,8 @@ public class CommandContainer {
     static {
         // common commands
         commands.put("login", new LoginCommand());
-//        commands.put("logout", new LogoutCommand());
-//        commands.put("viewSettings", new ViewSettingsCommand());
+        commands.put("logout", new LogoutCommand());
+        commands.put("viewSettings", new ViewSettingsCommand());
 //        commands.put("noCommand", new NoCommand());
 //
 //        // client commands

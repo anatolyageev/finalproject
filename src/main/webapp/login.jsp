@@ -3,7 +3,9 @@
     <title>Title</title>
 </head>
 <body>
-
+<%-- HEADER --%>
+<%@ include file="/WEB-INF/jspf/header.jspf"%>
+<%-- HEADER --%>
 
 <%--===========================================================================
 Defines the web form.
@@ -20,7 +22,7 @@ Defines the web form.
 
     <input type="text" name="login" /><br/>
     <input type="password" name="password" /><br/>
-    <input type="submit" value="Register"/>
+    <input type="submit" value="Login"/>
 
 </form>
 
