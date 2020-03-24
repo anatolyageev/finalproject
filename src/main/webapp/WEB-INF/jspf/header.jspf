@@ -37,10 +37,27 @@ This way we define the USER MENU.
 <%--=========================================================================== 
 This way we define the settings anchor.
 ===========================================================================--%> 
-	<a href="controller?command=viewSettings">Settings</a> &nbsp;
-
+	<a href="controller?command=viewSettings"><fmt:message key="header.menu_settings" /></a> &nbsp;
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="changeLocale.jsp?locale=en"><fmt:message key="local.local_button.name.en" /></a>
+            <a class="dropdown-item" href="changeLocale.jsp?locale=ru"><fmt:message key="local.local_button.name.ru" /></a>
+        </div>
+    </div>
 </div>
+	<form action="changeLocale.jsp" method="post">
+		<fmt:message key="settings_jsp.label.set_locale"/>:
+		<select name="locale">
 
+				<option value="en_US"><fmt:message key="local.local_button.name.en" /></option>
+			<option value="ru"><fmt:message key="local.local_button.name.ru" /></option>
+		</select>
+		<input type="submit" value="<fmt:message key='settings_jsp.form.submit_save_locale'/>">
+
+	</form>
 <%--=========================================================================== 
 This way we define the menu located at the right of header. 
 ===========================================================================--%> 
@@ -73,6 +90,7 @@ Type link to logout
 		<a href="login.jsp">Login</a>
 	</div>
 </c:if>
+
 
 	</td>
 </tr>

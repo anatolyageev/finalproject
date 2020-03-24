@@ -1,6 +1,5 @@
 package ua.nure.ageev.finaltask4.web.command;
 
-
 import org.apache.log4j.Logger;
 import ua.nure.ageev.finaltask4.Path;
 import ua.nure.ageev.finaltask4.exception.AppException;
@@ -8,20 +7,19 @@ import ua.nure.ageev.finaltask4.exception.AppException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Class for the Command pattern implementation.
+ * Class for the NoCommand.
  *
  * @author A.Ageev
  *
  */
-public class LogoutCommand extends Command{
+public class NoCommand extends Command {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -2785976616686657267L;
 
-    private static final Logger LOG = Logger.getLogger(LogoutCommand.class);
+    private static final Logger LOG = Logger.getLogger(NoCommand.class);
     /**
      * Execution method for command.
      *
@@ -31,14 +29,13 @@ public class LogoutCommand extends Command{
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
-        LOG.debug("LogoutCommand starts");
+            LOG.debug("NoCommand starts");
 
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+            String errorMessage = "No such command";
+            request.setAttribute("errorMessage", errorMessage);
+            LOG.error("Set the request attribute: errorMessage --> " + errorMessage);
 
-        LOG.debug("LogoutCommand finished");
-        return Path.PAGE_LOGIN;
+            LOG.debug("NoCommand finished");
+            return Path.PAGE_ERROR_PAGE;
     }
 }

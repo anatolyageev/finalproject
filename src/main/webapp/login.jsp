@@ -20,7 +20,8 @@ Defines the web form.
     ===========================================================================--%>
     <input type="hidden" name="command" value="login"/>
 
-    <input type="text" name="login" /><br/>
+    <fmt:message key="login.login_form.login" var="login"/> ${login}: <input type="text" name="login" />
+        <br/>
     <input type="password" name="password" /><br/>
     <input type="submit" value="Login"/>
 
