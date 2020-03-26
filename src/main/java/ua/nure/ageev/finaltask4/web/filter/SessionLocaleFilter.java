@@ -18,13 +18,13 @@ public class SessionLocaleFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         LOG.debug("Filter initialization starts");
-        localeFilter = filterConfig.getInitParameterNames();
-        while (localeFilter.hasMoreElements()) {
-            String key = localeFilter.nextElement();
-            if (!key.isEmpty()) {
-                System.out.println(filterConfig.getInitParameter(key));
-            }
-        }
+//        localeFilter = filterConfig.getInitParameterNames();
+//        while (localeFilter.hasMoreElements()) {
+//            String key = localeFilter.nextElement();
+//            if (!key.isEmpty()) {
+//                System.out.println(filterConfig.getInitParameter(key));
+//            }
+//        }
         LOG.debug("Filter initialization finished");
     }
 
