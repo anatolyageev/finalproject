@@ -1,12 +1,15 @@
 <html>
 <head>
+
+    <%@ include file="/WEB-INF/jspf/head.jspf" %>
+
     <title>Title</title>
 </head>
 <body>
+
 <%-- HEADER --%>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
 <%-- HEADER --%>
-
 <%--===========================================================================
 Defines the web form.
 ===========================================================================--%>
@@ -22,7 +25,7 @@ Defines the web form.
 
     <fmt:message key="login.login_form.login" var="login"/> ${login}: <input type="text" name="login" />
         <br/>
-    <input type="password" name="password" /><br/>
+    <fmt:message key="login.login_form.password"/><input type="password" name="password" /><br/>
     <input type="submit" value="Login"/>
 
 </form>
