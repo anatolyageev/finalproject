@@ -26,7 +26,7 @@ Defines the web form.
     <fmt:message key="login.login_form.login" var="login"/> ${login}: <input type="text" name="login" />
         <br/>
     <fmt:message key="login.login_form.password"/><input type="password" name="password" /><br/>
-    <input type="submit" value="Login"/>
+    <input type="submit" value="<fmt:message key="login.login_form.login"/>"/>
 
 </form>
 

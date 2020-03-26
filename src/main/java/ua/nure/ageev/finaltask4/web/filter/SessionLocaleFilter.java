@@ -5,9 +5,11 @@ import org.apache.log4j.Logger;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Locale;
 
 
 @WebFilter(filterName = "SessionLocaleFilter", urlPatterns = {"/*"})
@@ -56,7 +58,17 @@ public class SessionLocaleFilter implements Filter {
         // получаем сессию
         HttpSession session = ((HttpServletRequest) servletRequest).getSession();
         // получаем объект name
-        String name = (String) session.getAttribute("sessionLocale");
+        String name = (String) session.getAttribute("currentLocale");
+
+        if(name==null){
+            Locale userPreferredLocale = req.getLocale();
+            Enumeration userPreferredLocales = req.getLocales();
+            LOG.debug("Preferred Locale: " + userPreferredLocale.toString().substring(0,2));
+            session.setAttribute("currentLocale",userPreferredLocale.toString().substring(0,2));
+            ((HttpServletResponse)servletResponse).setHeader("Content-Language", "ru");
+        }
+
+        name = (String) session.getAttribute("currentLocale");
 
         System.out.println(name);
 
