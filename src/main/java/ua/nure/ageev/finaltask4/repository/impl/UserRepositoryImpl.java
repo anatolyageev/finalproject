@@ -8,10 +8,9 @@ import ua.nure.ageev.finaltask4.repository.UserRepository;
 import ua.nure.ageev.finaltask4.repository.base.AbstractRepository;
 import ua.nure.ageev.finaltask4.repository.db.Fields;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserRepositoryImpl extends AbstractRepository implements UserRepository {
     protected static final Logger LOG = Logger.getLogger(UserRepositoryImpl.class);
@@ -34,6 +33,8 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
             ",last_name\n" +
             "FROM user_account ua, users u \n" +
             "where u.account_id = ua.id AND ua.id = ?";
+
+    private static final String SQL_FIND_ALL_USERS = "SELECT * FROM user_account ua, users u WHERE u.account_id = ua.id";
 
     @Override
     public User getOne(String login) {
@@ -93,6 +94,34 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
         }
         System.out.println(user);
         return user;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        User user = null;
+        List<User> usersList = new ArrayList<>();
+        Statement st = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method getAllUsers.");
+        try {
+            con = manager.getConnection();
+            st = con.createStatement();
+            rs = st.executeQuery(SQL_FIND_ALL_USERS);
+            while (rs.next()) {
+                user = extractUser(rs);
+                usersList.add(user);
+            }
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            System.out.println(ex);
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+
+        } finally {
+            manager.close(con, st, rs);
+        }
+        System.out.println(usersList);
+        return usersList;
     }
 
 
