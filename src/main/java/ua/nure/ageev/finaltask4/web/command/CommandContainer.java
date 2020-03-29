@@ -18,6 +18,9 @@ public class CommandContainer {
         commands.put("viewSettings", new ViewSettingsCommand());
         commands.put("noCommand", new NoCommand());
         commands.put("adminPageCommand", new AdminPageCommand());
+        commands.put("listUsersCommand", new ListUsersCommand());
+        commands.put("changeRoleCommand", new ChangeRoleCommand());
+        commands.put("registration", new RegistrationCommand());
 
 //        // client commands
 //        commands.put("listMenu", new ListMenuCommand());

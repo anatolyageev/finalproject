@@ -27,4 +27,12 @@ public interface UserRepository {
     User getOne(long id);
 
     List<User> getAllUsers();
+
+    /**
+     * Add User to database and returns a user.
+     *
+     * @param User entity.
+     * @return User entity.
+     */
+    User createUser(User user);
 }

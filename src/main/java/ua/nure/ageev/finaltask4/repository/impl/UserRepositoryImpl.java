@@ -36,9 +36,18 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
 
     private static final String SQL_FIND_ALL_USERS = "SELECT * FROM user_account ua, users u WHERE u.account_id = ua.id";
 
+    private static final String SQL_INSERT_NEW_USER_ACCOUNT_INFO = "INSERT INTO user_account " +
+            "(user_name, password, password_salt, password_hash_algorithm,role_id) " +
+            "VALUES(?, ?, ?, ? ,0)";
+
+    private static final String SQL_INSERT_NEW_USER = "INSERT INTO users " +
+            "(first_name, last_name,account_id) " +
+            "VALUES(?, ? ,?)";
+
+
     @Override
     public User getOne(String login) {
-        User user = null;
+        User user = new User();
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = null;
@@ -46,20 +55,18 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_USER_BY_LOGIN);
-            ps.setString(1,login);
+            ps.setString(1, login);
             rs = ps.executeQuery();
             while (rs.next()) {
                 user = extractUser(rs);
             }
             con.commit();
         } catch (SQLException | DBException ex) {
-            System.out.println(ex);
             LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
-
         } finally {
             manager.close(con, ps, rs);
         }
-        System.out.println(user);
+        LOG.trace("Repository method getOne returned --> " + user);
         return user;
     }
 
@@ -79,20 +86,18 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_USER_BY_ID);
-            ps.setLong(1,id);
+            ps.setLong(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 user = extractUser(rs);
             }
             con.commit();
         } catch (SQLException | DBException ex) {
-            System.out.println(ex);
             LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
-
         } finally {
             manager.close(con, ps, rs);
         }
-        System.out.println(user);
+        LOG.trace("Repository method getOne by id returned --> " + user);
         return user;
     }
 
@@ -114,22 +119,63 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
             }
             con.commit();
         } catch (SQLException | DBException ex) {
-            System.out.println(ex);
             LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
-
         } finally {
             manager.close(con, st, rs);
         }
-        System.out.println(usersList);
+        LOG.trace("Repository method getAll returned --> " + usersList);
         return usersList;
+    }
+
+    /**
+     * Add User to database and returns a user.
+     *
+     * @param user@return User entity.
+     */
+    @Override
+    public User createUser(User user) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method createUser --> " + user);
+        try {
+            con = manager.getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(SQL_INSERT_NEW_USER_ACCOUNT_INFO, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1,user.getLogin());
+            ps.setString(2,user.getPassword());
+            ps.setString(3,"notImplemented");
+            ps.setString(4,"notImplemented");
+            if (ps.executeUpdate() > 0) {
+                rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    Long userId = rs.getLong(1);
+                    user.setId(userId);
+                }
+            }
+            LOG.debug("Repository method first update  --> " + user);
+            ps = con.prepareStatement(SQL_INSERT_NEW_USER);
+            ps.setString(1,user.getFirstName());
+            ps.setString(2,user.getLastName());
+            ps.setLong(3,user.getId());
+            if (ps.executeUpdate() > 0) {
+                con.commit();
+                LOG.debug("Repository method committed createUser  --> " + user);
+            }
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.debug("Repository method createUser  --> " + user);
+        return user;
     }
 
 
     /**
      * Extracts a user entity from the result set.
      *
-     * @param rs
-     *            Result set from which a user entity will be extracted.
+     * @param rs Result set from which a user entity will be extracted.
      * @return User entity
      */
     private User extractUser(ResultSet rs) throws SQLException {

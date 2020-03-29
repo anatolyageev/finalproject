@@ -38,15 +38,15 @@ public class ListUsersCommand extends  Command{
         LOG.debug("ListUsersCommand starts");
         UserService userService = new UserServiceImpl();
         List<User> userList = userService.getAll();
-        LOG.trace("Found in DB: userList --> " + userList);
+        LOG.debug("Found in DB: userList --> " + userList);
 
         //TODO sorting
 
         // put user order beans list to request
         request.setAttribute("userList", userList);
-        LOG.trace("Set the request attribute: userList --> " + userList);
+        LOG.debug("Set the request attribute: userList --> " + userList);
 
         LOG.debug("ListUsersCommand finished");
-        return Path.PAGE_LOGIN;
+        return Path.PAGE_USER_USER_LIST;
     }
 }

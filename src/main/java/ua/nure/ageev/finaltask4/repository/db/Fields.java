@@ -7,7 +7,9 @@ package ua.nure.ageev.finaltask4.repository.db;
  * 
  */
 public final class Fields {
-	
+	private Fields(){
+		// not need to implement because constructor is privet to avoid attempt to instance creation
+	}
 	// entities
 	public static final String ENTITY_ID = "id";
 	

@@ -1,35 +1,79 @@
-<html>
-<head>
-
-    <%@ include file="/WEB-INF/jspf/head.jspf" %>
-
-    <title>Title</title>
-</head>
+<%@ include file="/WEB-INF/jspf/headLogin.jsp" %>
 <body>
-
-<%-- HEADER --%>
-<%@ include file="/WEB-INF/jspf/header.jspf"%>
-<%-- HEADER --%>
 <%--===========================================================================
 Defines the web form.
 ===========================================================================--%>
-<%--<form id="login_form" method="post" action="/quiz/controller?command=login">--%>
-<form id="login_form" action="controller" method="post">
+<fmt:message key="login.login_form.login" var="login"/>
+<fmt:message key="login.login_form.password" var="password"/>
+<fmt:message key="login.registration" var="registration"/>
+<fmt:message key="login.login_form.button_login" var="loginButton"/>
+<fmt:message key="registration.registration_form.fail" var="reg_fail"/>
 
-    <%--===========================================================================
-    Hidden field. In the query it will act as command=login.
-    The purpose of this to define the command name, which have to be executed
-    after you submit current form.
-    ===========================================================================--%>
-    <input type="hidden" name="command" value="login"/>
+<div class="hero">
+    <div class="form-box">
+        <div class="button-box">
+            <div id="btn"></div>
+            <button type="button" class="toggle-btn" onclick="login()">${loginButton}</button>
+            <button type="button" class="toggle-btn" onclick="register()">${registration}</button>
+        </div>
+<%--        <div class="sosial-icons">--%>
+<%--            <img src="img\fb.png">--%>
+<%--            <img src="img\tw.png">--%>
+<%--            <img src="img\gp.png">--%>
 
-    <fmt:message key="login.login_form.login" var="login"/> ${login}: <input type="text" name="login" />
-        <br/>
-    <fmt:message key="login.login_form.password"/><input type="password" name="password" /><br/>
-    <input type="submit" value="<fmt:message key="login.login_form.login"/>"/>
+<%--        </div>--%>
+        <form id="login" action="controller" class="input-group" method="post">
+            <input type="hidden" name="command" value="login"/>
+            <input type="text" class="input-field" name="login" placeholder="User Id" required>
+            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+<%--            <input type="checkbox" class="check-box"><span>Remember Password</span>--%>
+            <button type="submit" class="submit-btn">${loginButton}</button>
+        </form>
+        <form id="register" action="controller"  class="input-group" method="post">
+            <input type="hidden" name="command" value="registration"/>
+            <input type="text" class="input-field" name="login" placeholder="User Id" required>
+            <input type="text" class="input-field" name="name" placeholder="Name" required>
+            <input type="text" class="input-field" name="last_name" placeholder="Last Name" required>
+            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
+<%--            <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>--%>
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
 
-</form>
+        <c:if test="${not empty reg_error}">
+            <script> register()</script>
+            <script> register()</script>
+            <div class="error">
+                    ${reg_fail}: ${reg_error}
+            </div>
+        </c:if>
+    </div>
+</div>
 
-<%@ include file="/WEB-INF/jspf/footer.jspf"%>
+
+
+<%--<c:if test="${not empty reg_error}">--%>
+<%--    <div class="error">--%>
+<%--        <fmt:message key="registration.registration_form.fail" var="reg_fail"/>--%>
+<%--            ${reg_fail}: ${reg_error}--%>
+<%--    </div>--%>
+<%--</c:if>--%>
+
+
+<script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
+    function register(){
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+    }
+
+    function login(){
+        x.style.left = "50px";
+        y.style.left = "450px";
+        z.style.left = "0";
+    }
+</script>
 </body>
 </html>

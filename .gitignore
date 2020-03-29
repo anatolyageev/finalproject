@@ -103,7 +103,7 @@ hs_err_pid*
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-
+.idea/sonarlint/*
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
@@ -152,3 +152,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 /target/
+target/*

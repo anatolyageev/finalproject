@@ -37,17 +37,12 @@ public class LoginCommand extends Command {
         HttpSession session = request.getSession();
         UserService userService = new UserServiceImpl();
 
-        // get login and pass from request
-       // DBManager manager = DBManager.getInstance();
-       // manager.printAllUsers();
-        System.out.println("In LoginComang");
-        // get login from requst
         String login = request.getParameter("login");
-        System.out.println("Requst parametr: login --> " + login);
+
         LOG.trace("Requst parametr: login --> " + login);
-        //get password from requst
+
         String password = request.getParameter("password");
-        System.out.println("Requst parametr: password --> " + password);
+
         if (login == null || password == null || login.isEmpty() || login.isEmpty()) {
             throw new AppException("Login/password cannot be empty");
         }
