@@ -57,8 +57,8 @@ public class RegistrationCommand extends Command{
             return Path.PAGE_LOGIN;
         }
 
-        if (!name.matches( "([А-ЯЁ][а-яё]*)|([A-Z][a-z]*)") || !lastName.matches( "([А-ЯЁ][а-яё]*)|([A-Z][a-z]*)")) {
-            String errorMsg = "Name/Last name should begin with capital letter and contains digit";
+        if (!name.matches( "(^[А-ЯЁ][а-яё]+)|(^[A-Z][a-z]+)") || !lastName.matches( "(^[А-ЯЁ][а-яё]+)|(^[A-Z][a-z]+)")) {
+            String errorMsg = "Name/Last name should begin with capital letter and not contains digit";
             request.setAttribute("reg_error", errorMsg);
             LOG.debug(errorMsg);
             return Path.PAGE_LOGIN;
