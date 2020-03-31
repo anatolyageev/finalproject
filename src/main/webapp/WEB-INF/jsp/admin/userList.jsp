@@ -19,8 +19,11 @@
 <div>
 
     <fmt:message key="user_list.change_role" var="changeRole"/>
+    <fmt:message key="user_list.change_status" var="changeStatus"/>
     <fmt:message key="user_list.access_level.user" var="user_al"/>
     <fmt:message key="user_list.access_level.admin" var="admin_al"/>
+    <fmt:message key="user_list.access_level.active" var="act_us"/>
+    <fmt:message key="user_list.access_level.not_active" var="not_act_us"/>
     <%-- CONTENT --%>
 
 
@@ -33,7 +36,9 @@
             <th>firstName</th>
             <th>lastName</th>
             <th>role</th>
+            <th>status</th>
             <th>${changeRole}</th>
+            <th>${changeStatus}</th>
         </tr>
         </thead>
 
@@ -58,13 +63,30 @@
                     </c:choose>
                 </td>
                 <td>
-
+                    <c:choose>
+                        <c:when test="${user.userStatus == true}">
+                            ${act_us}
+                        </c:when>
+                        <c:otherwise>
+                            ${not_act_us}
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td>
                         <form action="controller" method="post">
                             <input type="hidden" name="command" value="changeRoleCommand"/>
                             <input type="hidden" name="user_id" value="${user.id}">
                             <input type="submit" value="${changeRole}">
                             <input type="hidden" name="user_current_role" value="${user.roleId}">
                         </form>
+                </td>
+                <td>
+                    <form action="controller" method="post">
+                        <input type="hidden" name="command" value="changeUserStatusCommand"/>
+                        <input type="hidden" name="user_id" value="${user.id}">
+                        <input type="submit" value="${changeStatus}">
+                        <input type="hidden" name="user_current_status" value="${user.roleId}">
+                    </form>
                 </td>
             </tr>
 

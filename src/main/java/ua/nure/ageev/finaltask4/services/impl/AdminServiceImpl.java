@@ -29,4 +29,22 @@ public class AdminServiceImpl implements AdminService {
         LOG.trace("Service method setUserRoleUser");
         return repository.setUserRoleUser(id);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Integer setUserStatusActive(Long id) {
+        LOG.trace("Service method setUserStatusActive");
+        return repository.setUserStatusActive(id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Integer setUserStatusNotActive(Long id) {
+        LOG.trace("Service method setUserStatusNotActive");
+        return repository.setUserStatusNotActive(id);
+    }
 }

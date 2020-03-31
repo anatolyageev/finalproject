@@ -14,9 +14,13 @@
 <%-- HEADER --%>
 <%@ include file="/WEB-INF/jspf/header.jspf"%>
 <%-- HEADER --%>
-
-
 <h2>this is user page</h2>
+
+
+
+
+
+
 
 <%@ include file="/WEB-INF/jspf/footer.jspf"%>
 </body>

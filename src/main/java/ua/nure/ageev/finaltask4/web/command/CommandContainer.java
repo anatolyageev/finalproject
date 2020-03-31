@@ -21,6 +21,7 @@ public class CommandContainer {
         commands.put("listUsersCommand", new ListUsersCommand());
         commands.put("changeRoleCommand", new ChangeRoleCommand());
         commands.put("registration", new RegistrationCommand());
+        commands.put("changeUserStatusCommand", new ChangeUserStatusCommand());
 
 //        // client commands
 //        commands.put("listMenu", new ListMenuCommand());

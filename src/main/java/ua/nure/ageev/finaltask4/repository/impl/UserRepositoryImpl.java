@@ -19,6 +19,7 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
             ",user_name \n" +
             ",password\n" +
             ",role_id\n" +
+            ",user_status\n" +
             ",first_name\n" +
             ",last_name\n" +
             "FROM user_account ua, users u \n" +
@@ -29,6 +30,7 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
             ",user_name \n" +
             ",password\n" +
             ",role_id\n" +
+            ",user_status\n" +
             ",first_name\n" +
             ",last_name\n" +
             "FROM user_account ua, users u \n" +
@@ -185,6 +187,7 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
         user.setPassword(rs.getString(Fields.USER_PASSWORD));
         user.setFirstName(rs.getString(Fields.USER_FIRST_NAME));
         user.setLastName(rs.getString(Fields.USER_LAST_NAME));
+        user.setUserStatus(rs.getBoolean(Fields.USER_STATUS));
         user.setRoleId(rs.getInt(Fields.USER_ROLE_ID));
         return user;
     }
