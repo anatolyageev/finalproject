@@ -41,6 +41,7 @@ This way we define the settings anchor.
 	<a href="controller?command=viewSettings"><fmt:message key="header.menu_settings" /></a> &nbsp;
 	<a href="controller?command=adminPageCommand"><fmt:message key="admin.heading_admin" /></a> &nbsp;
 	<a href="controller?command=listUsersCommand"><fmt:message key="admin.heading_admin" /></a> &nbsp;
+	<a href="controller?command=goToUserPage">user paje</a> &nbsp;
 </div>
 
 
