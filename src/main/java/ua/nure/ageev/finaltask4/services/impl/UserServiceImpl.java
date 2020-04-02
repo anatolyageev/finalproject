@@ -14,7 +14,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        return null;
+        LOG.trace("Service method get all users");
+        return repository.getAllUsers();
     }
 
     @Override
@@ -35,6 +36,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        return null;
+        return repository.createUser(user);
     }
 }

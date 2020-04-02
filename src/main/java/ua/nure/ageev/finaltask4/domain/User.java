@@ -8,6 +8,7 @@ public class User extends LongID {
     private String password;
     private String firstName;
     private String lastName;
+    private Boolean userStatus;
     private int roleId;
 
     public String getLogin() {
@@ -50,6 +51,14 @@ public class User extends LongID {
         this.roleId = roleId;
     }
 
+    public Boolean getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(Boolean userStatus) {
+        this.userStatus = userStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,6 +81,7 @@ public class User extends LongID {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", roleId=" + roleId +
+                ", userStatus=" + userStatus +
                 ", id=" + id +
                 '}';
     }

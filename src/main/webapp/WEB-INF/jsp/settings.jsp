@@ -9,7 +9,7 @@
 <body>
 	<table id="main-container">
 
-		<%@ include file="/WEB-INF/jspf/header.jspf" %>
+		<%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
 
 		<tr>
 			<td class="content">

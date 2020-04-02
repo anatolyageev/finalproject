@@ -17,7 +17,15 @@ public class CommandContainer {
         commands.put("logout", new LogoutCommand());
         commands.put("viewSettings", new ViewSettingsCommand());
         commands.put("noCommand", new NoCommand());
-//
+        commands.put("adminPageCommand", new AdminPageCommand());
+        commands.put("listUsersCommand", new ListUsersCommand());
+        commands.put("changeRoleCommand", new ChangeRoleCommand());
+        commands.put("registration", new RegistrationCommand());
+        commands.put("changeUserStatusCommand", new ChangeUserStatusCommand());
+        commands.put("subjectCommand", new SubjectCommand());
+        commands.put("goToUserPage", new GoToUserPage());
+        commands.put("quizzeTestCommand", new QuizzeTestCommand());
+
 //        // client commands
 //        commands.put("listMenu", new ListMenuCommand());
 //
@@ -31,8 +39,7 @@ public class CommandContainer {
     /**
      * Returns command object with the given name.
      *
-     * @param commandName
-     *            Name of the command.
+     * @param commandName Name of the command.
      * @return Command object.
      */
     public static Command get(String commandName) {

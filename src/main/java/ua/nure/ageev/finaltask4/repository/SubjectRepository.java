@@ -1,0 +1,21 @@
+package ua.nure.ageev.finaltask4.repository;
+
+import ua.nure.ageev.finaltask4.domain.Subject;
+
+import java.util.List;
+
+public interface SubjectRepository {
+
+    Subject getOne(Subject subject, String locale);
+
+    Subject getOne(Integer id, String locale);
+
+    List<Subject> getAll(String locale);
+
+    Integer deleteSubject(Long id, String locale);
+
+    Subject createSubject(Subject subject, String locale);
+
+    Subject update (Long id, Subject subject, String locale);
+
+}
