@@ -49,7 +49,6 @@ public class SubjectCommand extends Command {
         // put user order beans list to request
         request.setAttribute("subjectList", subjects);
         LOG.debug("Set the request attribute: subjectList --> " + subjects);
-        LOG.debug("Set the request attribute: subjectList --> " + subjects);
         LOG.debug("SubjectCommand finished");
         return Path.PAGE_USER_PAGE;
     }

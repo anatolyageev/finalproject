@@ -16,12 +16,34 @@ import java.util.List;
 public class SubjectRepositoryImpl extends AbstractRepository implements SubjectRepository {
 
     protected static final Logger LOG = Logger.getLogger(SubjectRepositoryImpl.class);
-    private static final String SQL_FIND_ALL_SUBJECT = "SELECT * FROM subject s, subject_locale sl WHERE s.id = sl.subject_id AND sl.lang_ind = ?";
+    private static final String SQL_FIND_ALL_SUBJECT = "SELECT * FROM subject s, subject_locale sl " +
+            "WHERE s.id = sl.subject_id AND sl.lang_ind = ?";
+    private static final String SQL_FIND_SUBJECT_BY_ID = "SELECT * FROM subject s, subject_locale sl " +
+            "WHERE s.id = sl.subject_id " +
+            "AND sl.lang_ind = ? AND s.id = ?";
 
 
     @Override
     public Subject getOne(Subject subject, String locale) {
-        return null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method getOne by Subject for Subject.");
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_FIND_SUBJECT_BY_ID);
+            ps.setString(1,locale);
+            ps.setLong(2,subject.getId());
+            rs = ps.executeQuery();
+            subject.setSubjectName(rs.getString(Fields.SUBJECT_NAME));
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.trace("Repository method getAll for Subject returned --> " + subject);
+        return subject;
     }
 
     @Override
@@ -58,23 +80,22 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
     }
 
 
-
     @Override
-    public Integer deleteSubject(Long id,String locale) {
+    public Integer deleteSubject(Long id, String locale) {
         return null;
     }
 
     @Override
-    public Subject createUser(Subject subject,String locale) {
+    public Subject createSubject(Subject subject, String locale) {
         return null;
     }
 
     @Override
-    public Subject update(Long id, Subject subject,String locale) {
+    public Subject update(Long id, Subject subject, String locale) {
         return null;
     }
 
-    private Subject extractSubject(ResultSet rs) throws SQLException{
+    private Subject extractSubject(ResultSet rs) throws SQLException {
         Subject subject = new Subject();
         subject.setId(rs.getLong(Fields.ENTITY_ID));
         subject.setSubjectName(rs.getString(Fields.SUBJECT_NAME));

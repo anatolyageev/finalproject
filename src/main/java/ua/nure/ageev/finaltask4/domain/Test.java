@@ -11,6 +11,8 @@ public class Test extends LongID {
 
     private Integer difficultyLevel;
 
+    private Integer minutesToComplite;
+
     private String testName;
 
     private List<Qustion> qustions = new ArrayList<>();
@@ -21,6 +23,14 @@ public class Test extends LongID {
 
     public void setQuestionQuantity(Integer questionQuantity) {
         this.questionQuantity = questionQuantity;
+    }
+
+    public Integer getMinutesToComplite() {
+        return minutesToComplite;
+    }
+
+    public void setMinutesToComplite(Integer minutesToComplite) {
+        this.minutesToComplite = minutesToComplite;
     }
 
     public Integer getDifficultyLevel() {
@@ -52,6 +62,7 @@ public class Test extends LongID {
         return "Test{" +
                 "questionQuantity=" + questionQuantity +
                 ", difficultyLevel=" + difficultyLevel +
+                ", minutesToComplite=" + minutesToComplite +
                 ", testName='" + testName + '\'' +
                 ", qustions=" + qustions +
                 '}';

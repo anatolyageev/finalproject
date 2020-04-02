@@ -16,23 +16,25 @@
 <%-- HEADER --%>
 <h2>this is user page</h2>
 <a href="${pageContext.request.contextPath}/controller?command=subjectCommand">Show subjects</a>
-
+<ul class="links">
 <c:forEach items="${requestScope.subjectList}" var="subject" varStatus="loop">
-
-    <tr>
-        <td>${subject.id}</td>
-        <td>${subject.subjectName}</td>
-    </tr>
-
-    <ul class="links">
-        <li><a href="#">${subject.subjectName}</a></li>
-    </ul>
-
-
+<%--    <tr>--%>
+<%--        <td>${subject.id}</td>--%>
+<%--        <td>${subject.subjectName}</td>--%>
+<%--    </tr>--%>
+        <li><a href="${pageContext.request.contextPath}/controller?command=quizzeTestCommand&subject_id=${subject.id}">${subject.subjectName} # ${subject.id}</a></li>
 </c:forEach>
+</ul>
 
-
-
+<ul class="links">
+    <c:forEach items="${requestScope.testList}" var="test" varStatus="loop">
+        <%--    <tr>--%>
+        <%--        <td>${subject.id}</td>--%>
+        <%--        <td>${subject.subjectName}</td>--%>
+        <%--    </tr>--%>
+        <li><a href="#">${test.testName}</a></li>
+    </c:forEach>
+</ul>
 
 
 <%@ include file="/WEB-INF/jspf/footer.jspf"%>

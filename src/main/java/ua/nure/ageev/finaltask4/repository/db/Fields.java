@@ -22,6 +22,12 @@ public final class Fields {
 
 	public static final String SUBJECT_NAME = "subject_name";
 
+	public static final String TEST_DIFFICULTY_LEVEL = "difficulty";
+	public static final String TEST_MINUTES_TO_COMPLETE = "min_to_complete";
+	public static final String TEST_NAME = "test_name";
+	public static final String TEST_QUESTION_QUANTITY = "question_quantity";
+
+
 	public static final String ORDER_BILL = "bill";
 	public static final String ORDER_USER_ID = "user_id";
 	public static final String ORDER_STATUS_ID= "status_id";
