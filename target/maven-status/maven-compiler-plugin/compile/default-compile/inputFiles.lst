@@ -13,6 +13,8 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\ChangeUserStatusCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\filter\SessionLocaleFilter.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\db\Fields.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\QuizzeTestCommand.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\base\ChildService.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\RegistrationCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\impl\AdminRepositoryImpl.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\Answer.java
@@ -24,6 +26,7 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\ResourceNotFoundException.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\TestRepository.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\AnswerRepository.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\TestService.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\DBException.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\ViewSettingsCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\Subject.java
@@ -43,6 +46,7 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\UserService.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\Test.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\Role.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\impl\TestServiceImpl.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\UserResult.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\User.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\NoCommand.java
@@ -50,5 +54,6 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\LogoutCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\Messages.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\impl\TestRepositoryImpl.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\base\BasicService.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\AdminPageCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\GoToUserPage.java
