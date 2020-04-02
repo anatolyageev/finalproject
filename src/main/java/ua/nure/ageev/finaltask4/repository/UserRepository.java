@@ -3,6 +3,8 @@ package ua.nure.ageev.finaltask4.repository;
 
 import ua.nure.ageev.finaltask4.domain.User;
 
+import java.util.List;
+
 public interface UserRepository {
 
     /**
@@ -24,5 +26,13 @@ public interface UserRepository {
      */
     User getOne(long id);
 
+    List<User> getAllUsers();
 
+    /**
+     * Add User to database and returns a user.
+     *
+     * @param User entity.
+     * @return User entity.
+     */
+    User createUser(User user);
 }
