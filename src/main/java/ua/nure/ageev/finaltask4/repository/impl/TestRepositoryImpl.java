@@ -30,6 +30,10 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
             "WHERE t.id = tl.test_id " +
             "AND tl.lang_ind = ? AND t.subject_id = ?";
 
+    private static final String SQL_DELETE_TEST = "DELETE FROM tests WHERE id = ?";
+
+    private static final String SQL_DELETE_TEST_LOCALE = "DELETE FROM tests_locale WHERE test_id = ?";
+
 
     @Override
     public Test getOne(Long id, String locale) {
@@ -53,7 +57,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
         } finally {
             manager.close(con, ps, rs);
         }
-        LOG.trace("Repository method getAll for Subject returned --> " + test);
+        LOG.trace("Repository method getOne for Test returned --> " + test);
         return test;
     }
 
@@ -66,7 +70,25 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
 
     @Override
     public void delete(Long id) {
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("Repository impl method delete for Test.");
 
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_DELETE_TEST_LOCALE);
+            ps.setLong(1,id);
+            ps.executeUpdate();
+            ps = con.prepareStatement(SQL_DELETE_TEST);
+            ps.setLong(1,id);
+            ps.executeUpdate();
+            con.commit();
+        }catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps);
+        }
+        LOG.trace("Repository method delete for Test finished;");
     }
 
     @Override
@@ -76,7 +98,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = null;
-        LOG.trace("Repository impl method findAll for Subject.");
+        LOG.trace("Repository impl method findAll for Test.");
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_ALL_TEST);

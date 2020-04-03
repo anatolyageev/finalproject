@@ -32,7 +32,17 @@
         <%--        <td>${subject.id}</td>--%>
         <%--        <td>${subject.subjectName}</td>--%>
         <%--    </tr>--%>
-        <li><a href="#">${test.testName}</a></li>
+        <li><a href="${pageContext.request.contextPath}/controller?command=quizzeQuestionCommand&test_id=${test.id}">${test.testName}</a></li>
+    </c:forEach>
+</ul>
+
+<ul class="links">
+    <c:forEach items="${questionList}" var="questionList" varStatus="loop">
+        <%--    <tr>--%>
+        <%--        <td>${subject.id}</td>--%>
+        <%--        <td>${subject.subjectName}</td>--%>
+        <%--    </tr>--%>
+        <li><a href="#">${questionList.questionText}</a></li>
     </c:forEach>
 </ul>
 

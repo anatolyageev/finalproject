@@ -140,6 +140,14 @@ public void printAllUsers(){
         }
     }
 
+    /**
+     * Closes resources.
+     */
+    public void close(Connection con, Statement stmt) {
+        close(stmt);
+        close(con);
+    }
+
 
     /**
      * Closes resources.
