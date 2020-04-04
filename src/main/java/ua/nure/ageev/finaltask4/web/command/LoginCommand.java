@@ -43,7 +43,7 @@ public class LoginCommand extends Command {
 
         String password = request.getParameter("password");
 
-        if (login == null || password == null || login.isEmpty() || login.isEmpty()) {
+        if (login == null || password == null || login.isEmpty() ) {
             throw new AppException("Login/password cannot be empty");
         }
 

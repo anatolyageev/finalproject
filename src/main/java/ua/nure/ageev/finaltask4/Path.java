@@ -14,6 +14,7 @@ public final class Path {
 	public static final String PAGE_ERROR_PAGE = "/WEB-INF/jsp/error_page.jsp";
 
 	public static final String PAGE_USER_PAGE = "/WEB-INF/jsp/user/user_page.jsp";
+	public static final String PAGE_USER_TEST = "/WEB-INF/jsp/user/user_test.jsp";
 
 	public static final String PAGE_ADMIN_PAGE = "/WEB-INF/jsp/admin/list_quizes.jsp";
 	public static final String PAGE_SETTINGS = "/WEB-INF/jsp/settings.jsp";

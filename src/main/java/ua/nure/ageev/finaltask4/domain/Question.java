@@ -10,6 +10,16 @@ public class Question extends LongID{
 
     private List<Answer> answers = new ArrayList<>();
 
+    private Integer numberCorrectAnswers;
+
+    public Integer getNumberCorrectAnswers() {
+        return numberCorrectAnswers;
+    }
+
+    public void setNumberCorrectAnswers(Integer numberCorrectAnswers) {
+        this.numberCorrectAnswers = numberCorrectAnswers;
+    }
+
     public String getQuestionText() {
         return questionText;
     }
@@ -29,8 +39,9 @@ public class Question extends LongID{
     @Override
     public String toString() {
         return "Question{" +
-                "qustionText='" + questionText + '\'' +
-                ", aswers=" + answers +
+                "questionText='" + questionText + '\'' +
+                ", answers=" + answers +
+                ", numberCorrectAnswers=" + numberCorrectAnswers +
                 '}';
     }
 }

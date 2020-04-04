@@ -26,6 +26,8 @@ public class CommandContainer {
         commands.put("goToUserPage", new GoToUserPage());
         commands.put("quizzeTestCommand", new QuizzeTestCommand());
         commands.put("quizzeQuestionCommand", new QuizzeQuestionCommand());
+        commands.put("quizzeAnswerCommand", new QuizzeAnswerCommand());
+        commands.put("userTestCommand", new UserTestCommand());
 
 //        // client commands
 //        commands.put("listMenu", new ListMenuCommand());

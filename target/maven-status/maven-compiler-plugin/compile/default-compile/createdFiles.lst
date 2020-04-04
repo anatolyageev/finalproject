@@ -23,6 +23,7 @@ ua\nure\ageev\finaltask4\web\command\Command.class
 ua\nure\ageev\finaltask4\web\command\LogoutCommand.class
 ua\nure\ageev\finaltask4\domain\Test.class
 ua\nure\ageev\finaltask4\repository\UserRepository.class
+ua\nure\ageev\finaltask4\services\AnswerService.class
 ua\nure\ageev\finaltask4\repository\db\Fields.class
 ua\nure\ageev\finaltask4\repository\TestRepository.class
 ua\nure\ageev\finaltask4\web\command\SubjectCommand.class
@@ -36,11 +37,13 @@ ua\nure\ageev\finaltask4\web\command\ChangeUserStatusCommand.class
 ua\nure\ageev\finaltask4\exception\AppException.class
 ua\nure\ageev\finaltask4\web\command\AdminPageCommand.class
 ua\nure\ageev\finaltask4\services\impl\QuestionServiceImpl.class
+ua\nure\ageev\finaltask4\repository\impl\AnswerRepositoryImpl.class
 ua\nure\ageev\finaltask4\services\QuestionService.class
 ua\nure\ageev\finaltask4\web\command\RegistrationCommand.class
 ua\nure\ageev\finaltask4\repository\base\AbstractRepository.class
 ua\nure\ageev\finaltask4\web\command\ViewSettingsCommand.class
 ua\nure\ageev\finaltask4\web\command\ChangeRoleCommand.class
+ua\nure\ageev\finaltask4\services\impl\AnswerServiceImpl.class
 ua\nure\ageev\finaltask4\services\impl\AdminServiceImpl.class
 ua\nure\ageev\finaltask4\domain\Answer.class
 ua\nure\ageev\finaltask4\domain\LongID.class
@@ -49,6 +52,7 @@ ua\nure\ageev\finaltask4\repository\impl\TestRepositoryImpl.class
 ua\nure\ageev\finaltask4\repository\impl\QuestionRepositoryImpl.class
 ua\nure\ageev\finaltask4\repository\impl\UserRepositoryImpl.class
 ua\nure\ageev\finaltask4\repository\QuestionRepository.class
+ua\nure\ageev\finaltask4\web\command\QuizzeAnswerCommand.class
 ua\nure\ageev\finaltask4\web\Controller.class
 ua\nure\ageev\finaltask4\repository\AdminRepository.class
 ua\nure\ageev\finaltask4\web\command\GoToUserPage.class

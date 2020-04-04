@@ -29,6 +29,9 @@ public final class Fields {
 
 	public static final String QUESTION_TEXT = "question_text";
 
+	public static final String ANSWER_TEXT = "answer_text";
+	public static final String ANSWER_IS_CORRECT = "is_correct";
+
 	public static final String ORDER_BILL = "bill";
 	public static final String ORDER_USER_ID = "user_id";
 	public static final String ORDER_STATUS_ID= "status_id";

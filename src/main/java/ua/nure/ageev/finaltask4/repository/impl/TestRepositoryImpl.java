@@ -86,7 +86,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
         }catch (SQLException | DBException ex) {
             LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
         } finally {
-            manager.close(con, ps);
+            manager.close(con,ps);
         }
         LOG.trace("Repository method delete for Test finished;");
     }

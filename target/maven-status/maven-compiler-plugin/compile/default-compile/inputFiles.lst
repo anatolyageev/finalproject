@@ -29,11 +29,14 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\TestRepository.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\AnswerRepository.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\TestService.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\impl\AnswerServiceImpl.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\DBException.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\QuestionService.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\impl\AnswerRepositoryImpl.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\ViewSettingsCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\Subject.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\AdminService.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\AnswerService.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\LoginCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\base\BasicRepository.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\exception\AppException.java
@@ -52,6 +55,7 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\impl\TestServiceImpl.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\UserResult.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\impl\QuestionServiceImpl.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\QuizzeAnswerCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\User.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\NoCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\impl\UserRepositoryImpl.java

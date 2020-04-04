@@ -4,16 +4,16 @@ public class Answer extends LongID{
 
     private static final long serialVersionUID = 1L;
 
-    private Boolean isCorrectAnswer;
+    private Boolean correctAnswer;
 
     private String answerText;
 
-    public Boolean getCorrectAnswer() {
-        return isCorrectAnswer;
+    public Boolean isCorrectAnswer() {
+        return correctAnswer;
     }
 
     public void setCorrectAnswer(Boolean correctAnswer) {
-        isCorrectAnswer = correctAnswer;
+        this.correctAnswer = correctAnswer;
     }
 
     public String getAnswerText() {
@@ -27,7 +27,7 @@ public class Answer extends LongID{
     @Override
     public String toString() {
         return "Answer{" +
-                "isCorrectAnswer=" + isCorrectAnswer +
+                "isCorrectAnswer=" + correctAnswer +
                 ", answerText='" + answerText + '\'' +
                 '}';
     }
