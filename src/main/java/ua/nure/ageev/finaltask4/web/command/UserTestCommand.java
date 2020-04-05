@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import ua.nure.ageev.finaltask4.Path;
 import ua.nure.ageev.finaltask4.domain.Answer;
 import ua.nure.ageev.finaltask4.domain.Question;
+import ua.nure.ageev.finaltask4.domain.UserAnswer;
 import ua.nure.ageev.finaltask4.exception.AppException;
 import ua.nure.ageev.finaltask4.repository.impl.AnswerRepositoryImpl;
 import ua.nure.ageev.finaltask4.repository.impl.QuestionRepositoryImpl;
@@ -17,7 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserTestCommand extends Command {
 
@@ -45,10 +49,12 @@ public class UserTestCommand extends Command {
         LOG.debug("UserTestCommand get locale after if: " + local);
         Long testId = Long.parseLong(request.getParameter("test_id"));
        // Long questionId = Long.parseLong(request.getParameter("question_id"));
-
+        Map<Long, Boolean> answerIdUser = new HashMap<>();
         QuestionService questionService = new QuestionServiceImpl(new QuestionRepositoryImpl());
         AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
         List<Question> questionList = questionService.findAllByParent(testId,local);
+        List<UserAnswer> userAnswerList = new ArrayList<>();
+        Map<Long,Boolean> mapAnswer = new HashMap<>();
         LOG.debug("Found in DB: Question list --> " + questionList);
 
         for (Question q:questionList) {
@@ -57,18 +63,30 @@ public class UserTestCommand extends Command {
             q.setNumberCorrectAnswers(getCorrNum(answerList));
             q.setAnswers(answerList);
         }
+        fillUserAnswer(questionList, userAnswerList);
+
 
         LOG.debug("Found in DB: Question list answers added --> " + questionList);
 
         //TODO sorting
         //  List<Subject> subjectList = request.getAttribute("subjectList");
         // put user order beans list to request
-
-        request.setAttribute("questionList", questionList);
+        session.setAttribute("mapAnswer", mapAnswer);
+        session.setAttribute("questionList", questionList);
+        session.setAttribute("answerIdUser",answerIdUser);
         //request.setAttribute("testList", test);
         LOG.debug("Set the session attribute: questionList --> " + questionList);
         LOG.debug("UserTestCommand finished");
         return Path.PAGE_USER_TEST;
+    }
+
+    private void fillUserAnswer(List<Question> questionList, List<UserAnswer> userAnswerList) {
+        for (Question q:questionList) {
+            UserAnswer userAnswer = new UserAnswer();
+            Long questionId = q.getId();
+            userAnswer.setQuestionId(questionId);
+            userAnswerList.add(userAnswer);
+        }
     }
 
     private Integer getCorrNum(List<Answer> answerList) {
