@@ -6,18 +6,20 @@ public class UserResult extends LongID {
 
     private static final long serialVersionUID = 1L;
 
-    private Test test;
+    private Long testId;
 
     private Integer evaluation;
 
     private Date evaluationDate;
 
-    public Test getTest() {
-        return test;
+    private Long userId;
+
+    public Long getTestId() {
+        return testId;
     }
 
-    public void setTest(Test test) {
-        this.test = test;
+    public void setTestId(Long testId) {
+        this.testId = testId;
     }
 
     public Integer getEvaluation() {
@@ -36,12 +38,21 @@ public class UserResult extends LongID {
         this.evaluationDate = evaluationDate;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "UserResult{" +
-                "test=" + test +
+                "testId=" + testId +
                 ", evaluation=" + evaluation +
                 ", evaluationDate=" + evaluationDate +
+                ", userId=" + userId +
                 '}';
     }
 }

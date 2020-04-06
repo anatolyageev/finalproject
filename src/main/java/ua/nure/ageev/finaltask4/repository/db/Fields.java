@@ -32,6 +32,12 @@ public final class Fields {
 	public static final String ANSWER_TEXT = "answer_text";
 	public static final String ANSWER_IS_CORRECT = "is_correct";
 
+	public static final String USER_RESULT_USER_ID = "user_id";
+	public static final String USER_RESULT_TEST_ID = "test_id";
+	public static final String USER_RESULT_EVALUATION = "evaluation";
+	public static final String USER_RESULT_DATE_EVALUATION = "date_evaluation";
+
+
 	public static final String ORDER_BILL = "bill";
 	public static final String ORDER_USER_ID = "user_id";
 	public static final String ORDER_STATUS_ID= "status_id";

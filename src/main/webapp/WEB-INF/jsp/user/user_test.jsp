@@ -74,7 +74,10 @@
    </c:forEach>
 
 </ul>
-
+<form id="settings_form" action="controller" method="post" >
+    <input type="hidden" name="command" value="userTestFinishCommand" />
+    <input type="submit" name="Finish" >
+</form>
 
 <%@ include file="/WEB-INF/jspf/footer.jspf"%>
 

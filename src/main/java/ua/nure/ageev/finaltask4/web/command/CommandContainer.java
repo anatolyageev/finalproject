@@ -30,6 +30,7 @@ public class CommandContainer {
         commands.put("userTestCommand", new UserTestCommand());
         commands.put("userAnswerCommand", new UserAnswerCommand());
         commands.put("userPageChange", new UserPageChange());
+        commands.put("userTestFinishCommand", new UserTestFinishCommand());
 
 //        // client commands
 //        commands.put("listMenu", new ListMenuCommand());

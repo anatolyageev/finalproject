@@ -4,14 +4,18 @@ import org.apache.log4j.Logger;
 import ua.nure.ageev.finaltask4.Path;
 import ua.nure.ageev.finaltask4.domain.Answer;
 import ua.nure.ageev.finaltask4.domain.Question;
+import ua.nure.ageev.finaltask4.domain.Test;
 import ua.nure.ageev.finaltask4.domain.UserAnswer;
 import ua.nure.ageev.finaltask4.exception.AppException;
 import ua.nure.ageev.finaltask4.repository.impl.AnswerRepositoryImpl;
 import ua.nure.ageev.finaltask4.repository.impl.QuestionRepositoryImpl;
+import ua.nure.ageev.finaltask4.repository.impl.TestRepositoryImpl;
 import ua.nure.ageev.finaltask4.services.AnswerService;
 import ua.nure.ageev.finaltask4.services.QuestionService;
+import ua.nure.ageev.finaltask4.services.TestService;
 import ua.nure.ageev.finaltask4.services.impl.AnswerServiceImpl;
 import ua.nure.ageev.finaltask4.services.impl.QuestionServiceImpl;
+import ua.nure.ageev.finaltask4.services.impl.TestServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +56,13 @@ public class UserTestCommand extends Command {
         Map<Long, Boolean> answerIdUser = new HashMap<>();
         QuestionService questionService = new QuestionServiceImpl(new QuestionRepositoryImpl());
         AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
+        TestService testService = new TestServiceImpl(new TestRepositoryImpl());
         List<Question> questionList = questionService.findAllByParent(testId,local);
         List<UserAnswer> userAnswerList = new ArrayList<>();
         Map<Long,Boolean> mapAnswer = new HashMap<>();
+        Test currentTest = testService.getOne(testId, local);
+        currentTest.setQuestionQuantity(questionList.size());
+
         LOG.debug("Found in DB: Question list --> " + questionList);
 
         for (Question q:questionList) {
@@ -72,6 +80,7 @@ public class UserTestCommand extends Command {
         //  List<Subject> subjectList = request.getAttribute("subjectList");
         // put user order beans list to request
         session.setAttribute("mapAnswer", mapAnswer);
+        session.setAttribute("currentTest", currentTest);
         session.setAttribute("questionList", questionList);
         session.setAttribute("answerIdUser",answerIdUser);
         //request.setAttribute("testList", test);
