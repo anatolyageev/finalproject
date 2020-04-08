@@ -2,12 +2,13 @@
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    text-decoration-color: #999999;
 }
 
 .hero{
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(../img/banner.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(../img/X1-bg-img.jpg);
     background-position: center;
     background-size: cover;
     position: absolute;
@@ -19,7 +20,8 @@
     height: 480px;
     position: relative;
     margin: 6% auto;
-    background: #fff;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
     padding: 5px;
     overflow: hidden;
 }
@@ -51,10 +53,7 @@
     border-radius: 30px;
     transition: .5s;
 }
-.sosial-icons{
-    margin: 30px auto;
-    text-align: center;
-}
+
 
 .sosial-icons img{
     width: 30px;
