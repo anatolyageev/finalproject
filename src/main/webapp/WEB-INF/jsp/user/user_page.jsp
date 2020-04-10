@@ -6,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<html>
-<head>
-    <title>Title</title>
-</head>
+<%--<html>--%>
+<%--<head>--%>
+<%--    <title>Title</title>--%>
+<%--</head>--%>
 <body>
 <%-- HEADER --%>
 <%@ include file="/WEB-INF/jspf/header.jspf" %>
@@ -32,18 +32,28 @@
     </c:forEach>
 </ul>
 
-
-<table id="list_users">
-    <c:forEach items="${userResultList}" var="userResult" varStatus="loop">
-        <tr>
-            <td>${userResult.testId}</td>
-            <td>${userResult.userId}</td>
-            <td>${userResult.evaluationDate}</td>
-            <td>${userResult.evaluation}</td>
-        </tr>
-    </c:forEach>
-</table>
-
+<div class="container">
+    <div class="table-responsive-sm">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Test ID</th>
+                <th>User ID</th>
+                <th>Evaluation Date</th>
+                <th>Evaluation</th>
+            </tr>
+            </thead>
+            <c:forEach items="${userResultList}" var="userResult" varStatus="loop">
+                <tr>
+                    <td>${userResult.testId}</td>
+                    <td>${userResult.userId}</td>
+                    <td>${userResult.evaluationDate}</td>
+                    <td>${userResult.evaluation}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</div>
 
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 </body>
