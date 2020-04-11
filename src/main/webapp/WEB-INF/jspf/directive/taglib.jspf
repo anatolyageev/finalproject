@@ -14,6 +14,8 @@ JSTL 1.1 i18n-capable formatting library
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+
 <%--<fmt:setLocale value="ru"/>--%>
 <fmt:setLocale value="${sessionScope.currentLocale}"/>
 <fmt:setBundle basename="local"/>

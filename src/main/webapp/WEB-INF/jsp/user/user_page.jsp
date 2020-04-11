@@ -5,56 +5,68 @@
   Time: 14:13
   To change this template use File | Settings | File Templates.
 --%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Title</title>--%>
-<%--</head>--%>
-<body>
-<%-- HEADER --%>
-<%@ include file="/WEB-INF/jspf/header.jspf" %>
-<%-- HEADER --%>
-<h2>this is user page</h2>
-<a href="${pageContext.request.contextPath}/controller?command=subjectCommand">Show subjects</a>
-<ul class="links">
-    <c:forEach items="${requestScope.subjectList}" var="subject" varStatus="loop">
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=quizzeTestCommand&subject_id=${subject.id}">${subject.subjectName}
-                # ${subject.id}</a></li>
-    </c:forEach>
-</ul>
+<%@ include file="/WEB-INF/jspf/head.jspf" %>
 
-<ul class="links">
-    <c:forEach items="${requestScope.testList}" var="test" varStatus="loop">
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=userTestCommand&test_id=${test.id}">${test.testName}</a>
-        </li>
-    </c:forEach>
-</ul>
+<body>
+
+<%--    <div class="row">--%>
+<%-- HEADER --%>
+<%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
+<%-- HEADER --%>
+<%--    </div>--%>
 
 <div class="container">
-    <div class="table-responsive-sm">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>Test ID</th>
-                <th>User ID</th>
-                <th>Evaluation Date</th>
-                <th>Evaluation</th>
-            </tr>
-            </thead>
-            <c:forEach items="${userResultList}" var="userResult" varStatus="loop">
+    <div class="row mt-5">
+
+        <div class="col-md-6 order-md-1 mb-5">
+            <%--    user info--%>
+            <table class="table">
+
+                <h3><fmt:message key="user_page.user_info"/></h3>
+                <thead>
                 <tr>
-                    <td>${userResult.testId}</td>
-                    <td>${userResult.userId}</td>
-                    <td>${userResult.evaluationDate}</td>
-                    <td>${userResult.evaluation}</td>
+                    <th>Login</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
                 </tr>
-            </c:forEach>
-        </table>
+                </thead>
+                <tr>
+                    <td>${user.login}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-6 order-md-2 mb-5">
+            <div class="table-responsive-sm">
+                <h3><fmt:message key="user_page.user_results"/></h3>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>User ID</th>
+                        <th>Evaluation Date</th>
+                        <th>Evaluation</th>
+                    </tr>
+                    </thead>
+                    <c:forEach items="${userResultList}" var="userResult" varStatus="loop">
+                        <tr>
+                            <td>${userResult.testId}</td>
+                            <td>${userResult.userId}</td>
+                            <td>${userResult.evaluationDate}</td>
+                            <td>${userResult.evaluation}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
+
+<%-- FOOTER --%>
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
+<%-- FOOTER --%>
 </body>
 </html>

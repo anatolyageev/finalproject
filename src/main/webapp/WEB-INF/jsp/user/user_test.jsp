@@ -8,7 +8,7 @@
 <%@ include file ="/WEB-INF/jspf/head.jspf"%>
 
 <body>
-<%@ include file ="/WEB-INF/jspf/hederCorrectrd.jsp"%>
+<%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
 <ul class="links">
 <%--    <c:forEach items="${questionList.get(0)}" var="question" varStatus="loop">--%>
     page
