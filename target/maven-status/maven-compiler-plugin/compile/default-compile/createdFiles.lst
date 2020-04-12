@@ -2,6 +2,7 @@ ua\nure\ageev\finaltask4\web\command\QuizzeQuestionCommand.class
 ua\nure\ageev\finaltask4\exception\DBException.class
 ua\nure\ageev\finaltask4\web\listener\ContextListener.class
 ua\nure\ageev\finaltask4\services\base\BasicService.class
+ua\nure\ageev\finaltask4\web\command\QuizzeCommand.class
 ua\nure\ageev\finaltask4\domain\UserResult.class
 ua\nure\ageev\finaltask4\repository\impl\AdminRepositoryImpl.class
 ua\nure\ageev\finaltask4\repository\base\ChildRepository.class
@@ -20,6 +21,7 @@ ua\nure\ageev\finaltask4\repository\AnswerRepository.class
 ua\nure\ageev\finaltask4\services\impl\SubjectServiceImpl.class
 ua\nure\ageev\finaltask4\repository\base\BasicRepositoryNoLocale.class
 ua\nure\ageev\finaltask4\domain\User.class
+ua\nure\ageev\finaltask4\web\command\GoToUserPageCommand.class
 ua\nure\ageev\finaltask4\exception\ResourceNotFoundException.class
 ua\nure\ageev\finaltask4\services\SubjectService.class
 ua\nure\ageev\finaltask4\services\impl\UserServiceImpl.class
@@ -66,7 +68,6 @@ ua\nure\ageev\finaltask4\repository\QuestionRepository.class
 ua\nure\ageev\finaltask4\web\command\QuizzeAnswerCommand.class
 ua\nure\ageev\finaltask4\web\Controller.class
 ua\nure\ageev\finaltask4\repository\AdminRepository.class
-ua\nure\ageev\finaltask4\web\command\GoToUserPage.class
 ua\nure\ageev\finaltask4\services\AdminService.class
 ua\nure\ageev\finaltask4\services\base\ChildService.class
 ua\nure\ageev\finaltask4\domain\Role.class

@@ -21,6 +21,8 @@ public final class Path {
 
 	public static final String PAGE_USER_USER_LIST = "/WEB-INF/jsp/admin/userList.jsp";
 
+	public static final String PAGE_QUIZZE_LIST = "/WEB-INF/jsp/user/userQuizzes.jsp";
+
 	// commands
 	public static final String COMMAND_LIST_ORDERS = "/controller?command=listOrders";
 	public static final String COMMAND_LIST_MENU = "/controller?command=listMenu";

@@ -7,18 +7,20 @@
 --%>
 <%@ include file ="/WEB-INF/jspf/head.jspf"%>
 
-<body>
+<div>
 <%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
 <ul class="links">
 <%--    <c:forEach items="${questionList.get(0)}" var="question" varStatus="loop">--%>
-    page
-    ${pageId}
+    <div class="container">
+        <div class="row mt-5">
+
     <c:set var="question" value="${questionList.get(pageId)}"/>
         <form id="settings_form" action="controller" method="post" >
             <input type="hidden" name="command" value="userAnswerCommand" />
             <input type="hidden" name="question_id" value="${question.id}" />
-        <p>${question.questionText}</p>
 
+        <div>${question.questionText}</div>
+        <div class="mt-5">
         <ul>
             <c:forEach items="${question.answers}" var = "answers" varStatus="loop">
 
@@ -54,11 +56,17 @@
 
         <c:set var="key" value="${question.id}"/>
 
-
-        <input type="submit" <c:if test="${mapAnswer.containsKey(key)}">
+            <div class="mt-3">
+        <input type="submit"
+        <c:if test="${mapAnswer.containsKey(key)}">
                disabled
-        </c:if> value=<fmt:message key="test.answer.button"/>>
+        </c:if>
+
+               value=<fmt:message key="test.answer.button"/>>
+            </div>
         </form>
+
+        <div class="mt-3">
 <c:forEach items="${questionList}" var="question" varStatus="loop">
 
     <a href="${pageContext.request.contextPath}/controller?command=userPageChange&page=${loop.index}">Qustion ${loop.index + 1}</a>
@@ -72,13 +80,17 @@
 
 
    </c:forEach>
-
+        </div>
 </ul>
-<form id="settings_form" action="controller" method="post" >
+    <div class="mt-5 ml-5">
+<form action="controller" method="post" >
     <input type="hidden" name="command" value="userTestFinishCommand" />
     <input type="submit" name="Finish" >
 </form>
-
+    </div>
+</div>
+</div>
+</div>
 <%@ include file="/WEB-INF/jspf/footer.jspf"%>
 
 <script>

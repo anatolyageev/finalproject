@@ -50,6 +50,6 @@ public class QuizzeTestCommand extends Command {
         request.setAttribute("testList", test);
         LOG.debug("Set the request attribute: subjectList --> " + test);
         LOG.debug("QuizzeTestCommand finished");
-        return Path.PAGE_USER_PAGE;
+        return Path.PAGE_QUIZZE_LIST;
     }
 }

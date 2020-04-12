@@ -2,8 +2,10 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\impl\UserServiceImpl.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\db\DBManager.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\QuizzServiseUser.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\GoToUserPageCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\Command.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\SubjectService.java
+D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\QuizzeCommand.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\ID.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\Path.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\SubjectRepository.java
@@ -76,5 +78,4 @@ D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\services\base\ChildServiceNoLocale.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\domain\UserAnswer.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\AdminPageCommand.java
-D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\web\command\GoToUserPage.java
 D:\Clouds\Google Drive\EPAM_Final_Project\finalprojecttemp\src\main\java\ua\nure\ageev\finaltask4\repository\impl\UserResultRepositoryImpl.java

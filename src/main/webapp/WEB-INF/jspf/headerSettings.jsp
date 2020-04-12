@@ -26,7 +26,7 @@ Header (top area).
                 This way we define the USER MENU.
                 ===========================================================================--%>
                 <c:when test="${userRole.name == 'client'}">
-                    <a class="navbar-brand" href="controller?command=listMenu">Quizzes</a> &nbsp;
+                    <a class="navbar-brand" href="controller?command=quizzeCommand">Quizzes</a> &nbsp;
                 </c:when>
             </c:choose>
 
