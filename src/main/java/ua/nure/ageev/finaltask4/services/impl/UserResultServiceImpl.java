@@ -38,16 +38,26 @@ public class UserResultServiceImpl implements UserResultService {
         return null;
     }
 
-    @Override
+
     public UserResult insert(Long parentId, UserResult userResult) {
         LOG.trace("Service method insert for UserResult " );
         return repository.insert(parentId,userResult);
     }
 
     @Override
-    public List<UserResult> findAllByParent(Long userId) {
+    public List<UserResult> findAllByParent(Long parentId) {
+        return null;
+    }
+
+    @Override
+    public UserResult insert(Long parentId, UserResult entity, String locale) {
+        return null;
+    }
+
+    @Override
+    public List<UserResult> findAllByParent(Long userId, String locale) {
         LOG.trace("Service method findAllByParent for UserResult " );
-        return repository.findAllByParent(userId);
+        return repository.findAllByParent(userId, locale);
     }
 
     @Override

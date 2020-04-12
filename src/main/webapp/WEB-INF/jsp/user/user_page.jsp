@@ -44,16 +44,16 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Test ID</th>
-                        <th>User ID</th>
+                        <th>Test</th>
+
                         <th>Evaluation Date</th>
                         <th>Evaluation</th>
                     </tr>
                     </thead>
                     <c:forEach items="${userResultList}" var="userResult" varStatus="loop">
                         <tr>
-                            <td>${userResult.testId}</td>
-                            <td>${userResult.userId}</td>
+                            <td>${userResult.testName}</td>
+
                             <td>${userResult.evaluationDate}</td>
                             <td>${userResult.evaluation}</td>
                         </tr>

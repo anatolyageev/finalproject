@@ -14,6 +14,8 @@ public class UserResult extends LongID {
 
     private Long userId;
 
+    private String testName;
+
     public Long getTestId() {
         return testId;
     }
@@ -46,6 +48,14 @@ public class UserResult extends LongID {
         this.userId = userId;
     }
 
+    public String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
     @Override
     public String toString() {
         return "UserResult{" +
@@ -53,6 +63,7 @@ public class UserResult extends LongID {
                 ", evaluation=" + evaluation +
                 ", evaluationDate=" + evaluationDate +
                 ", userId=" + userId +
+                ", testName='" + testName + '\'' +
                 '}';
     }
 }

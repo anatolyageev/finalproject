@@ -19,15 +19,38 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
 
     protected static final Logger LOG = Logger.getLogger(TestRepositoryImpl.class);
 
-    private static final String SQL_FIND_ALL_TEST = "SELECT * FROM tests s, tests_locale sl " +
-            "WHERE s.id = sl.test_id AND sl.lang_ind = ?";
+    private static final String SQL_FIND_ALL_TEST = "SELECT t.id,tl.test_name, question_quantity, t.difficulty, min_to_complete, subject_id" +
+            " FROM tests t, tests_locale tl, " +
+            "(SELECT " +
+            "ts.id id " +
+            ",count(q.id) question_quantity " +
+            "FROM tests ts, questions q " +
+            "WHERE ts.id = q.test_id " +
+            "group by ts.id) qq " +
+            "WHERE t.id = tl.test_id AND tl.lang_ind = ? " +
+            "AND t.id = qq.id";
 
-    private static final String SQL_FIND_TEST_BY_ID = "SELECT * FROM tests t, tests_locale tl " +
+    private static final String SQL_FIND_TEST_BY_ID = "SELECT t.id,tl.test_name, question_quantity, t.difficulty, min_to_complete, subject_id" +
+            " FROM tests t, tests_locale tl, " +
+            "(SELECT " +
+            "ts.id id " +
+            ",count(q.id) question_quantity " +
+            "FROM tests ts, questions q " +
+            "WHERE ts.id = q.test_id " +
+            "group by ts.id) qq " +
             "WHERE t.id = tl.test_id " +
-            "AND tl.lang_ind = ? AND t.id = ?";
+            "AND tl.lang_ind = ? AND t.id = ? AND t.id = qq.id";
 
-    private static final String SQL_FIND_ALL_TEST_BY_PARENT = "SELECT * FROM tests t, tests_locale tl " +
+    private static final String SQL_FIND_ALL_TEST_BY_PARENT = "SELECT t.id,tl.test_name, question_quantity, t.difficulty, min_to_complete, subject_id " +
+            "FROM tests t, tests_locale tl, " +
+            "(SELECT " +
+            "t.id id " +
+            ",count(q.id) question_quantity " +
+            "FROM tests t, questions q " +
+            "where t.id = q.test_id " +
+            "group by t.id) qq " +
             "WHERE t.id = tl.test_id " +
+            "AND t.id = qq.id "+
             "AND tl.lang_ind = ? AND t.subject_id = ?";
 
     private static final String SQL_DELETE_TEST = "DELETE FROM tests WHERE id = ?";

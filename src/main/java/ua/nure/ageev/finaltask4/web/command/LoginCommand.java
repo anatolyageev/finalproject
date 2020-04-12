@@ -67,11 +67,11 @@ public class LoginCommand extends Command {
         if (userRole == Role.ADMIN) {
             forward = Path.PAGE_ADMIN_PAGE;
         }
-
+        String local = (String) session.getAttribute("currentLocale");
         if (userRole == Role.CLIENT) {
             path = request.getContextPath() + "/controller?command=goToUserPageCommand";
           //  forward = path;
-            List<UserResult> userResultList = userResultService.findAllByParent(user.getId());
+            List<UserResult> userResultList = userResultService.findAllByParent(user.getId(),local);
             LOG.debug("UserTestFinishCommand get questionList : " + userResultList);
             session.setAttribute("userResultList",userResultList);
             forward = Path.PAGE_USER_PAGE;

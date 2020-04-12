@@ -20,8 +20,11 @@ public class UserResultRepositoryImpl extends AbstractRepository implements User
 
     private static final String SQL_FIND_RESULT_BY_ID = "SELECT * FROM users_results t WHERE t.id = ?";
 
-    private static final String SQL_FIND_ALL_RESULT_BY_PARENT = "SELECT * FROM users_results t, users u " +
+    private static final String SQL_FIND_ALL_RESULT_BY_PARENT = "SELECT * FROM users_results t, users u, tests tt, tests_locale tl  " +
             "WHERE t.user_id = u.id " +
+            "AND t.test_id = tt.id " +
+            "AND tt.id = tl.test_id " +
+            "AND tl.lang_ind = ? "+
             "AND u.id = ?";
 
     private static final String SQL_INSERT_RESULT_BY_PARENT = "INSERT INTO `quizdb`.`users_results`" +
@@ -47,7 +50,7 @@ public class UserResultRepositoryImpl extends AbstractRepository implements User
         return null;
     }
 
-    @Override
+
     public UserResult insert(Long parentId, UserResult userResult) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -78,7 +81,12 @@ public class UserResultRepositoryImpl extends AbstractRepository implements User
     }
 
     @Override
-    public List<UserResult> findAllByParent(Long parentId) {
+    public UserResult insert(Long parentId, UserResult userResult, String s) {
+        return null;
+    }
+
+    @Override
+    public List<UserResult> findAllByParent(Long parentId, String locale) {
         List<UserResult> userResultList = new ArrayList<>();
         UserResult userResult = null;
         PreparedStatement ps = null;
@@ -88,7 +96,8 @@ public class UserResultRepositoryImpl extends AbstractRepository implements User
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_ALL_RESULT_BY_PARENT);
-            ps.setLong(1,parentId);
+            ps.setString(1,locale);
+            ps.setLong(2,parentId);
             rs = ps.executeQuery();
             while (rs.next()) {
                 userResult = extractUserResult(rs);
@@ -117,6 +126,7 @@ public class UserResultRepositoryImpl extends AbstractRepository implements User
         userResult.setTestId(rs.getLong(Fields.USER_RESULT_TEST_ID));
         userResult.setEvaluation(rs.getInt(Fields.USER_RESULT_EVALUATION));
         userResult.setEvaluationDate(rs.getDate(Fields.USER_RESULT_DATE_EVALUATION));
+        userResult.setTestName(rs.getString(Fields.TEST_NAME));
         return userResult;
     }
 

@@ -60,7 +60,7 @@ public class UserTestFinishCommand extends Command {
 
         LOG.debug("UserTestFinishCommand get questionList : " + userResult);
 
-        List<UserResult> userResultList = userResultService.findAllByParent(user.getId());
+        List<UserResult> userResultList = userResultService.findAllByParent(user.getId(),local);
         LOG.debug("UserTestFinishCommand get questionList : " + userResultList);
         session.setAttribute("userResultList",userResultList);
 
