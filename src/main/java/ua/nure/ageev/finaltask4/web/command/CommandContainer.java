@@ -23,8 +23,15 @@ public class CommandContainer {
         commands.put("registration", new RegistrationCommand());
         commands.put("changeUserStatusCommand", new ChangeUserStatusCommand());
         commands.put("subjectCommand", new SubjectCommand());
-        commands.put("goToUserPage", new GoToUserPage());
+        commands.put("goToUserPageCommand", new GoToUserPageCommand());
         commands.put("quizzeTestCommand", new QuizzeTestCommand());
+        commands.put("quizzeQuestionCommand", new QuizzeQuestionCommand());
+        commands.put("quizzeAnswerCommand", new QuizzeAnswerCommand());
+        commands.put("userTestCommand", new UserTestCommand());
+        commands.put("userAnswerCommand", new UserAnswerCommand());
+        commands.put("userPageChange", new UserPageChange());
+        commands.put("userTestFinishCommand", new UserTestFinishCommand());
+        commands.put("quizzeCommand", new QuizzeCommand());
 
 //        // client commands
 //        commands.put("listMenu", new ListMenuCommand());

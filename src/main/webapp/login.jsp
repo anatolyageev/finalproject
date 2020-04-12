@@ -1,4 +1,5 @@
 <%@ include file="/WEB-INF/jspf/headLogin.jsp" %>
+<c:set var="currentLocale" value="en" scope="session"/>
 <body>
 <%--===========================================================================
 Defines the web form.

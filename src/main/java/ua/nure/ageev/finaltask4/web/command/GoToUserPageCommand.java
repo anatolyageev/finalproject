@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class GoToUserPage extends Command {
+public class GoToUserPageCommand extends Command {
     private static final long serialVersionUID = -3071536563627692473L;
-    private static final Logger LOG = Logger.getLogger(GoToUserPage.class);
+    private static final Logger LOG = Logger.getLogger(GoToUserPageCommand.class);
 
 
     /**
-     * Execution method for GoToUserPage command.
+     * Execution method for GoToUserPageCommand command.
      *
      * @param request
      * @param response
@@ -23,9 +23,9 @@ public class GoToUserPage extends Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
-        LOG.debug("Command GoToUserPage starts");
+        LOG.debug("Command GoToUserPageCommand starts");
 
-        LOG.debug("Command  GoToUserPage finished");
+        LOG.debug("Command  GoToUserPageCommand finished");
         return Path.PAGE_USER_PAGE;
     }
 }

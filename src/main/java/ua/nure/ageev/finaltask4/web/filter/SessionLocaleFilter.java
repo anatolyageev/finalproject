@@ -59,6 +59,13 @@ public class SessionLocaleFilter implements Filter {
         HttpSession session = ((HttpServletRequest) servletRequest).getSession();
         // получаем объект name
         String name = (String) session.getAttribute("currentLocale");
+        String lang = req.getParameter("lang");
+
+        if (lang != null) {
+
+            session.setAttribute("currentLocale", lang);
+
+        }
 
         if(name==null){
             Locale userPreferredLocale = req.getLocale();
@@ -70,7 +77,7 @@ public class SessionLocaleFilter implements Filter {
 
         name = (String) session.getAttribute("currentLocale");
 
-        System.out.println(name);
+        LOG.debug("Current locale: "+name);
 
         LOG.debug("Filter finished");
         filterChain.doFilter(servletRequest, servletResponse);

@@ -13,9 +13,9 @@
 
 <body>
 <%-- HEADER --%>
-<%@ include file="/WEB-INF/jspf/header.jspf" %>
+<%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
 <%-- HEADER --%>
-
+<div class="container">
 <div>
 
     <fmt:message key="user_list.change_role" var="changeRole"/>
@@ -98,7 +98,7 @@
 
 
 </div>
-
+</div>
 
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 </body>

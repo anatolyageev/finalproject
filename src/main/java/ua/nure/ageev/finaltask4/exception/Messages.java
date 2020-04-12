@@ -3,7 +3,7 @@ package ua.nure.ageev.finaltask4.exception;
 /**
  * Holder for messages of exceptions.
  * 
- * @author Dmytro_Kolesnikov
+ * @author A.Ageev
  *
  */
 public class Messages {
