@@ -18,7 +18,7 @@
         <form id="settings_form" action="controller" method="post" >
             <input type="hidden" name="command" value="userAnswerCommand" />
             <input type="hidden" name="question_id" value="${question.id}" />
-
+            <p id="demo"></p>
         <div>${question.questionText}</div>
         <div class="mt-5">
         <ul>
@@ -92,48 +92,6 @@
 </div>
 </div>
 
-<%
-    String mins = request.getParameter( "mins" );
-    if( mins == null ) mins = "30";
-
-    String secs = request.getParameter( "secs" );
-    if( secs == null ) secs = "1";
-%>
-<script>
-    <!--
-    var mins = <%=mins%>; // write mins to javascript
-    var secs = <%=secs%>; // write secs to javascript
-    function timer()
-    {
-// tic tac
-        if( --secs == -1 )
-        {
-            secs = 59;
-            --mins;
-        }
-
-// leading zero? formatting
-        if( secs < 10 ) secs = "0" + secs;
-        if( mins < 10 ) mins = "0" + parseInt( mins, 10 );
-
-// display
-        document.forma.mins.value = mins;
-        document.forma.secs.value = secs;
-
-// continue?
-        if( secs == 0 && mins == 0 ) // time over
-        {
-            document.forma.ok.disabled = true;
-            document.formb.results.style.display = "block";
-        }
-        else // call timer() recursively every 1000 ms == 1 sec
-        {
-            window.setTimeout( "timer()", 1000 );
-        }
-    }
-    //-->
-</script></head>
-<body>
 <form action="<%=request.getRequestURL()%>" name="forma">
     Time remaining: <input type="text" name="mins" size="1" style="border:0px solid black;text-align:right">:<input type="text" name="secs" size="1" style="border:0px solid black">
     <hr>
@@ -145,14 +103,72 @@
 <form action="#" name="formb">
     <input type="submit" name="results" value="show results" style="display:none;">
 </form>
-<script>
-    <!--
-    timer(); // call timer() after page is loaded
-    //-->
-</script>
+
 
 <%@ include file="/WEB-INF/jspf/footer.jspf"%>
 <%--<script language="JavaScript" src="../../../js/countdown.js"></script>--%>
+<script>
+d = new Date();
+d = getCookie("testEndTime");
+console.log(d);
+    function addMinutes(date, minutes) {
+        return new Date(date.getTime() + minutes*60000);
+    }
+
+    // Set the date we're counting down to
+    var countDownDate = new Date(d).getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        // document.getElementById("demo").innerHTML = days + "d " + hours + "h "  + minutes + "m " + seconds + "s ";
+        document.getElementById("demo").innerHTML = minutes + ":" + seconds;
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+
+    function getCookie(name) {
+        var cookie = " " + document.cookie;
+        var search = " " + name + "=";
+        var setStr = null;
+        var offset = 0;
+        var end = 0;
+        if (cookie.length > 0) {
+            offset = cookie.indexOf(search);
+            if (offset != -1) {
+                offset += search.length;
+                end = cookie.indexOf(";", offset)
+                if (end == -1) {
+                    end = cookie.length;
+                }
+                setStr = unescape(cookie.substring(offset, end));
+            }
+        }
+        return(setStr);
+    }
+
+
+
+</script>
+
+
 <script>
 
     // document.getElementById('not active').disabled = true;

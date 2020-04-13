@@ -33,14 +33,24 @@
                     <th>Test</th>
                     <th>Difficulty Level</th>
                     <th>Number of question</th>
+                    <th>minutesToComplite</th>
                 </tr>
                 </thead>
 
                 <c:forEach items="${requestScope.testList}" var="test" varStatus="loop">
                 <tr>
-                    <td><a href="${pageContext.request.contextPath}/controller?command=userTestCommand&test_id=${test.id}">${test.testName}</a></td>
+                    <td>
+
+                        <form action="controller" method=post onsubmit="return doSomething(${test.minutesToComplite})">
+                            <input type="hidden" name="command" value="userTestCommand" />
+                            <input type="hidden" name="test_id" value="${test.id}" />
+                            <input type=submit value="${test.testName}">
+                        </form>
+<%--                        <a href="${pageContext.request.contextPath}/controller?command=userTestCommand&test_id=${test.id}">${test.testName}</a>--%>
+                    </td>
                     <td>${test.difficultyLevel}</td>
                     <td>${test.questionQuantity}</td>
+                    <td>${test.minutesToComplite}</td>
                 </tr>
                 </c:forEach>
 
@@ -52,5 +62,23 @@
 <%-- FOOTER --%>
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 <%-- FOOTER --%>
+<script>
+    // var d = new Date();
+    // d.setMinutes(d.getMinutes() + 30);
+
+    function addMinutes(minutes) {
+        var d = new Date();
+        return d.setMinutes(d.getMinutes() + minutes);
+
+
+       // return new Date(date.getTime() + minutes*60000);
+    }
+function doSomething(minutes) {
+    var d = new Date()
+    d.setMinutes(d.getMinutes() + minutes);
+    document.cookie = "testEndTime="+d.toUTCString();
+   // console.log(addMinutes(minutes));
+}
+</script>
 </body>
 </html>
