@@ -83,7 +83,7 @@
         </div>
 </ul>
     <div class="mt-5 ml-5">
-<form action="controller" method="post" >
+<form id="submitTest" action="controller" method="post" >
     <input type="hidden" name="command" value="userTestFinishCommand" />
     <input type="submit" name="Finish" >
 </form>
@@ -140,6 +140,7 @@ console.log(d);
         // If the count down is over, write some text
         if (distance < 0) {
             clearInterval(x);
+            document.getElementById("submitTest").submit();
             document.getElementById("demo").innerHTML = "EXPIRED";
         }
     }, 1000);
