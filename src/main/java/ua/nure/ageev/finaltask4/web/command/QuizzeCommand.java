@@ -55,8 +55,8 @@ public class QuizzeCommand extends Command {
         //TODO sorting
 
         // put user order beans list to request
-        request.setAttribute("subjectList", subjects);
-        request.setAttribute("testList", test);
+        session.setAttribute("subjectList", subjects);
+        session.setAttribute("testList", test);
         LOG.debug("Set the request attribute: subjectList --> " + subjects);
         LOG.debug("QuizzeCommand finished");
         return Path.PAGE_QUIZZE_LIST;

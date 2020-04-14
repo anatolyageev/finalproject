@@ -44,10 +44,7 @@ public class QuizzeTestCommand extends Command {
         List<Test> test = testService.findAllByParent(subjectId,local);
         LOG.debug("Found in DB: test list --> " + test);
 
-        //TODO sorting
-      //  List<Subject> subjectList = request.getAttribute("subjectList");
-        // put user order beans list to request
-        request.setAttribute("testList", test);
+        session.setAttribute("testList", test);
         LOG.debug("Set the request attribute: subjectList --> " + test);
         LOG.debug("QuizzeTestCommand finished");
         return Path.PAGE_QUIZZE_LIST;

@@ -15,18 +15,30 @@
         <div class="col-md-4 order-md-1 ">
             <a href="${pageContext.request.contextPath}/controller?command=quizzeCommand">All subjects</a>
             <ul class="links">
-                <c:forEach items="${requestScope.subjectList}" var="subject" varStatus="loop">
+                <c:forEach items="${sessionScope.subjectList}" var="subject" varStatus="loop">
                     <li>
-                        <a href="${pageContext.request.contextPath}/controller?command=quizzeTestCommand&subject_id=${subject.id}">${subject.subjectName}
-                            # ${subject.id}</a></li>
+                        <a href="${pageContext.request.contextPath}/controller?command=quizzeTestCommand&subject_id=${subject.id}">${subject.subjectName}</a>
+                    </li>
                 </c:forEach>
             </ul>
 
 
         </div>
 
-        <div class="col-md-8 order-md-2 ">
 
+        <div class="col-md-8 order-md-2 ">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Sort by:
+                </button>
+                <div class="dropdown-menu">
+
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=name">Sort by name</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=level">Sort by level</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=number">Sort by number</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=minutes">Sort by minutes</a>
+                </div>
+            </div>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -37,7 +49,7 @@
                 </tr>
                 </thead>
 
-                <c:forEach items="${requestScope.testList}" var="test" varStatus="loop">
+                <c:forEach items="${sessionScope.testList}" var="test" varStatus="loop">
                 <tr>
                     <td>
 
@@ -56,6 +68,11 @@
 
             </table>
         </div>
+
+
+
+
+
     </div>
 </div>
 
