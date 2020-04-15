@@ -69,15 +69,7 @@
         <div class="mt-3">
 <c:forEach items="${questionList}" var="question" varStatus="loop">
 
-    <a href="${pageContext.request.contextPath}/controller?command=userPageChange&page=${loop.index}">Qustion ${loop.index + 1}</a>
-
-
-<%--    <form action="controller" method="post" >--%>
-<%--        <input type="hidden" name="command" value="userAnswerCommand" />--%>
-<%--        <input type="hidden" name="page" value="${question.id}" />--%>
-<%--        <input type="submit" value="${loop.index + 1}" />--%>
-<%--    </form>--%>
-
+    <a href="${pageContext.request.contextPath}/controller?command=userPageChange&page=${loop.index}"><fmt:message key="user_test.Qustion"/> ${loop.index + 1}</a>
 
    </c:forEach>
         </div>
@@ -92,21 +84,10 @@
 </div>
 </div>
 
-<form action="<%=request.getRequestURL()%>" name="forma">
-    Time remaining: <input type="text" name="mins" size="1" style="border:0px solid black;text-align:right">:<input type="text" name="secs" size="1" style="border:0px solid black">
-    <hr>
-    Question: What is green and turns red if you hit the button?<br>
-    Answer: <input type="text" name="answer">
-    <input type="submit" name="ok" value="OK">
-</form>
-<hr>
-<form action="#" name="formb">
-    <input type="submit" name="results" value="show results" style="display:none;">
-</form>
-
 
 <%@ include file="/WEB-INF/jspf/footer.jspf"%>
-<%--<script language="JavaScript" src="../../../js/countdown.js"></script>--%>
+
+<%--JS for timer--%>
 <script>
 d = new Date();
 d = getCookie("testEndTime");
@@ -165,15 +146,11 @@ console.log(d);
         return(setStr);
     }
 
-
-
 </script>
 
-
+<%--JS for disabling answered qustion--%>
 <script>
 
-    // document.getElementById('not active').disabled = true;
-// document.getElementsByName('not active').disabled = true;
     document.getElementsByClassName('not active').disabled = true;
 
 </script>

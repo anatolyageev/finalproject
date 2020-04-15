@@ -36,6 +36,7 @@ public class LogoutCommand extends Command{
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
+            LOG.debug("LogoutCommand invalidate session");
         }
 
         LOG.debug("LogoutCommand finished");

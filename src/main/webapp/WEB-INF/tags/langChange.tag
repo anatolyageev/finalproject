@@ -10,8 +10,6 @@
         <fmt:setBundle basename="local"/>
         <form class="form-inline mt-2 mt-md-0" action="" method="post">
             <fmt:message key="local.local_button.english" var="en_button"/>
-<%--            <input type="hidden" name="actionName" value="change_lang">--%>
-<%--            <input type="hidden" name="from" value="${curr_uri}">--%>
             <input type="hidden" name="lang" value="en"/>
             <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="${en_button}"/>
             <br>
@@ -22,8 +20,6 @@
         <fmt:setBundle basename="local"/>
         <form class="form-inline mt-2 mt-md-0" action="" method="post">
             <fmt:message key="local.local_button.russian" var="ru_button"/>
-<%--            <input type="hidden" name="actionName" value="change_lang">--%>
-<%--            <input type="hidden" name="from" value="${curr_uri}">--%>
             <input type="hidden" name="lang" value="ru"/>
             <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="${ru_button}"/><br>
         </form>

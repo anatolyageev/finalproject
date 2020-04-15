@@ -25,9 +25,9 @@
                 <h3><fmt:message key="user_page.user_info"/></h3>
                 <thead>
                 <tr>
-                    <th>Login</th>
-                    <th>Name</th>
-                    <th>Last Name</th>
+                    <th><fmt:message key="login.login_form.login"/></th>
+                    <th><fmt:message key="registration.registration_form.first_name"/></th>
+                    <th><fmt:message key="registration.registration_form.last_name"/></th>
                 </tr>
                 </thead>
                 <tr>
@@ -44,10 +44,9 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Test</th>
-
-                        <th>Evaluation Date</th>
-                        <th>Evaluation</th>
+                        <th><fmt:message key="user_page.user_results.test_name"/></th>
+                        <th><fmt:message key="user_page.user_results.evaluation_date"/></th>
+                        <th><fmt:message key="user_page.user_results.evaluation"/></th>
                     </tr>
                     </thead>
                     <c:forEach items="${userResultList}" var="userResult" varStatus="loop">

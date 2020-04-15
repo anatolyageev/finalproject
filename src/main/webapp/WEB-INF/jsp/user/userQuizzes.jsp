@@ -21,10 +21,7 @@
                     </li>
                 </c:forEach>
             </ul>
-
-
         </div>
-
 
         <div class="col-md-8 order-md-2 ">
             <div class="dropdown">
@@ -32,11 +29,18 @@
                     Sort by:
                 </button>
                 <div class="dropdown-menu">
-
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=name">Sort by name</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=level">Sort by level</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=number">Sort by number</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=minutes">Sort by minutes</a>
+                    <a class="dropdown-item"
+                       href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=name">Sort
+                        by name</a>
+                    <a class="dropdown-item"
+                       href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=level">Sort
+                        by level</a>
+                    <a class="dropdown-item"
+                       href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=number">Sort
+                        by number</a>
+                    <a class="dropdown-item"
+                       href="${pageContext.request.contextPath}/controller?command=quizzeTestSortCommand&sort=minutes">Sort
+                        by minutes</a>
                 </div>
             </div>
             <table class="table table-bordered">
@@ -50,29 +54,23 @@
                 </thead>
 
                 <c:forEach items="${sessionScope.testList}" var="test" varStatus="loop">
-                <tr>
-                    <td>
-
-                        <form action="controller" method=post onsubmit="return doSomething(${test.minutesToComplite})">
-                            <input type="hidden" name="command" value="userTestCommand" />
-                            <input type="hidden" name="test_id" value="${test.id}" />
-                            <input type=submit value="${test.testName}">
-                        </form>
-<%--                        <a href="${pageContext.request.contextPath}/controller?command=userTestCommand&test_id=${test.id}">${test.testName}</a>--%>
-                    </td>
-                    <td>${test.difficultyLevel}</td>
-                    <td>${test.questionQuantity}</td>
-                    <td>${test.minutesToComplite}</td>
-                </tr>
+                    <tr>
+                        <td>
+                            <form action="controller" method=post
+                                  onsubmit="return doSomething(${test.minutesToComplite})">
+                                <input type="hidden" name="command" value="userTestCommand"/>
+                                <input type="hidden" name="test_id" value="${test.id}"/>
+                                <input type=submit value="${test.testName}">
+                            </form>
+                        </td>
+                        <td>${test.difficultyLevel}</td>
+                        <td>${test.questionQuantity}</td>
+                        <td>${test.minutesToComplite}</td>
+                    </tr>
                 </c:forEach>
 
             </table>
         </div>
-
-
-
-
-
     </div>
 </div>
 
@@ -80,22 +78,17 @@
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 <%-- FOOTER --%>
 <script>
-    // var d = new Date();
-    // d.setMinutes(d.getMinutes() + 30);
 
     function addMinutes(minutes) {
         var d = new Date();
         return d.setMinutes(d.getMinutes() + minutes);
-
-
-       // return new Date(date.getTime() + minutes*60000);
     }
-function doSomething(minutes) {
-    var d = new Date()
-    d.setMinutes(d.getMinutes() + minutes);
-    document.cookie = "testEndTime="+d.toUTCString();
-   // console.log(addMinutes(minutes));
-}
+
+    function doSomething(minutes) {
+        var d = new Date()
+        d.setMinutes(d.getMinutes() + minutes);
+        document.cookie = "testEndTime=" + d.toUTCString();
+    }
 </script>
 </body>
 </html>

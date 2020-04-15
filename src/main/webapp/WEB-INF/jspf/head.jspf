@@ -4,42 +4,29 @@
 <html>
 <head>
 
-<%--=========================================================================== 
-Bind CSS document.
-===========================================================================--%>
+    <%--===========================================================================
+    Bind CSS document.
+    ===========================================================================--%>
 
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- Footer  CSS -->
-	<link href="styles/sticky-footer-navbar.css" rel="stylesheet">
-	<link href="styles/userProfile.css" rel="stylesheet">
-	<link href="styles/navbar.css" rel="stylesheet">
-<%--	<meta http-equiv="X-UA-Compatible" content="IE=edge">--%>
-<%--	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
-<%--	<meta name="description" content="">--%>
-<%--	<meta name="author" content="">--%>
-<%--	<title>Multilingual Menu in Navbar Template for Bootstrap</title>--%>
-<%--	<!-- Bootstrap core CSS -->--%>
-<%--	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--%>
-<%--	<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">--%>
-<%--	<!-- Custom styles for this template -->--%>
-<%--	<link href="navbar.css" rel="stylesheet">--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">--%>
-<%--=========================================================================== 
-If you define http-equiv attribute, set the content type and the charset the same
-as you set them in a page directive.
-===========================================================================--%> 
-<%--	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Footer  CSS -->
+    <link href="styles/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="styles/userProfile.css" rel="stylesheet">
+    <link href="styles/navbar.css" rel="stylesheet">
 
-	<title>
-		${title}
-	</title>
+    <%--===========================================================================
+    If you define http-equiv attribute, set the content type and the charset the same
+    as you set them in a page directive.
+    ===========================================================================--%>
+
+    <title>
+        ${title}
+    </title>
 
 </head>

@@ -63,8 +63,6 @@ public class QuizzeTestSortCommand extends Command {
                 test.sort((a, b) -> a.getId().compareTo(b.getId()));
         }
 
-
-
         request.setAttribute("testList", test);
 
         LOG.debug("QuizzeTestSortCommand finished");
