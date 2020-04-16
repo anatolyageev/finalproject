@@ -64,7 +64,6 @@ public class RegistrationCommand extends Command{
             return Path.PAGE_LOGIN;
         }
 
-
         LOG.debug(login);
         LOG.debug(name);
         LOG.debug(lastName);

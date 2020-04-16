@@ -45,11 +45,7 @@ public class QuizzeAnswerCommand extends Command {
         List<Answer> answerList = answerService.findAllByParent(questionId,local);
         LOG.debug("Found in DB: Answer list --> " + answerList);
 
-        //TODO sorting
-        //  List<Subject> subjectList = request.getAttribute("subjectList");
-        // put user order beans list to request
         session.setAttribute("answerList", answerList);
-        //request.setAttribute("testList", test);
         LOG.debug("Set the session attribute: answerList --> " + answerList);
         LOG.debug("QuizzeQuestionCommand finished");
         return Path.PAGE_USER_PAGE;

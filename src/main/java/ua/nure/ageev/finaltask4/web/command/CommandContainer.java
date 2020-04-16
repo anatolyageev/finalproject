@@ -23,6 +23,8 @@ public class CommandContainer {
         commands.put("registration", new RegistrationCommand());
         commands.put("changeUserStatusCommand", new ChangeUserStatusCommand());
         commands.put("subjectCommand", new SubjectCommand());
+
+        //user commands
         commands.put("goToUserPageCommand", new GoToUserPageCommand());
         commands.put("quizzeTestCommand", new QuizzeTestCommand());
         commands.put("quizzeQuestionCommand", new QuizzeQuestionCommand());
@@ -34,11 +36,8 @@ public class CommandContainer {
         commands.put("quizzeCommand", new QuizzeCommand());
         commands.put("quizzeTestSortCommand", new QuizzeTestSortCommand());
 
-//        // client commands
-//        commands.put("listMenu", new ListMenuCommand());
-//
-//        // admin commands
-//        commands.put("listOrders", new ListOrdersCommand());
+        //admin commands
+        commands.put("adminQuizzeCommand", new AdminQuizzeCommand());
 
         LOG.debug("Command container was successfully initialized");
         LOG.trace("Number of commands --> " + commands.size());

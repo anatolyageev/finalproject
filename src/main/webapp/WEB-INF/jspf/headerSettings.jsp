@@ -18,7 +18,7 @@ Header (top area).
                 This way we define the ADMIN MENU.
                 ===========================================================================--%>
                 <c:when test="${userRole.name == 'admin' }">
-                    <a class="navbar-brand" href="controller?command=listOrders">Quizzes Edit</a> &nbsp;
+                    <a class="navbar-brand" href="controller?command=adminQuizzeCommand">Quizzes Edit</a> &nbsp;
                 </c:when>
 
 
@@ -93,6 +93,8 @@ Header (top area).
 
             <tags:langChange curr_lang="${locale}" curr_uri="${pageContext.request.requestURI}"/>
 
+
+
         </nav>
     </header>
 
@@ -109,6 +111,18 @@ Header (top area).
 
 </c:if>
 
+<%--JQuery set get sesion--%>
+<%--<script>--%>
 
+<%--    // To Store--%>
+<%--    $(function() {--%>
+<%--        $.session.set("myVar", "value");--%>
+<%--    });--%>
+
+<%--    // To Read--%>
+<%--    $(function() {--%>
+<%--        alert($.session.get("myVar"));--%>
+<%--    });--%>
+<%--</script>--%>
 
 

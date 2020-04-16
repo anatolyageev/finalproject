@@ -44,9 +44,6 @@ public class SubjectCommand extends Command {
         List<Subject> subjects = subjectService.getAll(local);
         LOG.debug("Found in DB: userList --> " + subjects);
 
-        //TODO sorting
-
-        // put user order beans list to request
         request.setAttribute("subjectList", subjects);
         LOG.debug("Set the request attribute: subjectList --> " + subjects);
         LOG.debug("SubjectCommand finished");

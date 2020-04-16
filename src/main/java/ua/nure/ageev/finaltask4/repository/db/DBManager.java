@@ -70,30 +70,6 @@ public class DBManager {
         return con;
     }
 
-//public void printAllUsers(){
-//    Statement stmt = null;
-//    ResultSet rs = null;
-//    Connection con = null;
-//    try {
-//        con = getConnection();
-//        stmt = con.createStatement();
-//        rs = stmt.executeQuery("SELECT * FROM USERS");
-//        while (rs.next()) {
-//            System.out.println(rs.getInt(1));
-//            System.out.println(rs.getString(2));
-//            System.out.println(rs.getString(3));
-//            System.out.println(rs.getInt(4));
-//        }
-//        con.commit();
-//    } catch (SQLException | DBException ex) {
-//
-//        LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
-//
-//    } finally {
-//        close(con, stmt, rs);
-//    }
-//}
-
     // //////////////////////////////////////////////////////////
     // DB util methods
     // //////////////////////////////////////////////////////////

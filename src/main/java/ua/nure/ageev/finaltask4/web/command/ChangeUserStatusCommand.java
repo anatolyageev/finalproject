@@ -30,8 +30,8 @@ public class ChangeUserStatusCommand extends Command{
         LOG.debug("ChangeUserStatusCommand starts");
         AdminService adminService = new AdminServiceImpl(new AdminRepositoryImpl());
         Long userId = Long.parseLong(request.getParameter("user_id"));
-        Boolean cuurentStatus = Boolean.parseBoolean(request.getParameter("user_current_status"));
-        if (!cuurentStatus){
+        boolean currentStatus = Boolean.parseBoolean(request.getParameter("user_current_status"));
+        if (!currentStatus){
             adminService.setUserStatusActive(userId);
         }else{
             adminService.setUserStatusNotActive(userId);

@@ -22,6 +22,10 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
             "WHERE s.id = sl.subject_id " +
             "AND sl.lang_ind = ? AND s.id = ?";
 
+    private static final String SQL_INSERT_NEW_SUBJECT = "INSERT INTO subject " +
+            "(default_name) " +
+            "VALUES('New Subject')";
+
 
     @Override
     public Subject getOne(Subject subject, String locale) {
@@ -87,8 +91,45 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
 
     @Override
     public Subject createSubject(Subject subject, String locale) {
+
+
         return null;
     }
+
+    public Subject createSubject(Subject subject) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method createUser --> " + subject);
+        try {
+            con = manager.getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(SQL_INSERT_NEW_SUBJECT, Statement.RETURN_GENERATED_KEYS);
+
+            if (ps.executeUpdate() > 0) {
+                rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    Long subjectId = rs.getLong(1);
+                    subject.setId(subjectId);
+                }
+            }
+            LOG.debug("Repository createSubject  --> " + subject);
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.debug("Repository method createSubject  --> " + subject);
+        return subject;
+    }
+
+    public Subject createSubjectLocale(Subject subject) {
+
+
+        return null;
+    }
+
 
     @Override
     public Subject update(Long id, Subject subject, String locale) {

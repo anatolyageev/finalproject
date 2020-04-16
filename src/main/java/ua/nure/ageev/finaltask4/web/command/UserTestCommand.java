@@ -76,9 +76,7 @@ public class UserTestCommand extends Command {
 
         LOG.debug("Found in DB: Question list answers added --> " + questionList);
 
-        //TODO sorting
-        //  List<Subject> subjectList = request.getAttribute("subjectList");
-        // put user order beans list to request
+
         session.setAttribute("mapAnswer", mapAnswer);
         session.setAttribute("currentTest", currentTest);
         session.setAttribute("questionList", questionList);
