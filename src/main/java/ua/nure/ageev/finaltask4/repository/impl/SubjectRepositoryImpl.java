@@ -24,7 +24,11 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
 
     private static final String SQL_INSERT_NEW_SUBJECT = "INSERT INTO subject " +
             "(default_name) " +
-            "VALUES('New Subject')";
+            "VALUES(?)";
+
+    private static final String SQL_INSERT_NEW_SUBJECT_NAME ="INSERT  INTO subject_locale" +
+            "(subject_id, lang_ind, subject_name) " +
+            "VALUES(?,?,?)";
 
 
     @Override
@@ -36,8 +40,8 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_SUBJECT_BY_ID);
-            ps.setString(1,locale);
-            ps.setLong(2,subject.getId());
+            ps.setString(1, locale);
+            ps.setLong(2, subject.getId());
             rs = ps.executeQuery();
             subject.setSubjectName(rs.getString(Fields.SUBJECT_NAME));
             con.commit();
@@ -90,22 +94,16 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
     }
 
     @Override
-    public Subject createSubject(Subject subject, String locale) {
-
-
-        return null;
-    }
-
-    public Subject createSubject(Subject subject) {
+    public Subject createSubject(Subject subject, String shortName) {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = null;
-        LOG.trace("Repository impl method createUser --> " + subject);
+        LOG.trace("Repository impl method createSubject --> " + subject);
         try {
             con = manager.getConnection();
             con.setAutoCommit(false);
             ps = con.prepareStatement(SQL_INSERT_NEW_SUBJECT, Statement.RETURN_GENERATED_KEYS);
-
+            ps.setString(1, shortName);
             if (ps.executeUpdate() > 0) {
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
@@ -124,10 +122,30 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
         return subject;
     }
 
-    public Subject createSubjectLocale(Subject subject) {
+    public Subject createSubjectLocale(Subject subject, String locale) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method createSubjectLocale --> " + subject);
+        try {
+            con = manager.getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(SQL_INSERT_NEW_SUBJECT_NAME);
+            ps.setLong(1,subject.getId());
+            ps.setString(2,locale);
+            ps.setString(3,subject.getSubjectName());
+            if (ps.executeUpdate() > 0) {
+                con.commit();
+            }
+            LOG.debug("Repository createSubjectLocale  --> " + subject);
 
-
-        return null;
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.debug("Repository method createSubjectLocale  --> " + subject);
+        return subject;
     }
 
 

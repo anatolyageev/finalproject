@@ -36,9 +36,15 @@ public class SubjectServiceImpl implements SubjectService {
         return null;
     }
 
+    public Subject createSubject(Subject subject, String shortName){
+        LOG.trace("Service method createSubject for Subject start" );
+        return repository.createSubject(subject,shortName);
+    }
+
     @Override
-    public Subject createUser(Subject subject, String locale) {
-        return null;
+    public Subject createSubjectLocale(Subject subject, String locale) {
+        LOG.trace("Service method createSubjectLocale for Subject start" );
+        return repository.createSubjectLocale(subject,locale);
     }
 
     @Override

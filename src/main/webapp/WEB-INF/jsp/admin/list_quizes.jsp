@@ -26,6 +26,10 @@
 
                 </c:forEach>
                 </div>
+                <br>
+                <div>
+                    <a type="button" class="btn" href="${pageContext.request.contextPath}/controller?command=createSubjectCommand"> Create Subject </a>
+                </div>
 <%--            </ul>--%>
 </div>
         </div>

@@ -14,7 +14,9 @@ public interface SubjectRepository {
 
     Integer deleteSubject(Long id, String locale);
 
-    Subject createSubject(Subject subject, String locale);
+    public Subject createSubject(Subject subject, String shortName);
+
+    public Subject createSubjectLocale(Subject subject, String locale);
 
     Subject update (Long id, Subject subject, String locale);
 
