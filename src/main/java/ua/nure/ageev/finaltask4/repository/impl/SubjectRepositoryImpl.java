@@ -18,6 +18,7 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
     protected static final Logger LOG = Logger.getLogger(SubjectRepositoryImpl.class);
     private static final String SQL_FIND_ALL_SUBJECT = "SELECT * FROM subject s, subject_locale sl " +
             "WHERE s.id = sl.subject_id AND sl.lang_ind = ?";
+
     private static final String SQL_FIND_SUBJECT_BY_ID = "SELECT * FROM subject s, subject_locale sl " +
             "WHERE s.id = sl.subject_id " +
             "AND sl.lang_ind = ? AND s.id = ?";
@@ -30,9 +31,16 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
             "(subject_id, lang_ind, subject_name) " +
             "VALUES(?,?,?)";
 
+    private static final String SQL_DELETE_SUBJECT ="DELETE FROM subject " +
+            "WHERE id = ?";
+
+    private static final String SQL_DELETE_SUBJECT_LOCALES ="DELETE FROM subject_locale " +
+            "WHERE subject_locale.subject_id = ?";
+
 
     @Override
     public Subject getOne(Subject subject, String locale) {
+        Subject resultSubject = new Subject();
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = null;
@@ -40,18 +48,24 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_SUBJECT_BY_ID);
+            LOG.trace("Repository impl method getOne befor setString.");
             ps.setString(1, locale);
             ps.setLong(2, subject.getId());
+            LOG.trace("Repository impl method getOne befor exequte qurey.");
             rs = ps.executeQuery();
-            subject.setSubjectName(rs.getString(Fields.SUBJECT_NAME));
+            LOG.trace("Repository impl method getOne after exequte qurey.");
+            while (rs.next()) {
+                resultSubject.setId(rs.getLong(Fields.ENTITY_ID));
+                resultSubject.setSubjectName(rs.getString(Fields.SUBJECT_NAME));
+            }
             con.commit();
         } catch (SQLException | DBException ex) {
             LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
         } finally {
             manager.close(con, ps, rs);
         }
-        LOG.trace("Repository method getAll for Subject returned --> " + subject);
-        return subject;
+        LOG.trace("Repository method getOne for Subject returned --> " + subject);
+        return resultSubject;
     }
 
     @Override
@@ -87,10 +101,36 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
         return subjectsList;
     }
 
-
     @Override
     public Integer deleteSubject(Long id, String locale) {
         return null;
+    }
+
+
+    public Integer deleteSubject(Long id) {
+        Integer result = null;
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("deleteSubject impl method createSubject --> " + id);
+        try {
+            con = manager.getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(SQL_DELETE_SUBJECT_LOCALES);
+            ps.setLong(1, id);
+            if (ps.executeUpdate() > 0) {
+                ps = con.prepareStatement(SQL_DELETE_SUBJECT);
+                ps.setLong(1, id);
+                result = ps.executeUpdate();
+            }
+            LOG.debug("Repository deleteSubject  --> done" );
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps);
+        }
+        LOG.debug("Repository method deleteSubject  --> " + result);
+        return result;
     }
 
     @Override

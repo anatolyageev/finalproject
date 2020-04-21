@@ -14,17 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class NewSubjectCommand extends Command {
+public class EditSubjectCommand extends Command {
 
-    private static final long serialVersionUID = -1573445785199573283L;
+    private static final long serialVersionUID = -1573445777199573283L;
 
-    private static final Logger LOG = Logger.getLogger(NewSubjectCommand.class);
+    private static final Logger LOG = Logger.getLogger(EditSubjectCommand.class);
 
     private static final String LANGUAGE_EN = "en";
+
     private static final String LANGUAGE_RU = "ru";
 
     /**
-     * Execution method for create new subject.
+     * Execution method for command.
      *
      * @param request
      * @param response
@@ -32,23 +33,21 @@ public class NewSubjectCommand extends Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
-
+        LOG.debug("EditSubjectCommand finished");
         SubjectService subjectService = new SubjectServiceImpl(new SubjectRepositoryImpl());
-        String shortName = request.getParameter("nameShort");
-        String nameEn = request.getParameter("nameEn");
-        String nameRu = request.getParameter("nameRu");
-        String encoding = request.getCharacterEncoding();
-        LOG.debug("encoding page: " + encoding);
+        Long subjectId = Long.parseLong(request.getParameter("subjectId"));
+        LOG.debug("Get attribute subjectId: " + subjectId);
         Subject subject = new Subject();
-        subject.setSubjectName(shortName);
-        subject = subjectService.createSubject(subject,shortName);
+        subject.setId(subjectId);
+        Subject subjectEn = subjectService.getOne(subject,LANGUAGE_EN);
+        Subject subjectRu = subjectService.getOne(subject,LANGUAGE_RU);
 
-        subject.setSubjectName(nameEn);
-        subjectService.createSubjectLocale(subject,LANGUAGE_EN);
+        request.setAttribute("subjectEn",subjectEn);
+        LOG.debug("Set attribute subjectEn --> " + subjectEn);
+        request.setAttribute("subjectRu",subjectRu);
+        LOG.debug("Set attribute subjectRu --> " + subjectRu);
 
-        subject.setSubjectName(nameRu);
-        subjectService.createSubjectLocale(subject,LANGUAGE_RU);
-
-        return Path.PAGE_ADMIN_CREATE_SUBJECT;
+        LOG.debug("EditSubjectCommand finished");
+        return Path.PAGE_ADMIN_EDIT_SUBJECT;
     }
 }

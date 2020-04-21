@@ -18,6 +18,8 @@ public interface SubjectRepository {
 
     public Subject createSubjectLocale(Subject subject, String locale);
 
+    public Integer deleteSubject(Long id);
+
     Subject update (Long id, Subject subject, String locale);
 
 }

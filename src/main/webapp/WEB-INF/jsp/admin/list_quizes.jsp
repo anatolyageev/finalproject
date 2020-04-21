@@ -13,38 +13,50 @@
 <%-- HEADER --%>
 <div class="container">
     <div class="row">
-        <div class="col-md-4 order-md-1 ">
-            <a href="${pageContext.request.contextPath}/controller?command=quizzeCommand">All subjects</a>
-<div>
-<%--            <ul class="links">--%>
-                <div class="btn-group-vertical" role="group">
+        <%--        <div class="col-md-4 order-md-1 mb-5">--%>
+        <div class="col-md-4 order-md-1 mb-5">
+            <table class="table table-borderless">
+                <%--            <div>--%>
+                <%--                <div class="btn-group-vertical" role="group" mb-5>--%>
                 <c:forEach items="${sessionScope.subjectList}" var="subject" varStatus="loop">
-<%--                    <li>--%>
-<%--                    <button type="button" class="btn btn-secondary" href="${pageContext.request.contextPath}/controller?command=quizzeTestCommand&subject_id=${subject.id}">${subject.subjectName}</button>--%>
-                        <a type="button" class="btn btn-secondary" href="${pageContext.request.contextPath}/controller?command=quizzeTestCommand&subject_id=${subject.id}">${subject.subjectName}</a>
-<%--                    </li>--%>
-
+                    <tr>
+                        <td>
+                                ${subject.subjectName}
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-info" href="${pageContext.request.contextPath}/controller?command=editSubjectCommand&subjectId=${subject.id}">Edit</a>
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-danger" href="${pageContext.request.contextPath}/controller?command=deleteSubjectCommand&subjectId=${subject.id}">Del</a>
+                        </td>
+                    </tr>
                 </c:forEach>
-                </div>
-                <br>
-                <div>
-                    <a type="button" class="btn" href="${pageContext.request.contextPath}/controller?command=createSubjectCommand"> Create Subject </a>
-                </div>
-<%--            </ul>--%>
-</div>
+            </table>
+
+
+            <div>
+
+                <a type="button" class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/controller?command=createSubjectCommand"> <fmt:message
+                        key="crate_subject.create_subject"/> </a>
+
+
+            </div>
+            <%--            </ul>--%>
         </div>
 
-        <div class="col-md-8 order-md-2 ">
-            Для редактирования теста выберете предмет.
-            Если необходимо добавить новый нажмите кнопку Add
 
-
-
-
-        </div>
-
+    <div class="col-md-8 order-md-2 ">
+        <fmt:message key="crate_subject.text1"/>
+        <ul>
+            <li><fmt:message key="crate_subject.text2"/></li>
+            <li><fmt:message key="crate_subject.text3"/></li>
+            <li><fmt:message key="crate_subject.text4"/></li>
+        </ul>
+    </div>
     </div>
 </div>
+
 
 <%-- FOOTER --%>
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>

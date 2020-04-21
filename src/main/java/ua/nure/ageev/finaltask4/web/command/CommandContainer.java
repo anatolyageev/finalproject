@@ -1,8 +1,7 @@
 package ua.nure.ageev.finaltask4.web.command;
 
 import org.apache.log4j.Logger;
-import ua.nure.ageev.finaltask4.web.command.admin.CreateSubjectCommand;
-import ua.nure.ageev.finaltask4.web.command.admin.NewSubjectCommand;
+import ua.nure.ageev.finaltask4.web.command.admin.*;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -42,6 +41,8 @@ public class CommandContainer {
         commands.put("adminQuizzeCommand", new AdminQuizzeCommand());
         commands.put("createSubjectCommand", new CreateSubjectCommand());
         commands.put("newSubjectCommand", new NewSubjectCommand());
+        commands.put("deleteSubjectCommand", new DeleteSubjectCommand());
+        commands.put("editSubjectCommand", new EditSubjectCommand());
 
         LOG.debug("Command container was successfully initialized");
         LOG.trace("Number of commands --> " + commands.size());
