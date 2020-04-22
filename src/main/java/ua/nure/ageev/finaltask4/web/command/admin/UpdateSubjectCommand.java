@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class EditSubjectCommand extends Command {
+public class UpdateSubjectCommand extends Command{
 
-    private static final long serialVersionUID = -1573445777199573283L;
+    private static final long serialVersionUID = -1573445785459573283L;
 
-    private static final Logger LOG = Logger.getLogger(EditSubjectCommand.class);
+    private static final Logger LOG = Logger.getLogger(UpdateSubjectCommand.class);
 
     private static final String LANGUAGE_EN = "en";
 
@@ -33,22 +33,24 @@ public class EditSubjectCommand extends Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
-        LOG.debug("EditSubjectCommand finished");
+        LOG.debug("UpdateSubjectCommand start");
         SubjectService subjectService = new SubjectServiceImpl(new SubjectRepositoryImpl());
+
+        String nameEn = request.getParameter("nameEn");
+        String nameRu = request.getParameter("nameRu");
         Long subjectId = Long.parseLong(request.getParameter("subjectId"));
-        LOG.debug("Get attribute subjectId: " + subjectId);
+        String encoding = request.getCharacterEncoding();
+        LOG.debug("encoding page: " + encoding);
         Subject subject = new Subject();
         subject.setId(subjectId);
-        Subject subjectEn = subjectService.getOne(subject,LANGUAGE_EN);
-        Subject subjectRu = subjectService.getOne(subject,LANGUAGE_RU);
 
-        request.setAttribute("subjectEn",subjectEn);
-        LOG.debug("Set attribute subjectEn --> " + subjectEn);
-        request.setAttribute("subjectRu",subjectRu);
-        LOG.debug("Set attribute subjectRu --> " + subjectRu);
+        subject.setSubjectName(nameEn);
+        subjectService.update(subject,LANGUAGE_EN);
 
-        request.setAttribute("subjectId",subjectId);
-        LOG.debug("EditSubjectCommand subjectId" + subjectId);
-        return Path.PAGE_ADMIN_EDIT_SUBJECT;
+        subject.setSubjectName(nameRu);
+        subjectService.update(subject,LANGUAGE_RU);
+
+        LOG.debug("UpdateSubjectCommand finished");
+        return Path.PAGE_ADMIN_PAGE;
     }
 }

@@ -20,5 +20,5 @@ public interface SubjectService {
 
     public Integer deleteSubject(Long id);
 
-    Subject update (Long id, Subject subject, String locale);
+    Subject update (Subject subject, String locale);
 }

@@ -21,7 +21,7 @@
                 <c:forEach items="${sessionScope.subjectList}" var="subject" varStatus="loop">
                     <tr>
                         <td>
-                                ${subject.subjectName}
+                            <a type="button" class="btn btn-info" href="${pageContext.request.contextPath}/controller?command=testsListCommand&subjectId=${subject.id}">${subject.subjectName}</a>
                         </td>
                         <td>
                             <a type="button" class="btn btn-info" href="${pageContext.request.contextPath}/controller?command=editSubjectCommand&subjectId=${subject.id}">Edit</a>

@@ -36,7 +36,7 @@ public class UserResultRepositoryImpl extends AbstractRepository implements User
     }
 
     @Override
-    public UserResult update(Long id, UserResult userResult) {
+    public UserResult update(UserResult userResult) {
         return null;
     }
 

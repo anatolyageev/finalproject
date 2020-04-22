@@ -87,7 +87,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
 
 
     @Override
-    public Test update(Long id, Test test, String locale) {
+    public Test update( Test test, String locale) {
         return null;
     }
 
@@ -153,7 +153,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = null;
-        LOG.trace("Repository impl method findAllByParent for Subject.");
+        LOG.trace("Repository impl method findAllByParent for Test.");
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_ALL_TEST_BY_PARENT);
@@ -170,7 +170,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
         } finally {
             manager.close(con, ps, rs);
         }
-        LOG.trace("Repository method getAll for Subject returned --> " + test);
+        LOG.trace("Repository method findAllByParent for Test returned --> " + test);
         return testList;
     }
 

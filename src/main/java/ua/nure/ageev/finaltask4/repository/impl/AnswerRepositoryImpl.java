@@ -61,7 +61,7 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
     }
 
     @Override
-    public Answer update(Long id, Answer answer, String locale) {
+    public Answer update(Answer answer, String locale) {
         return null;
     }
 

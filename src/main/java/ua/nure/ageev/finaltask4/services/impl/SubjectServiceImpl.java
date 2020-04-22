@@ -55,7 +55,8 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Subject update(Long id, Subject subject, String locale) {
-        return null;
+    public Subject update(Subject subject, String locale) {
+        LOG.trace("Service method update for Subject start" );
+        return repository.update(subject,locale);
     }
 }

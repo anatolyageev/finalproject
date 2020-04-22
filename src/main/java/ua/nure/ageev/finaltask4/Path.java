@@ -20,6 +20,8 @@ public final class Path {
 	public static final String PAGE_SETTINGS = "/WEB-INF/jsp/settings.jsp";
 	public static final String PAGE_ADMIN_CREATE_SUBJECT = "/WEB-INF/jsp/admin/createSubject.jsp";
 	public static final String PAGE_ADMIN_EDIT_SUBJECT = "/WEB-INF/jsp/admin/editSubject.jsp";
+	public static final String PAGE_ADMIN_TEST_LIST = "/WEB-INF/jsp/admin/testList.jsp";
+	public static final String PAGE_ADMIN_CREATE_TEST = "/WEB-INF/jsp/admin/testCreate.jsp";
 
 	public static final String PAGE_USER_USER_LIST = "/WEB-INF/jsp/admin/userList.jsp";
 

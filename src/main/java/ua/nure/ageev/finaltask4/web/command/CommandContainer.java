@@ -43,6 +43,9 @@ public class CommandContainer {
         commands.put("newSubjectCommand", new NewSubjectCommand());
         commands.put("deleteSubjectCommand", new DeleteSubjectCommand());
         commands.put("editSubjectCommand", new EditSubjectCommand());
+        commands.put("updateSubjectCommand", new UpdateSubjectCommand());
+        commands.put("testsListCommand", new TestsListCommand());
+        commands.put("createTestCommand", new CreateTestCommand());
 
         LOG.debug("Command container was successfully initialized");
         LOG.trace("Number of commands --> " + commands.size());

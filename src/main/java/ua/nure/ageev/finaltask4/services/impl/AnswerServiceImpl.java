@@ -26,7 +26,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Answer update(Long id, Answer answer, String locale) {
+    public Answer update(Answer answer, String locale) {
         return null;
     }
 

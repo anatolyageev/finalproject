@@ -23,7 +23,7 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public Test update(Long aLong, Test test, String locale) {
+    public Test update(Test test, String locale) {
         return null;
     }
 

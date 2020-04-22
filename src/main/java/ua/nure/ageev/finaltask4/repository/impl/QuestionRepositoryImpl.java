@@ -63,7 +63,7 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
 
 
     @Override
-    public Question update(Long aLong, Question question, String s) {
+    public Question update(Question question, String s) {
         return null;
     }
 

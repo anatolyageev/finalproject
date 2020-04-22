@@ -49,6 +49,6 @@ public class NewSubjectCommand extends Command {
         subject.setSubjectName(nameRu);
         subjectService.createSubjectLocale(subject,LANGUAGE_RU);
 
-        return Path.PAGE_ADMIN_CREATE_SUBJECT;
+        return Path.PAGE_ADMIN_PAGE;
     }
 }

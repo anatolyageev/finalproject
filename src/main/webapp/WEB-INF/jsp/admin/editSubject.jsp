@@ -14,7 +14,8 @@
 <div class="container">
 
     <form action="controller" method="post">
-        <input type="hidden" name="command" value="newSubjectCommand"/>
+        <input type="hidden" name="command" value="updateSubjectCommand"/>
+        <input type="hidden" name="subjectId" value="${subjectId}"/>
         <div class="form-group">
             <label for="inputNameEn"><fmt:message key="crate_subject.subject_name_en"/></label>
             <input type="text" class="form-control" id="inputNameEn" name="nameEn" required="true" value="${subjectEn.subjectName}">

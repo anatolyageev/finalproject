@@ -37,6 +37,14 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
     private static final String SQL_DELETE_SUBJECT_LOCALES ="DELETE FROM subject_locale " +
             "WHERE subject_locale.subject_id = ?";
 
+    private static final String SQL_UPDATE_SUBJECT_LOCALES ="UPDATE `quizdb`.`subject_locale` t " +
+            "SET t.`subject_name` = ? " +
+            "WHERE t.`subject_id` = ? " +
+            "AND t.`lang_ind` = ? ";
+
+
+
+
 
     @Override
     public Subject getOne(Subject subject, String locale) {
@@ -190,8 +198,29 @@ public class SubjectRepositoryImpl extends AbstractRepository implements Subject
 
 
     @Override
-    public Subject update(Long id, Subject subject, String locale) {
-        return null;
+    public Subject update(Subject subject, String locale) {
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("Repository impl method Subject update --> " + subject);
+        try {
+            con = manager.getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(SQL_UPDATE_SUBJECT_LOCALES);
+            ps.setString(1,subject.getSubjectName());
+            ps.setLong(2,subject.getId());
+            ps.setString(3,locale);
+
+            if (ps.executeUpdate() > 0) {
+                con.commit();
+            }
+            LOG.debug("Repository Subject update  --> " + subject);
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps);
+        }
+        LOG.debug("Repository method Subject update  --> " + subject);
+        return subject;
     }
 
     private Subject extractSubject(ResultSet rs) throws SQLException {
