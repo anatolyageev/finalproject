@@ -8,10 +8,7 @@ import ua.nure.ageev.finaltask4.repository.TestRepository;
 import ua.nure.ageev.finaltask4.repository.base.AbstractRepository;
 import ua.nure.ageev.finaltask4.repository.db.Fields;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +50,14 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
             "AND t.id = qq.id "+
             "AND tl.lang_ind = ? AND t.subject_id = ?";
 
+    private static final String SQL_INSERT_TEST = "INSERT  INTO tests " +
+            "(difficulty, min_to_complete, subject_id) " +
+            "VALUES (?,?,?)";
+
+    private static final String SQL_INSERT_TEST_NAME = "INSERT  INTO tests_locale " +
+            "(test_id, lang_ind, test_name) " +
+            "VALUES (?,?,?)";
+
     private static final String SQL_DELETE_TEST = "DELETE FROM tests WHERE id = ?";
 
     private static final String SQL_DELETE_TEST_LOCALE = "DELETE FROM tests_locale WHERE test_id = ?";
@@ -83,8 +88,6 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
         LOG.trace("Repository method getOne for Test returned --> " + test);
         return test;
     }
-
-
 
     @Override
     public Test update( Test test, String locale) {
@@ -142,7 +145,57 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
     }
 
     @Override
-    public Test insert(Long parentId, Test test, String locale) {
+    public Test insert(Long parentId, Test test) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method insert for Test.");
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_INSERT_TEST, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,test.getDifficultyLevel());
+            ps.setInt(2,test.getMinutesToComplite());
+            ps.setLong(3,parentId);
+            if (ps.executeUpdate() > 0) {
+                rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    Long testId = rs.getLong(1);
+                    test.setId(testId);
+                }
+            }
+            con.commit();
+        }catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con,ps,rs);
+        }
+        LOG.trace("Repository method insert for Test finished;");
+        return test;
+    }
+
+    public Test insertName(Test test, String locale){
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("Repository impl method insert for Test.");
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_INSERT_TEST_NAME);
+            ps.setLong(1,test.getId());
+            ps.setString(2,locale);
+            ps.setString(3,test.getTestName());
+            ps.executeUpdate();
+            con.commit();
+        }catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con,ps);
+        }
+        LOG.trace("Repository method delete for insert finished;");
+        return test;
+    }
+
+    @Override
+    public Test insert(Long parentId, Test test, String s) {
         return null;
     }
 
