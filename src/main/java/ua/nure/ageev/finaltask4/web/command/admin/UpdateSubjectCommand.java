@@ -8,24 +8,21 @@ import ua.nure.ageev.finaltask4.repository.impl.SubjectRepositoryImpl;
 import ua.nure.ageev.finaltask4.services.SubjectService;
 import ua.nure.ageev.finaltask4.services.impl.SubjectServiceImpl;
 import ua.nure.ageev.finaltask4.web.command.Command;
+import ua.nure.ageev.finaltask4.web.utils.ConstantsForCommands;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class UpdateSubjectCommand extends Command{
+public class UpdateSubjectCommand extends Command {
 
     private static final long serialVersionUID = -1573445785459573283L;
 
     private static final Logger LOG = Logger.getLogger(UpdateSubjectCommand.class);
 
-    private static final String LANGUAGE_EN = "en";
-
-    private static final String LANGUAGE_RU = "ru";
-
     /**
-     * Execution method for command.
+     * Execution method for update subject command.
      *
      * @param request
      * @param response
@@ -45,10 +42,10 @@ public class UpdateSubjectCommand extends Command{
         subject.setId(subjectId);
 
         subject.setSubjectName(nameEn);
-        subjectService.update(subject,LANGUAGE_EN);
+        subjectService.update(subject, ConstantsForCommands.LANGUAGE_EN);
 
         subject.setSubjectName(nameRu);
-        subjectService.update(subject,LANGUAGE_RU);
+        subjectService.update(subject, ConstantsForCommands.LANGUAGE_RU);
 
         LOG.debug("UpdateSubjectCommand finished");
         return Path.PAGE_ADMIN_PAGE;

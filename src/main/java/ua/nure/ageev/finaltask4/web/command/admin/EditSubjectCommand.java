@@ -8,6 +8,7 @@ import ua.nure.ageev.finaltask4.repository.impl.SubjectRepositoryImpl;
 import ua.nure.ageev.finaltask4.services.SubjectService;
 import ua.nure.ageev.finaltask4.services.impl.SubjectServiceImpl;
 import ua.nure.ageev.finaltask4.web.command.Command;
+import ua.nure.ageev.finaltask4.web.utils.ConstantsForCommands;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,10 +20,6 @@ public class EditSubjectCommand extends Command {
     private static final long serialVersionUID = -1573445777199573283L;
 
     private static final Logger LOG = Logger.getLogger(EditSubjectCommand.class);
-
-    private static final String LANGUAGE_EN = "en";
-
-    private static final String LANGUAGE_RU = "ru";
 
     /**
      * Execution method for command.
@@ -39,8 +36,8 @@ public class EditSubjectCommand extends Command {
         LOG.debug("Get attribute subjectId: " + subjectId);
         Subject subject = new Subject();
         subject.setId(subjectId);
-        Subject subjectEn = subjectService.getOne(subject,LANGUAGE_EN);
-        Subject subjectRu = subjectService.getOne(subject,LANGUAGE_RU);
+        Subject subjectEn = subjectService.getOne(subject, ConstantsForCommands.LANGUAGE_EN);
+        Subject subjectRu = subjectService.getOne(subject,ConstantsForCommands.LANGUAGE_RU);
 
         request.setAttribute("subjectEn",subjectEn);
         LOG.debug("Set attribute subjectEn --> " + subjectEn);

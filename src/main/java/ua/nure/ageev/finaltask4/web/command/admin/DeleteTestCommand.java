@@ -16,14 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class TestsListCommand extends Command {
+public class DeleteTestCommand extends Command {
 
-    private static final long serialVersionUID = -1573445784559573283L;
+    private static final long serialVersionUID = -1573445767134573283L;
 
-    private static final Logger LOG = Logger.getLogger(TestsListCommand.class);
+    private static final Logger LOG = Logger.getLogger(DeleteTestCommand.class);
 
     /**
-     * Execution method for command which give access to list of tests.
+     * Execution method for command.
      *
      * @param request
      * @param response
@@ -31,18 +31,20 @@ public class TestsListCommand extends Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
-        LOG.debug("TestsListCommand starts");
+        LOG.debug("DeleteTestCommand starts");
 
         String local = DataHelper.getLanguage(request);
+        Long subjectId = Long.parseLong(request.getParameter("subjectId"));
+        Long testId = Long.parseLong(request.getParameter("testId"));
         TestService testService = new TestServiceImpl(new TestRepositoryImpl());
 
-        Long subjectId = Long.parseLong(request.getParameter("subjectId"));
-        LOG.debug("TestsListCommand subjectId: " + subjectId);
-        List<Test> test = testService.findAllByParent(subjectId,local);
+        testService.delete(testId);
 
-        request.setAttribute("test",test);
-        request.setAttribute("subjectId",subjectId);
-        LOG.debug("TestsListCommand finished");
+        List<Test> testList = testService.findAllByParent(subjectId, local);
+        request.setAttribute("test", testList);
+        request.setAttribute("subjectId", subjectId);
+
+        LOG.debug("DeleteTestCommand finished");
         return Path.PAGE_ADMIN_TEST_LIST;
     }
 }

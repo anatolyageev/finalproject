@@ -24,12 +24,14 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public Test update(Test test, String locale) {
-        return null;
+        LOG.trace("Service method update for Test " );
+        return repository.update(test,locale);
     }
 
     @Override
-    public void delete(Long aLong) {
-
+    public void delete(Long id) {
+        LOG.trace("Service method delete for Test " );
+        repository.delete(id);
     }
 
     @Override
@@ -52,5 +54,23 @@ public class TestServiceImpl implements TestService {
     @Override
     public void deleteAllByParentId(Long parentId) {
 
+    }
+
+    @Override
+    public Test insert(Long parentId, Test test) {
+        LOG.trace("Service method findAllByParent for Test " );
+        return repository.insert(parentId,test);
+    }
+
+    @Override
+    public Test insertName(Test test, String locale) {
+        LOG.trace("Service method insertName for Test " );
+        return repository.insertName(test,locale);
+    }
+
+    @Override
+    public Test updateName(Test test, String locale) {
+        LOG.trace("Service method updateName for Test " );
+        return repository.updateName(test,locale);
     }
 }

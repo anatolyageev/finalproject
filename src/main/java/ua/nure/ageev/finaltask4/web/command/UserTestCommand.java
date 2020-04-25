@@ -16,6 +16,7 @@ import ua.nure.ageev.finaltask4.services.TestService;
 import ua.nure.ageev.finaltask4.services.impl.AnswerServiceImpl;
 import ua.nure.ageev.finaltask4.services.impl.QuestionServiceImpl;
 import ua.nure.ageev.finaltask4.services.impl.TestServiceImpl;
+import ua.nure.ageev.finaltask4.web.utils.DataHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,11 +46,7 @@ public class UserTestCommand extends Command {
         LOG.debug("UserTestCommand starts");
 
         HttpSession session = request.getSession();
-        String local = (String) session.getAttribute("currentLocale");
-        LOG.debug("UserTestCommand get locale: " + local);
-        if(local == null){
-            local ="en";
-        }
+        String local = DataHelper.getLanguage(request);
         LOG.debug("UserTestCommand get locale after if: " + local);
         Long testId = Long.parseLong(request.getParameter("test_id"));
        // Long questionId = Long.parseLong(request.getParameter("question_id"));

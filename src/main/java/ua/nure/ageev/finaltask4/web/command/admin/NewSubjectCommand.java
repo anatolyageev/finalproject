@@ -8,6 +8,7 @@ import ua.nure.ageev.finaltask4.repository.impl.SubjectRepositoryImpl;
 import ua.nure.ageev.finaltask4.services.SubjectService;
 import ua.nure.ageev.finaltask4.services.impl.SubjectServiceImpl;
 import ua.nure.ageev.finaltask4.web.command.Command;
+import ua.nure.ageev.finaltask4.web.utils.ConstantsForCommands;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +20,6 @@ public class NewSubjectCommand extends Command {
     private static final long serialVersionUID = -1573445785199573283L;
 
     private static final Logger LOG = Logger.getLogger(NewSubjectCommand.class);
-
-    private static final String LANGUAGE_EN = "en";
-    private static final String LANGUAGE_RU = "ru";
 
     /**
      * Execution method for create new subject.
@@ -44,10 +42,10 @@ public class NewSubjectCommand extends Command {
         subject = subjectService.createSubject(subject,shortName);
 
         subject.setSubjectName(nameEn);
-        subjectService.createSubjectLocale(subject,LANGUAGE_EN);
+        subjectService.createSubjectLocale(subject, ConstantsForCommands.LANGUAGE_EN);
 
         subject.setSubjectName(nameRu);
-        subjectService.createSubjectLocale(subject,LANGUAGE_RU);
+        subjectService.createSubjectLocale(subject,ConstantsForCommands.LANGUAGE_RU);
 
         return Path.PAGE_ADMIN_PAGE;
     }
