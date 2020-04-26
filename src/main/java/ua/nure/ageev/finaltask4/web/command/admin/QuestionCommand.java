@@ -8,6 +8,7 @@ import ua.nure.ageev.finaltask4.repository.impl.QuestionRepositoryImpl;
 import ua.nure.ageev.finaltask4.services.QuestionService;
 import ua.nure.ageev.finaltask4.services.impl.QuestionServiceImpl;
 import ua.nure.ageev.finaltask4.web.command.Command;
+import ua.nure.ageev.finaltask4.web.utils.ConstantsForCommands;
 import ua.nure.ageev.finaltask4.web.utils.DataHelper;
 
 import javax.servlet.ServletException;
@@ -40,14 +41,22 @@ public class QuestionCommand extends Command {
         LOG.debug("UserTestCommand get locale after if: " + local);
         Long testId = Long.parseLong(request.getParameter("testId"));
 
-        List<Question> questionList = questionService.findAllByParent(testId,local);
-        LOG.debug("Question list: " + questionList);
+        List<Question> questionListEn = questionService.findAllByParent(testId, ConstantsForCommands.LANGUAGE_EN);
+        LOG.debug("Question list: " + questionListEn);
 
-        DataHelper.addAnswersToQuestions(questionList,local);
-        LOG.debug("Answers added: " + questionList);
+        DataHelper.addAnswersToQuestions(questionListEn,ConstantsForCommands.LANGUAGE_EN);
+        LOG.debug("Answers added: " + questionListEn);
 
-        request.setAttribute("questionList", questionList);
-        request.setAttribute("testId", testId);
+        List<Question> questionListRu = questionService.findAllByParent(testId, ConstantsForCommands.LANGUAGE_RU);
+        LOG.debug("Question list: " + questionListRu);
+
+        DataHelper.addAnswersToQuestions(questionListRu,ConstantsForCommands.LANGUAGE_RU);
+        LOG.debug("Answers added: " + questionListRu);
+
+        session.setAttribute("questionListEn", questionListEn);
+        session.setAttribute("questionListRu", questionListRu);
+        session.setAttribute("testId", testId);
+        session.setAttribute("pageId",0);
 
         return Path.PAGE_ADMIN_QUESTIONS;
     }

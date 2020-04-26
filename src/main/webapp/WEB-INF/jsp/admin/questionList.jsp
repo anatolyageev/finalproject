@@ -6,27 +6,43 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ include file ="/WEB-INF/jspf/head.jspf"%>
-
-<div>
+<body>
+<%--<div>--%>
     <%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
-    <ul class="links">
+<%--    <ul class="links">--%>
         <%--    <c:forEach items="${questionList.get(0)}" var="question" varStatus="loop">--%>
         <div class="container">
-            <div class="row mt-5">
+<%--            <div class="row mt-5">--%>
 
-                <c:set var="question" value="${questionList.get(pageId)}"/>
-                <form id="settings_form" action="controller" method="post" >
+                <c:set var="questionEn" value="${questionListEn.get(pageId)}"/>
+                <c:set var="questionRu" value="${questionListRu.get(pageId)}"/>
+                <form class="questions-answers" action="controller" method="post" >
                     <input type="hidden" name="command" value="userAnswerCommand" />
                     <input type="hidden" name="question_id" value="${question.id}" />
-                    <p id="demo"></p>
-                    <div>${question.questionText}</div>
+
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="questionTextEn"><fmt:message key="edit_test.test_name_en"/></label>
+                        <textarea class="form-control" id="questionTextEn" value="${questionEn.questionText}" name="questionEn" rows="2" required>${questionEn.questionText}</textarea>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="questionTextRu"><fmt:message key="edit_test.test_name_ru"/></label>
+                        <textarea class="form-control" id="questionTextRu" value="${questionRu.questionText}" name="questionRu" rows="2" required>${questionRu.questionText}</textarea>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    </div>
+
                     <div class="mt-5">
                         <ul>
-                            <c:forEach items="${question.answers}" var = "answers" varStatus="loop">
+                            <c:forEach items="${questionEn.answers}" var = "answersEn" varStatus="loop">
                                         <li>
 
-                                            <label>${answers.answerText}</label>
-                                            <input name="answer_id" value="${answers.id}" type="radio" <c:if test="${answerIdUser.containsKey(answers.id)}">
+                                            <label>${answersEn.answerText}</label>
+                                            <input name="answer_id" value="${answerEn.id}" type="radio" <c:if test="${answerIdUser.containsKey(answers.id)}">
                                                    checked
                                             </c:if>>
                                         </li> &nbsp;
@@ -34,7 +50,7 @@
                             </c:forEach>
                         </ul>
 
-                        <c:set var="key" value="${question.id}"/>
+                        <c:set var="key" value="${questionEn.id}"/>
 
                         <div class="mt-3">
                             <input type="submit"
@@ -47,13 +63,13 @@
                 </form>
 
                 <div class="mt-3">
-                    <c:forEach items="${questionList}" var="question" varStatus="loop">
+                    <c:forEach items="${questionListEn}" var="question" varStatus="loop">
 
-                        <a href="${pageContext.request.contextPath}/controller?command=userPageChange&page=${loop.index}"><fmt:message key="user_test.Qustion"/> ${loop.index + 1}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=adminPageChange&page=${loop.index}"><fmt:message key="user_test.Qustion"/> ${loop.index + 1}</a>
 
                     </c:forEach>
                 </div>
-    </ul>
+<%--    </ul>--%>
     <div class="mt-5 ml-5">
         <form id="submitTest" action="controller" method="post" >
             <input type="hidden" name="command" value="userTestFinishCommand" />
@@ -61,8 +77,8 @@
         </form>
     </div>
 </div>
-</div>
-</div>
+<%--</div>--%>
+<%--</div>--%>
 
 
 <%@ include file="/WEB-INF/jspf/footer.jspf"%>

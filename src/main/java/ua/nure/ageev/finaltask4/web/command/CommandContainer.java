@@ -51,6 +51,7 @@ public class CommandContainer {
         commands.put("editTestCommand", new EditTestCommand());
         commands.put("updateTestCommand", new UpdateTestCommand());
         commands.put("questionCommand", new QuestionCommand());
+        commands.put("adminPageChange", new AdminPageChange());
 
         LOG.debug("Command container was successfully initialized");
         LOG.trace("Number of commands --> " + commands.size());
