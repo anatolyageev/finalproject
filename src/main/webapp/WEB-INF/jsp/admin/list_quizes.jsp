@@ -21,13 +21,18 @@
                 <c:forEach items="${sessionScope.subjectList}" var="subject" varStatus="loop">
                     <tr>
                         <td>
-                            <a type="button" class="btn btn-info" href="${pageContext.request.contextPath}/controller?command=testsListCommand&subjectId=${subject.id}">${subject.subjectName}</a>
+                            <a type="button" class="btn btn-info"
+                               href="${pageContext.request.contextPath}/controller?command=testsListCommand&subjectId=${subject.id}">${subject.subjectName}</a>
                         </td>
                         <td>
-                            <a type="button" class="btn btn-info" href="${pageContext.request.contextPath}/controller?command=editSubjectCommand&subjectId=${subject.id}">Edit</a>
+                            <a type="button" class="btn btn-info"
+                               href="${pageContext.request.contextPath}/controller?command=editSubjectCommand&subjectId=${subject.id}"><fmt:message
+                                    key="common_button.edit"/></a>
                         </td>
                         <td>
-                            <a type="button" class="btn btn-danger" href="${pageContext.request.contextPath}/controller?command=deleteSubjectCommand&subjectId=${subject.id}">Del</a>
+                            <a type="button" class="btn btn-danger"
+                               href="${pageContext.request.contextPath}/controller?command=deleteSubjectCommand&subjectId=${subject.id}"><fmt:message
+                                    key="common_button.delete"/></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -46,14 +51,14 @@
         </div>
 
 
-    <div class="col-md-3 order-md-2 ">
-        <fmt:message key="crate_subject.text1"/>
-        <ul>
-            <li><fmt:message key="crate_subject.text2"/></li>
-            <li><fmt:message key="crate_subject.text3"/></li>
-            <li><fmt:message key="crate_subject.text4"/></li>
-        </ul>
-    </div>
+        <div class="col-md-3 order-md-2 ">
+            <fmt:message key="crate_subject.text1"/>
+            <ul>
+                <li><fmt:message key="crate_subject.text2"/></li>
+                <li><fmt:message key="crate_subject.text3"/></li>
+                <li><fmt:message key="crate_subject.text4"/></li>
+            </ul>
+        </div>
     </div>
 </div>
 

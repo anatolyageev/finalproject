@@ -24,6 +24,7 @@ public final class Path {
 	public static final String PAGE_ADMIN_CREATE_TEST = "/WEB-INF/jsp/admin/testCreate.jsp";
 	public static final String PAGE_ADMIN_EDIT_TEST = "/WEB-INF/jsp/admin/editTest.jsp";
 	public static final String PAGE_ADMIN_QUESTIONS = "/WEB-INF/jsp/admin/questionList.jsp";
+	public static final String PAGE_ADMIN_CREATE_QUESTION = "/WEB-INF/jsp/admin/questionCreate.jsp";
 
 	public static final String PAGE_USER_USER_LIST = "/WEB-INF/jsp/admin/userList.jsp";
 

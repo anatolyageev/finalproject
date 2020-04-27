@@ -5,83 +5,57 @@
   Time: 22:29
   To change this template use File | Settings | File Templates.
 --%>
-<%@ include file ="/WEB-INF/jspf/head.jspf"%>
 <body>
-<%--<div>--%>
-    <%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
-<%--    <ul class="links">--%>
-        <%--    <c:forEach items="${questionList.get(0)}" var="question" varStatus="loop">--%>
-        <div class="container">
-<%--            <div class="row mt-5">--%>
+<%@ include file="/WEB-INF/jspf/head.jspf" %>
+<%-- HEADER --%>
+<%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
+<%-- HEADER --%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 order-md-1 mr-5">
+            <%--            <table class="table table-borderless">--%>
+            <c:forEach items="${sessionScope.questionList}" var="question" varStatus="loop">
 
-                <c:set var="questionEn" value="${questionListEn.get(pageId)}"/>
-                <c:set var="questionRu" value="${questionListRu.get(pageId)}"/>
-                <form class="questions-answers" action="controller" method="post" >
-                    <input type="hidden" name="command" value="userAnswerCommand" />
-                    <input type="hidden" name="question_id" value="${question.id}" />
-
-                    <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="questionTextEn"><fmt:message key="edit_test.test_name_en"/></label>
-                        <textarea class="form-control" id="questionTextEn" value="${questionEn.questionText}" name="questionEn" rows="2" required>${questionEn.questionText}</textarea>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+                <div class="input-group col-xs-6 mb-2">
+                    <textarea class="form-control" rows="2" id="comment" readonly>${question.questionText}</textarea>
+                    <div class="input-group-append">
+                        <button class="btn btn-info" type="button"><fmt:message
+                                key="common_button.edit"/></button>
+                        <button class="btn btn-primary" type="button"><fmt:message
+                                key="crate_question.edit_answers"/></button>
+                        <button class="btn btn-danger" type="button"><fmt:message
+                                key="common_button.delete"/></button>
                     </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="questionTextRu"><fmt:message key="edit_test.test_name_ru"/></label>
-                        <textarea class="form-control" id="questionTextRu" value="${questionRu.questionText}" name="questionRu" rows="2" required>${questionRu.questionText}</textarea>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
-                    </div>
-                    </div>
-
-                    <div class="mt-5">
-                        <ul>
-                            <c:forEach items="${questionEn.answers}" var = "answersEn" varStatus="loop">
-                                        <li>
-
-                                            <label>${answersEn.answerText}</label>
-                                            <input name="answer_id" value="${answerEn.id}" type="radio" <c:if test="${answerIdUser.containsKey(answers.id)}">
-                                                   checked
-                                            </c:if>>
-                                        </li> &nbsp;
-
-                            </c:forEach>
-                        </ul>
-
-                        <c:set var="key" value="${questionEn.id}"/>
-
-                        <div class="mt-3">
-                            <input type="submit"
-                            <c:if test="${mapAnswer.containsKey(key)}">
-                                   disabled
-                            </c:if>
-
-                                   value=<fmt:message key="test.answer.button"/>>
-                        </div>
-                </form>
-
-                <div class="mt-3">
-                    <c:forEach items="${questionListEn}" var="question" varStatus="loop">
-
-                        <a href="${pageContext.request.contextPath}/controller?command=adminPageChange&page=${loop.index}"><fmt:message key="user_test.Qustion"/> ${loop.index + 1}</a>
-
-                    </c:forEach>
                 </div>
-<%--    </ul>--%>
-    <div class="mt-5 ml-5">
-        <form id="submitTest" action="controller" method="post" >
-            <input type="hidden" name="command" value="userTestFinishCommand" />
-            <input type="submit" name="Finish" >
-        </form>
+
+
+                <%--                    <tr>--%>
+                <%--                        <td>--%>
+                <%--                            <a type="button" class="btn btn-info"--%>
+                <%--                               href="${pageContext.request.contextPath}/controller?command=testsListCommand&subjectId=${question.id}">${question.questionText}</a>--%>
+                <%--                        </td>--%>
+                <%--                        <td>--%>
+                <%--                            <a type="button" class="btn btn-info"--%>
+                <%--                               href="${pageContext.request.contextPath}/controller?command=editSubjectCommand&subjectId=${question.id}">Edit</a>--%>
+                <%--                        </td>--%>
+                <%--                        <td>--%>
+                <%--                            <a type="button" class="btn btn-danger"--%>
+                <%--                               href="${pageContext.request.contextPath}/controller?command=deleteSubjectCommand&subjectId=${question.id}">Del</a>--%>
+                <%--                        </td>--%>
+                <%--                    </tr>--%>
+            </c:forEach>
+            <%--            </table>--%>
+            <div>
+                <a type="button" class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/controller?command=createQuestionCommand"> <fmt:message
+                        key="crate_question.create_question"/> </a>
+
+            </div>
+        </div>
     </div>
 </div>
-<%--</div>--%>
-<%--</div>--%>
-
-
-<%@ include file="/WEB-INF/jspf/footer.jspf"%>
-
+<%-- FOOTER --%>
+<%@ include file="/WEB-INF/jspf/footer.jspf" %>
+<%-- FOOTER --%>
 </body>
 </html>
