@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface BasicServiceNoLocale<ID, ENTITY> {
     ENTITY getOne(ID id);
-    ENTITY update(ID id, ENTITY entity);
+    ENTITY update(ENTITY entity);
     void delete(ID id);
     List<ENTITY> findAll();
 }

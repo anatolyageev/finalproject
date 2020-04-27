@@ -40,9 +40,6 @@ public class ListUsersCommand extends  Command{
         List<User> userList = userService.getAll();
         LOG.debug("Found in DB: userList --> " + userList);
 
-        //TODO sorting
-
-        // put user order beans list to request
         request.setAttribute("userList", userList);
         LOG.debug("Set the request attribute: userList --> " + userList);
 

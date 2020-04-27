@@ -16,6 +16,7 @@ import ua.nure.ageev.finaltask4.services.TestService;
 import ua.nure.ageev.finaltask4.services.impl.AnswerServiceImpl;
 import ua.nure.ageev.finaltask4.services.impl.QuestionServiceImpl;
 import ua.nure.ageev.finaltask4.services.impl.TestServiceImpl;
+import ua.nure.ageev.finaltask4.web.utils.DataHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,11 +46,7 @@ public class UserTestCommand extends Command {
         LOG.debug("UserTestCommand starts");
 
         HttpSession session = request.getSession();
-        String local = (String) session.getAttribute("currentLocale");
-        LOG.debug("UserTestCommand get locale: " + local);
-        if(local == null){
-            local ="en";
-        }
+        String local = DataHelper.getLanguage(request);
         LOG.debug("UserTestCommand get locale after if: " + local);
         Long testId = Long.parseLong(request.getParameter("test_id"));
        // Long questionId = Long.parseLong(request.getParameter("question_id"));
@@ -76,9 +73,7 @@ public class UserTestCommand extends Command {
 
         LOG.debug("Found in DB: Question list answers added --> " + questionList);
 
-        //TODO sorting
-        //  List<Subject> subjectList = request.getAttribute("subjectList");
-        // put user order beans list to request
+
         session.setAttribute("mapAnswer", mapAnswer);
         session.setAttribute("currentTest", currentTest);
         session.setAttribute("questionList", questionList);

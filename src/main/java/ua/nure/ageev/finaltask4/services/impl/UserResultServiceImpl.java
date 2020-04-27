@@ -24,7 +24,7 @@ public class UserResultServiceImpl implements UserResultService {
     }
 
     @Override
-    public UserResult update(Long aLong, UserResult userResult) {
+    public UserResult update(UserResult userResult) {
         return null;
     }
 

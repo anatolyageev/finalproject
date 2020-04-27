@@ -8,10 +8,7 @@ import ua.nure.ageev.finaltask4.repository.QuestionRepository;
 import ua.nure.ageev.finaltask4.repository.base.AbstractRepository;
 import ua.nure.ageev.finaltask4.repository.db.Fields;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +30,14 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
     private static final String SQL_DELETE_QUESTION = "DELETE FROM tests WHERE id = ?";
 
     private static final String SQL_DELETE_QUESTION_LOCALE = "DELETE FROM tests_locale WHERE test_id = ?";
+
+    private static final String SQL_QUESTION_INSERT_BY_PARENT = "INSERT  INTO questions " +
+            "(test_id) " +
+            "VALUES (?)";
+
+    private static final String SQL_QUESTION_INSERT_NAME = "INSERT  INTO questions_locale " +
+            "(question_id, lang_ind, question_text) " +
+            "VALUES (?,?,?)";
 
     @Override
     public Question getOne(Long id, String locale) {
@@ -63,7 +68,7 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
 
 
     @Override
-    public Question update(Long aLong, Question question, String s) {
+    public Question update(Question question, String s) {
         return null;
     }
 
@@ -74,6 +79,63 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
 
     @Override
     public List<Question> findAll(String locale) {
+        return null;
+    }
+
+    @Override
+    public Question insert(Long parentId, Question question) {
+        Question resultQuestion = new Question();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method insert by parentId for Question.");
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_QUESTION_INSERT_BY_PARENT, Statement.RETURN_GENERATED_KEYS);
+            ps.setLong(1,parentId);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                resultQuestion.setId(rs.getLong(1));
+            }
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.trace("Repository method insert by parentId for Question returned --> " + resultQuestion);
+        return resultQuestion;
+    }
+
+    @Override
+    public Question insertName(Question question, String locale) {
+        Question resultQuestion = new Question();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method insertName for Question.");
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_QUESTION_INSERT_NAME, Statement.RETURN_GENERATED_KEYS);
+            ps.setLong(1,question.getId());
+            ps.setString(2,locale);
+            ps.setString(3,question.getQuestionText());
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                resultQuestion.setId(rs.getLong(1));
+            }
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.trace("Repository method insertName for Question returned --> " + resultQuestion);
+        return resultQuestion;
+    }
+
+    @Override
+    public Question updateName(Question question, String locale) {
         return null;
     }
 

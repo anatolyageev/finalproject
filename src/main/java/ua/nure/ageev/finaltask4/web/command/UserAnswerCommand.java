@@ -37,24 +37,19 @@ public class UserAnswerCommand extends  Command {
         LOG.debug("UserAnswerCommand starts");
 
         HttpSession session = request.getSession();
-
-
-
         String local = (String) session.getAttribute("currentLocale");
+
         LOG.debug("UserAnswerCommand get locale: " + local);
         if(local == null){
             local ="en";
         }
         LOG.debug("UserAnswerCommand get locale after if: " + local);
 
-
         Map<Long,Boolean> mapAnswer = (HashMap) session.getAttribute("mapAnswer");
         Map<Long,Boolean> answerIdUser = (HashMap)session.getAttribute("answerIdUser");
         LOG.debug("UserAnswerCommand get mapAnswer : " + mapAnswer);
         List<Question> questionList = (ArrayList)session.getAttribute("questionList");
         LOG.debug("UserAnswerCommand get questionList : " + questionList);
-
-
 
         if(request.getParameter("question_id")!=null ) {
             Long questionId = Long.parseLong(request.getParameter("question_id"));
@@ -72,12 +67,7 @@ public class UserAnswerCommand extends  Command {
                 }
             }
         }
-
-       // request.setAttribute("questionList",questionList);
-
         LOG.debug("UserAnswerCommand get mapAnswer : " + mapAnswer);
-      //  LOG.debug("Set the session attribute: questionList --> " + questionList);
-      //  LOG.debug("UserTestCommand finished");
         return Path.PAGE_USER_TEST;
     }
 }

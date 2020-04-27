@@ -14,7 +14,11 @@ public interface SubjectService {
 
     Integer deleteSubject(Long id, String locale);
 
-    Subject createUser(Subject subject, String locale);
+    public Subject createSubject(Subject subject, String shortName);
 
-    Subject update (Long id, Subject subject, String locale);
+    public Subject createSubjectLocale(Subject subject, String locale);
+
+    public Integer deleteSubject(Long id);
+
+    Subject update (Subject subject, String locale);
 }

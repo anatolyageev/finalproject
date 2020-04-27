@@ -17,12 +17,6 @@ Defines the web form.
             <button type="button" class="toggle-btn" onclick="login()">${loginButton}</button>
             <button type="button" class="toggle-btn" onclick="register()">${registration}</button>
         </div>
-<%--        <div class="sosial-icons">--%>
-<%--            <img src="img\fb.png">--%>
-<%--            <img src="img\tw.png">--%>
-<%--            <img src="img\gp.png">--%>
-
-<%--        </div>--%>
         <form id="login" action="controller" class="input-group" method="post">
             <input type="hidden" name="command" value="login"/>
             <input type="text" class="input-field" name="login" placeholder="User Id" required>
@@ -39,7 +33,6 @@ Defines the web form.
 <%--            <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>--%>
             <button type="submit" class="submit-btn">Register</button>
         </form>
-
         <c:if test="${not empty reg_error}">
             <script> register()</script>
             <script> register()</script>
@@ -49,16 +42,6 @@ Defines the web form.
         </c:if>
     </div>
 </div>
-
-
-
-<%--<c:if test="${not empty reg_error}">--%>
-<%--    <div class="error">--%>
-<%--        <fmt:message key="registration.registration_form.fail" var="reg_fail"/>--%>
-<%--            ${reg_fail}: ${reg_error}--%>
-<%--    </div>--%>
-<%--</c:if>--%>
-
 
 <script>
     var x = document.getElementById("login");

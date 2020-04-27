@@ -7,15 +7,77 @@
 --%>
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
+<body>
 <%-- HEADER --%>
 <%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
 <%-- HEADER --%>
-<body>
+<div class="container">
+    <div class="row">
+        <%--        <div class="col-md-4 order-md-1 mb-5">--%>
+        <div class="col-md-4 order-md-1 mr-5">
+            <table class="table table-borderless">
+                <%--            <div>--%>
+                <%--                <div class="btn-group-vertical" role="group" mb-5>--%>
+                <c:forEach items="${sessionScope.subjectList}" var="subject" varStatus="loop">
+                    <tr>
+                        <td>
+                            <a type="button" class="btn btn-info"
+                               href="${pageContext.request.contextPath}/controller?command=testsListCommand&subjectId=${subject.id}">${subject.subjectName}</a>
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-info"
+                               href="${pageContext.request.contextPath}/controller?command=editSubjectCommand&subjectId=${subject.id}"><fmt:message
+                                    key="common_button.edit"/></a>
+                        </td>
+                        <td>
+                            <a type="button" class="btn btn-danger"
+                               href="${pageContext.request.contextPath}/controller?command=deleteSubjectCommand&subjectId=${subject.id}"><fmt:message
+                                    key="common_button.delete"/></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
 
 
+            <div>
 
-<h1>This is admin paje</h1>
+                <a type="button" class="btn btn-primary"
+                   href="${pageContext.request.contextPath}/controller?command=createSubjectCommand"> <fmt:message
+                        key="crate_subject.create_subject"/> </a>
 
-<%@ include file="/WEB-INF/jspf/footer.jspf"%>
+
+            </div>
+            <%--            </ul>--%>
+        </div>
+
+
+        <div class="col-md-3 order-md-2 ">
+            <fmt:message key="crate_subject.text1"/>
+            <ul>
+                <li><fmt:message key="crate_subject.text2"/></li>
+                <li><fmt:message key="crate_subject.text3"/></li>
+                <li><fmt:message key="crate_subject.text4"/></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<%-- FOOTER --%>
+<%@ include file="/WEB-INF/jspf/footer.jspf" %>
+<%-- FOOTER --%>
+<script>
+
+    function addMinutes(minutes) {
+        var d = new Date();
+        return d.setMinutes(d.getMinutes() + minutes);
+    }
+
+    function doSomething(minutes) {
+        var d = new Date()
+        d.setMinutes(d.getMinutes() + minutes);
+        document.cookie = "testEndTime=" + d.toUTCString();
+    }
+</script>
 </body>
 </html>

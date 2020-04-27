@@ -1,6 +1,7 @@
 package ua.nure.ageev.finaltask4.web.command;
 
 import org.apache.log4j.Logger;
+import ua.nure.ageev.finaltask4.web.command.admin.*;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,6 +24,8 @@ public class CommandContainer {
         commands.put("registration", new RegistrationCommand());
         commands.put("changeUserStatusCommand", new ChangeUserStatusCommand());
         commands.put("subjectCommand", new SubjectCommand());
+
+        //user commands
         commands.put("goToUserPageCommand", new GoToUserPageCommand());
         commands.put("quizzeTestCommand", new QuizzeTestCommand());
         commands.put("quizzeQuestionCommand", new QuizzeQuestionCommand());
@@ -32,12 +35,24 @@ public class CommandContainer {
         commands.put("userPageChange", new UserPageChange());
         commands.put("userTestFinishCommand", new UserTestFinishCommand());
         commands.put("quizzeCommand", new QuizzeCommand());
+        commands.put("quizzeTestSortCommand", new QuizzeTestSortCommand());
 
-//        // client commands
-//        commands.put("listMenu", new ListMenuCommand());
-//
-//        // admin commands
-//        commands.put("listOrders", new ListOrdersCommand());
+        //admin commands
+        commands.put("adminQuizzeCommand", new AdminQuizzeCommand());
+        commands.put("createSubjectCommand", new CreateSubjectCommand());
+        commands.put("newSubjectCommand", new NewSubjectCommand());
+        commands.put("deleteSubjectCommand", new DeleteSubjectCommand());
+        commands.put("editSubjectCommand", new EditSubjectCommand());
+        commands.put("updateSubjectCommand", new UpdateSubjectCommand());
+        commands.put("testsListCommand", new TestsListCommand());
+        commands.put("createTestCommand", new CreateTestCommand());
+        commands.put("newTestCommand", new NewTestCommand());
+        commands.put("deleteTestCommand", new DeleteTestCommand());
+        commands.put("editTestCommand", new EditTestCommand());
+        commands.put("updateTestCommand", new UpdateTestCommand());
+        commands.put("questionCommand", new QuestionCommand());
+        commands.put("adminPageChange", new AdminPageChange());
+        commands.put("createQuestionCommand", new CreateQuestionCommand());
 
         LOG.debug("Command container was successfully initialized");
         LOG.trace("Number of commands --> " + commands.size());

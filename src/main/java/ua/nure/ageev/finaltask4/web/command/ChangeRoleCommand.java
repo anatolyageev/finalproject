@@ -30,8 +30,8 @@ public class ChangeRoleCommand extends Command{
         LOG.debug("ChangeRoleCommand starts");
         AdminService adminService = new AdminServiceImpl(new AdminRepositoryImpl());
         Long userId = Long.parseLong(request.getParameter("user_id"));
-        Integer cuurentRole = Integer.parseInt(request.getParameter("user_current_role"));
-        if (cuurentRole==1){
+        Integer currentRole = Integer.parseInt(request.getParameter("user_current_role"));
+        if (currentRole==1){
             adminService.setUserRoleAdmin(userId);
         }else{
             adminService.setUserRoleUser(userId);

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SubjectServiceImpl implements SubjectService {
     private static final Logger LOG = Logger.getLogger(SubjectServiceImpl.class);
-    SubjectRepository repository;
+    private SubjectRepository repository;
 
     public SubjectServiceImpl(SubjectRepository repository){
         this.repository = repository;
@@ -17,7 +17,8 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public Subject getOne(Subject subject, String locale) {
-        return null;
+        LOG.trace("Service method getOne for Subject start" );
+        return repository.getOne(subject,locale);
     }
 
     @Override
@@ -36,13 +37,26 @@ public class SubjectServiceImpl implements SubjectService {
         return null;
     }
 
-    @Override
-    public Subject createUser(Subject subject, String locale) {
-        return null;
+    public Subject createSubject(Subject subject, String shortName){
+        LOG.trace("Service method createSubject for Subject start" );
+        return repository.createSubject(subject,shortName);
     }
 
     @Override
-    public Subject update(Long id, Subject subject, String locale) {
-        return null;
+    public Subject createSubjectLocale(Subject subject, String locale) {
+        LOG.trace("Service method createSubjectLocale for Subject start" );
+        return repository.createSubjectLocale(subject,locale);
+    }
+
+    @Override
+    public Integer deleteSubject(Long id) {
+        LOG.trace("Service method deleteSubject for Subject start" );
+        return repository.deleteSubject(id);
+    }
+
+    @Override
+    public Subject update(Subject subject, String locale) {
+        LOG.trace("Service method update for Subject start" );
+        return repository.update(subject,locale);
     }
 }

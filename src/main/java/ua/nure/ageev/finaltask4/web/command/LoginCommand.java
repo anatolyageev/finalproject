@@ -11,6 +11,7 @@ import ua.nure.ageev.finaltask4.services.UserResultService;
 import ua.nure.ageev.finaltask4.services.UserService;
 import ua.nure.ageev.finaltask4.services.impl.UserResultServiceImpl;
 import ua.nure.ageev.finaltask4.services.impl.UserServiceImpl;
+import ua.nure.ageev.finaltask4.web.utils.DataHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -65,24 +66,24 @@ public class LoginCommand extends Command {
         String forward = Path.PAGE_ERROR_PAGE;
 
         if (userRole == Role.ADMIN) {
-            forward = Path.PAGE_ADMIN_PAGE;
+            List<User> userList = DataHelper.getUsersList();
+            // put user list to request
+            request.setAttribute("userList", userList);
+            forward = Path.PAGE_USER_USER_LIST;
         }
         String local = (String) session.getAttribute("currentLocale");
         if (userRole == Role.CLIENT) {
             path = request.getContextPath() + "/controller?command=goToUserPageCommand";
-          //  forward = path;
-            List<UserResult> userResultList = userResultService.findAllByParent(user.getId(),local);
+            List<UserResult> userResultList = userResultService.findAllByParent(user.getId(), local);
             LOG.debug("UserTestFinishCommand get questionList : " + userResultList);
-            session.setAttribute("userResultList",userResultList);
+            session.setAttribute("userResultList", userResultList);
             forward = Path.PAGE_USER_PAGE;
 
         }
 
-        response.setHeader("Request URL" ,path);
-
+        response.setHeader("Request URL", path);
 
         LOG.trace("Set the session attribute: user --> " + path);
-
 
         session.setAttribute("user", user);
         LOG.trace("Set the session attribute: user --> " + user);

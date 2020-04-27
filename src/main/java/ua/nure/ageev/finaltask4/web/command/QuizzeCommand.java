@@ -37,10 +37,8 @@ public class QuizzeCommand extends Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
         LOG.debug("QuizzeCommand starts");
         HttpSession session = request.getSession();
-        String getRequestURI = request.getRequestURI();
-        LOG.debug("SubjectCommand get getRequestURI: " +getRequestURI );
         String local = (String) session.getAttribute("currentLocale");
-        LOG.debug("SubjectCommand get locale: " + local);
+        LOG.debug("QuizzeCommand get locale: " + local);
         if(local == null){
             local ="en";
         }
@@ -52,11 +50,9 @@ public class QuizzeCommand extends Command {
         TestService testService = new TestServiceImpl(new TestRepositoryImpl());
         List<Test> test = testService.findAll(local);
 
-        //TODO sorting
-
         // put user order beans list to request
-        request.setAttribute("subjectList", subjects);
-        request.setAttribute("testList", test);
+        session.setAttribute("subjectList", subjects);
+        session.setAttribute("testList", test);
         LOG.debug("Set the request attribute: subjectList --> " + subjects);
         LOG.debug("QuizzeCommand finished");
         return Path.PAGE_QUIZZE_LIST;

@@ -41,10 +41,6 @@
     <input type="submit" value="<fmt:message key="login.registration"/>"/>
 </form>
 
-
-
-
-
 <%@ include file="/WEB-INF/jspf/footer.jspf" %>
 
 </body>
