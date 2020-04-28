@@ -55,4 +55,20 @@ public class AnswerServiceImpl implements AnswerService {
     public void deleteAllByParentId(Long parentId) {
 
     }
+
+    @Override
+    public Answer insert(Long parentId, Answer answer) {
+        LOG.trace("Service method insert for Answer " );
+        return repository.insert(parentId,answer);
+    }
+
+    @Override
+    public Answer insertName(Answer answer, String locale) {
+        return null;
+    }
+
+    @Override
+    public Answer updateName(Answer answer, String locale) {
+        return null;
+    }
 }

@@ -16,6 +16,7 @@ import ua.nure.ageev.finaltask4.services.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataHelper {
@@ -85,6 +86,23 @@ public class DataHelper {
             List<Answer> answerList = answerService.findAllByParent(q.getId(),local);
             q.setAnswers(answerList);
         }
+    }
+
+    /**
+     * Method which added list of new empty answers for the question.
+     *
+     *  @param question
+     */
+    public static List<Answer> answersCreation(Question question) {
+        AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
+        LOG.debug("DataHelper answersCreation question --> " + question);
+        List<Answer> answerList = new ArrayList<>();
+        for (int i=0;i<4;i++){
+            LOG.debug("DataHelper answersCreation question.getId() --> " + question.getId());
+            answerList.add(answerService.insert(question.getId(),new Answer()));
+        }
+        LOG.debug("DataHelper answersCreation answerList --> " + answerList);
+        return answerList;
     }
 }
 

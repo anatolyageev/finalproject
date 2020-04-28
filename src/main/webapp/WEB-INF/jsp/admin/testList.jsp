@@ -16,7 +16,7 @@
 
             <table class="table table-bordered">
                 <thead>
-                <tr>
+                <tr><c:forEach items="${test}" var="test" varStatus="loop">
                     <th>Test</th>
                     <th>Difficulty Level</th>
                     <th>Number of question</th>
@@ -24,7 +24,7 @@
                 </tr>
                 </thead>
 
-                <c:forEach items="${test}" var="test" varStatus="loop">
+
                     <tr>
                         <td>
                             <form action="controller" method=post>

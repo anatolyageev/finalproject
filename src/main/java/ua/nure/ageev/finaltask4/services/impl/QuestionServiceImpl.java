@@ -54,4 +54,21 @@ public class QuestionServiceImpl implements QuestionService {
     public void deleteAllByParentId(Long parentId) {
 
     }
+
+    @Override
+    public Question insert(Long parentId, Question question) {
+        LOG.trace("Service method insert parentId for Question " );
+        return repository.insert(parentId,question);
+    }
+
+    @Override
+    public Question insertName(Question question, String locale) {
+        LOG.trace("Service method insert parentId for Question " );
+        return repository.insertName(question,locale);
+    }
+
+    @Override
+    public Question updateName(Question question, String locale) {
+        return null;
+    }
 }

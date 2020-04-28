@@ -14,25 +14,24 @@
 <div class="container">
 
     <form action="controller" method="post">
-        <input type="hidden" name="command" value="newTestCommand"/>
-        <input type="hidden" name="subjectId" value="${subjectId}"/>
-
+        <input type="hidden" name="command" value="newQuestionCommand"/>
+        <input type="hidden" name="testId" value="${sessionScope.testId}"/>
 
         <div class="form-group col-xs-6 mb-2">
             <label for="newQuestionEn"><fmt:message key="crate_question.question_name_en"/></label>
-            <textarea class="form-control" rows="2" id="newQuestionEn" placeholder="Enter text for new question" required></textarea>
+            <textarea class="form-control" rows="2" id="newQuestionEn" placeholder="Enter text for new question" name="newQuestionEn" required></textarea>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Please fill out this field.</div>
         </div>
 
         <div class="form-group col-xs-6 mb-2">
             <label for="newQuestionRu"><fmt:message key="crate_question.question_name_ru"/></label>
-            <textarea class="form-control" rows="2" id="newQuestionRu" placeholder="Enter text for new question" required></textarea>
+            <textarea class="form-control" rows="2" id="newQuestionRu" placeholder="Enter text for new question" name="newQuestionRu" required></textarea>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Please fill out this field.</div>
         </div>
 
-        <button type="submit" class="btn btn-primary"><fmt:message key="common_button.save"/></button>
+        <button type="submit" class="btn btn-primary"><fmt:message key="common_button.next"/></button>
     </form>
 
 </div>
