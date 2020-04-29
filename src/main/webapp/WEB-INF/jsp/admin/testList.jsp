@@ -16,44 +16,45 @@
 
             <table class="table table-bordered">
                 <thead>
-                <tr><c:forEach items="${test}" var="test" varStatus="loop">
-                    <th>Test</th>
-                    <th>Difficulty Level</th>
-                    <th>Number of question</th>
-                    <th>minutesToComplite</th>
+
+                <th>Test</th>
+                <th>Difficulty Level</th>
+                <th>Number of question</th>
+                <th>minutesToComplite</th>
                 </tr>
                 </thead>
 
+                <tr><c:forEach items="${test}" var="test" varStatus="loop">
+                <tr>
+                    <td>
+                        <form action="controller" method=post>
+                            <input type="hidden" name="command" value="questionCommand"/>
+                            <input type="hidden" name="testId" value="${test.id}"/>
+                            <input type=submit class="btn btn-link" value="${test.testName}">
+                        </form>
+                    </td>
+                    <td>${test.difficultyLevel}</td>
+                    <td>${test.questionQuantity}</td>
+                    <td>${test.minutesToComplite}</td>
+                    <td>
+                        <form action="controller" method=post>
+                            <input type="hidden" name="command" value="editTestCommand"/>
+                            <input type="hidden" name="subjectId" value="${subjectId}"/>
+                            <input type="hidden" name="testId" value="${test.id}"/>
+                            <button type="submit" class="btn btn-info"><fmt:message key="common_button.edit"/></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="controller" method=post>
+                            <input type="hidden" name="command" value="deleteTestCommand"/>
+                            <input type="hidden" name="subjectId" value="${subjectId}"/>
+                            <input type="hidden" name="testId" value="${test.id}"/>
+                            <button type="submit" class="btn btn-danger"><fmt:message
+                                    key="common_button.delete"/></button>
+                        </form>
+                    </td>
 
-                    <tr>
-                        <td>
-                            <form action="controller" method=post>
-                                <input type="hidden" name="command" value="questionCommand"/>
-                                <input type="hidden" name="testId" value="${test.id}"/>
-                                <input type=submit class="btn btn-link" value="${test.testName}">
-                            </form>
-                        </td>
-                        <td>${test.difficultyLevel}</td>
-                        <td>${test.questionQuantity}</td>
-                        <td>${test.minutesToComplite}</td>
-                        <td>
-                            <form action="controller" method=post>
-                                <input type="hidden" name="command" value="editTestCommand"/>
-                                <input type="hidden" name="subjectId" value="${subjectId}"/>
-                                <input type="hidden" name="testId" value="${test.id}"/>
-                                <button type="submit" class="btn btn-info" ><fmt:message key="common_button.edit"/></button>
-                            </form>
-                        </td>
-                        <td>
-                            <form action="controller" method=post>
-                                <input type="hidden" name="command" value="deleteTestCommand"/>
-                                <input type="hidden" name="subjectId" value="${subjectId}"/>
-                                <input type="hidden" name="testId" value="${test.id}"/>
-                                <button type="submit" class="btn btn-danger" ><fmt:message key="common_button.delete"/></button>
-                            </form>
-                        </td>
-
-                    </tr>
+                </tr>
                 </c:forEach>
 
             </table>
