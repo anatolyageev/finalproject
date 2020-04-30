@@ -91,7 +91,7 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
         PreparedStatement ps = null;
         ResultSet rs = null;
         Connection con = null;
-        LOG.trace("Repository impl method getOne by id for Answer.");
+        LOG.trace("Repository impl method findAllByParent by id for Answer.");
         try {
             con = manager.getConnection();
             ps = con.prepareStatement(SQL_FIND_ALL_ANSWER_BY_PARENT);
@@ -108,7 +108,7 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
         } finally {
             manager.close(con, ps, rs);
         }
-        LOG.trace("Repository method getOne for Answer returned --> " + answer);
+        LOG.trace("Repository method findAllByParent for Answer returned --> " + answerList);
         return answerList;
     }
 
@@ -176,6 +176,11 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
 
     @Override
     public Answer updateName(Answer answer, String locale) {
+        return null;
+    }
+
+    @Override
+    public Answer update(Answer answer) {
         return null;
     }
 }

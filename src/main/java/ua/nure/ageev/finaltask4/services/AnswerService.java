@@ -8,4 +8,5 @@ public interface AnswerService extends BasicService<Long, Answer, String>, Child
     public Answer insert(Long parentId, Answer answer);
     public Answer insertName(Answer answer, String locale);
     public Answer updateName(Answer answer, String locale);
+    public Answer update(Answer answer);
 }

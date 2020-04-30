@@ -21,8 +21,16 @@
                     <div class="input-group-append">
                         <button class="btn btn-info" type="button"><fmt:message
                                 key="common_button.edit"/></button>
-                        <button class="btn btn-primary" type="button"><fmt:message
+
+
+                        <form action="controller" method=post>
+                            <input type="hidden" name="command" value="editAnswerCommand"/>
+                            <input type="hidden" name="questionId" value="${question.id}"/>
+                        <button type="submit" class="btn btn-primary" type="button"  ><fmt:message
                                 key="crate_question.edit_answers"/></button>
+                        </form>
+
+
                         <button class="btn btn-danger" type="button"><fmt:message
                                 key="common_button.delete"/></button>
                     </div>

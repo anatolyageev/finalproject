@@ -8,7 +8,7 @@ public class Answer extends LongID{
 
     private String answerText;
 
-    public Boolean isCorrectAnswer() {
+    public Boolean getCorrectAnswer() {
         return correctAnswer;
     }
 
