@@ -7,9 +7,11 @@ import ua.nure.ageev.finaltask4.exception.Messages;
 import ua.nure.ageev.finaltask4.repository.UserRepository;
 import ua.nure.ageev.finaltask4.repository.base.AbstractRepository;
 import ua.nure.ageev.finaltask4.repository.db.Fields;
+import ua.nure.ageev.finaltask4.security.SecurePassword;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class UserRepositoryImpl extends AbstractRepository implements UserRepository {
@@ -140,14 +142,17 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
         ResultSet rs = null;
         Connection con = null;
         LOG.trace("Repository impl method createUser --> " + user);
+        byte[] salt = SecurePassword.getSalt();
+        LOG.trace("Repository impl method createUser salt --> " + Base64.getEncoder().encodeToString(salt));
+        String securePassword = SecurePassword.getSecurePassword(user.getPassword(), salt);
         try {
             con = manager.getConnection();
             con.setAutoCommit(false);
             ps = con.prepareStatement(SQL_INSERT_NEW_USER_ACCOUNT_INFO, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1,user.getLogin());
-            ps.setString(2,user.getPassword());
-            ps.setString(3,"notImplemented");
-            ps.setString(4,"notImplemented");
+            ps.setString(1, user.getLogin());
+            ps.setString(2, securePassword);
+            ps.setString(3, Base64.getEncoder().encodeToString(salt));
+            ps.setString(4, SecurePassword.getHashing());
             if (ps.executeUpdate() > 0) {
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
@@ -157,9 +162,9 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
             }
             LOG.debug("Repository method first update  --> " + user);
             ps = con.prepareStatement(SQL_INSERT_NEW_USER);
-            ps.setString(1,user.getFirstName());
-            ps.setString(2,user.getLastName());
-            ps.setLong(3,user.getId());
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setLong(3, user.getId());
             if (ps.executeUpdate() > 0) {
                 con.commit();
                 LOG.debug("Repository method committed createUser  --> " + user);

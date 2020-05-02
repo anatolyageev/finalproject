@@ -34,5 +34,5 @@ public interface UserRepository {
      * @param User entity.
      * @return User entity.
      */
-    User createUser(User user);
+    User createUser(User user) ;
 }
