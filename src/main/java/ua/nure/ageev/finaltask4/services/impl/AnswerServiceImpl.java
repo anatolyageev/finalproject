@@ -64,7 +64,8 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public Answer insertName(Answer answer, String locale) {
-        return null;
+        LOG.trace("Service method insert for Answer " );
+        return repository.insertName(answer,locale);
     }
 
     @Override

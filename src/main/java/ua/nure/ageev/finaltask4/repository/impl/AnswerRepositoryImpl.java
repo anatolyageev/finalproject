@@ -16,9 +16,6 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
 
     protected static final Logger LOG = Logger.getLogger(AnswerRepositoryImpl.class);
 
-    private static final String SQL_FIND_ALL_QUESTION = "SELECT * FROM tests s, tests_locale sl " +
-            "WHERE s.id = sl.test_id AND sl.lang_ind = ?";
-
     private static final String SQL_FIND_ANSWER_BY_ID = "SELECT * FROM answers t, answers_locale tl " +
             "WHERE t.id = tl.answer_id " +
             "AND tl.lang_ind = ? AND t.id = ?";
@@ -27,9 +24,6 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
             "WHERE t.id = tl.answer_id " +
             "AND tl.lang_ind = ? AND t.question_id = ?";
 
-    private static final String SQL_DELETE_QUESTION = "DELETE FROM tests WHERE id = ?";
-
-    private static final String SQL_DELETE_QUESTION_LOCALE = "DELETE FROM tests_locale WHERE test_id = ?";
 
     private static final String SQL_ANSWER_INSERT_BY_PARENT = "INSERT  INTO answers " +
             "(question_id) " +
@@ -37,6 +31,15 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
     private static final String SQL_ANSWER_INSERT_TEXT = "INSERT  INTO answers_locale " +
             "(answer_id, lang_ind, answer_text) " +
             "VALUES (?,?,?)";
+
+    private static final String SQL_UPDATE_ANSWER = "UPDATE answers " +
+            "SET is_correct = ? " +
+            "WHERE id = ?";
+
+    private static final String SQL_UPDATE_ANSWER_LOCALE = "UPDATE answers_locale " +
+            "SET answer_text = ? " +
+            "WHERE answer_id = ? " +
+            "AND lang_ind = ?";
 
     @Override
     public Answer getOne(Long id, String locale) {
@@ -163,7 +166,7 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
             ps.setLong(1,answer.getId());
             ps.setString(2,locale);
             ps.setString(3,answer.getAnswerText());
-            ps.executeQuery();
+            ps.executeUpdate();
             con.commit();
         } catch (SQLException | DBException ex) {
             LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
@@ -176,11 +179,44 @@ public class AnswerRepositoryImpl extends AbstractRepository implements AnswerRe
 
     @Override
     public Answer updateName(Answer answer, String locale) {
-        return null;
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("Repository impl method updateName for Answer.");
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_UPDATE_ANSWER_LOCALE);
+            ps.setString(1,answer.getAnswerText());
+            ps.setLong(2,answer.getId());
+            ps.setString(3,locale);
+            ps.executeUpdate();
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps);
+        }
+        LOG.trace("Repository method updateName for Answer returned --> " + answer);
+        return answer;
     }
 
     @Override
     public Answer update(Answer answer) {
-        return null;
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("Repository impl method update for Answer.");
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_UPDATE_ANSWER);
+            ps.setBoolean(1,answer.getCorrectAnswer());
+            ps.setLong(2,answer.getId());
+            ps.executeUpdate();
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps);
+        }
+        LOG.trace("Repository method update for Answer returned --> " + answer);
+        return answer;
     }
 }

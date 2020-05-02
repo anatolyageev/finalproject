@@ -27,6 +27,7 @@ public final class Path {
 	public static final String PAGE_ADMIN_CREATE_QUESTION = "/WEB-INF/jsp/admin/questionCreate.jsp";
 	public static final String PAGE_ADMIN_CREATE_ANSWER = "/WEB-INF/jsp/admin/answersCreate.jsp";
 	public static final String PAGE_ADMIN_EDIT_ANSWER = "/WEB-INF/jsp/admin/editAnswer.jsp";
+	public static final String PAGE_ADMIN_EDIT_QUESTION = "/WEB-INF/jsp/admin/editQuestion.jsp";
 
 	public static final String PAGE_USER_USER_LIST = "/WEB-INF/jsp/admin/userList.jsp";
 

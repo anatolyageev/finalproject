@@ -40,7 +40,7 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
 
     private static final String SQL_INSERT_NEW_USER_ACCOUNT_INFO = "INSERT INTO user_account " +
             "(user_name, password, password_salt, password_hash_algorithm,role_id) " +
-            "VALUES(?, ?, ?, ? ,0)";
+            "VALUES(?, ?, ?, ? ,1)";
 
     private static final String SQL_INSERT_NEW_USER = "INSERT INTO users " +
             "(first_name, last_name,account_id) " +

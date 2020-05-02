@@ -45,7 +45,7 @@
                 </div>
             </div>
         </c:forEach>
-
+<%--        <button type="submit" class="btn btn-primary" id="submitButton"><fmt:message key="common_button.back"/></button>--%>
         <button type="submit" class="btn btn-primary" id="submitButton"><fmt:message key="common_button.save"/></button>
     </form>
 

@@ -3,16 +3,11 @@ package ua.nure.ageev.finaltask4.web.utils;
 import org.apache.log4j.Logger;
 import ua.nure.ageev.finaltask4.domain.*;
 import ua.nure.ageev.finaltask4.repository.impl.AnswerRepositoryImpl;
+import ua.nure.ageev.finaltask4.repository.impl.QuestionRepositoryImpl;
 import ua.nure.ageev.finaltask4.repository.impl.SubjectRepositoryImpl;
 import ua.nure.ageev.finaltask4.repository.impl.TestRepositoryImpl;
-import ua.nure.ageev.finaltask4.services.AnswerService;
-import ua.nure.ageev.finaltask4.services.SubjectService;
-import ua.nure.ageev.finaltask4.services.TestService;
-import ua.nure.ageev.finaltask4.services.UserService;
-import ua.nure.ageev.finaltask4.services.impl.AnswerServiceImpl;
-import ua.nure.ageev.finaltask4.services.impl.SubjectServiceImpl;
-import ua.nure.ageev.finaltask4.services.impl.TestServiceImpl;
-import ua.nure.ageev.finaltask4.services.impl.UserServiceImpl;
+import ua.nure.ageev.finaltask4.services.*;
+import ua.nure.ageev.finaltask4.services.impl.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -99,10 +94,24 @@ public class DataHelper {
         List<Answer> answerList = new ArrayList<>();
         for (int i=0;i<4;i++){
             LOG.debug("DataHelper answersCreation question.getId() --> " + question.getId());
-            answerList.add(answerService.insert(question.getId(),new Answer()));
+            Answer tempAnswer = new Answer();
+            tempAnswer = answerService.insert(question.getId(),new Answer());
+            answerList.add(tempAnswer);
+            tempAnswer.setAnswerText("");
+            answerService.insertName(tempAnswer,ConstantsForCommands.LANGUAGE_EN);
+            answerService.insertName(tempAnswer,ConstantsForCommands.LANGUAGE_RU);
         }
         LOG.debug("DataHelper answersCreation answerList --> " + answerList);
         return answerList;
     }
+    public static void updateQuestionList(HttpServletRequest request, String local) {
+        HttpSession session = request.getSession();
+        Long testId = (Long)session.getAttribute("testId");
+        QuestionService questionService = new QuestionServiceImpl(new QuestionRepositoryImpl());
+        List<Question> questionList = questionService.findAllByParent(testId, local);
+        LOG.debug("Question list: " + questionList);
+        session.setAttribute("questionList", questionList);
+    }
+
 }
 

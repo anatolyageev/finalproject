@@ -8,6 +8,7 @@ import ua.nure.ageev.finaltask4.repository.impl.AnswerRepositoryImpl;
 import ua.nure.ageev.finaltask4.services.AnswerService;
 import ua.nure.ageev.finaltask4.services.impl.AnswerServiceImpl;
 import ua.nure.ageev.finaltask4.web.command.Command;
+import ua.nure.ageev.finaltask4.web.utils.DataHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,7 @@ public class UpdateAnswerCommand extends Command {
         LOG.debug("UpdateAnswerCommand start");
         AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
         List<String> correctAnswers = Arrays.asList(request.getParameterValues("isCorrect"));
-
+        String local = DataHelper.getLanguage(request);
         setCorrectAnswers(correctAnswers);
 
         Enumeration e = request.getParameterNames();
@@ -51,11 +52,16 @@ public class UpdateAnswerCommand extends Command {
                 tempAnswer.setId(Long.parseLong(param[0]));
                 tempAnswer.setAnswerText(value);
                 LOG.debug("UpdateAnswerCommand tempAnswer" + tempAnswer);
-                answerService.update(tempAnswer,param[1]);
+                String locale = param[1];
+                LOG.debug("UpdateAnswerCommand locale" + locale);
+                answerService.updateName(tempAnswer, locale);
             }
         }
+        DataHelper.updateQuestionList(request, local);
         return Path.PAGE_ADMIN_QUESTIONS;
     }
+
+
 
     public void setCorrectAnswers(List<String> correctAnswers) {
         AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl()); ;
