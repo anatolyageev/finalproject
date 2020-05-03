@@ -16,14 +16,9 @@ public class CommandContainer {
         // common commands
         commands.put("login", new LoginCommand());
         commands.put("logout", new LogoutCommand());
-        commands.put("viewSettings", new ViewSettingsCommand());
-        commands.put("noCommand", new NoCommand());
-        commands.put("adminPageCommand", new AdminPageCommand());
-        commands.put("listUsersCommand", new ListUsersCommand());
-        commands.put("changeRoleCommand", new ChangeRoleCommand());
         commands.put("registration", new RegistrationCommand());
-        commands.put("changeUserStatusCommand", new ChangeUserStatusCommand());
-        commands.put("subjectCommand", new SubjectCommand());
+        commands.put("noCommand", new NoCommand());
+        commands.put("viewSettings", new ViewSettingsCommand());
 
         //user commands
         commands.put("goToUserPageCommand", new GoToUserPageCommand());
@@ -36,6 +31,7 @@ public class CommandContainer {
         commands.put("userTestFinishCommand", new UserTestFinishCommand());
         commands.put("quizzeCommand", new QuizzeCommand());
         commands.put("quizzeTestSortCommand", new QuizzeTestSortCommand());
+        commands.put("subjectCommand", new SubjectCommand());
 
         //admin commands
         commands.put("adminQuizzeCommand", new AdminQuizzeCommand());
@@ -59,6 +55,10 @@ public class CommandContainer {
         commands.put("deleteQuestionCommand", new DeleteQuestionCommand());
         commands.put("editQuestionCommand", new EditQuestionCommand());
         commands.put("updateQuestionCommand", new UpdateQuestionCommand());
+        commands.put("adminPageCommand", new AdminPageCommand());
+        commands.put("listUsersCommand", new ListUsersCommand());
+        commands.put("changeRoleCommand", new ChangeRoleCommand());
+        commands.put("changeUserStatusCommand", new ChangeUserStatusCommand());
 
         LOG.debug("Command container was successfully initialized");
         LOG.trace("Number of commands --> " + commands.size());

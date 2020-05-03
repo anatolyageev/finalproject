@@ -1,13 +1,5 @@
 package ua.nure.ageev.finaltask4.web;
 
-import java.io.IOException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 import ua.nure.ageev.finaltask4.Path;
 import ua.nure.ageev.finaltask4.exception.AppException;
@@ -15,33 +7,40 @@ import ua.nure.ageev.finaltask4.exception.DBException;
 import ua.nure.ageev.finaltask4.web.command.Command;
 import ua.nure.ageev.finaltask4.web.command.CommandContainer;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
- * Controller servlet.
+ * FrontController servlet.
  *
  * @author A.Ageev
  *
  */
 @WebServlet("/controller")
-public class Controller extends HttpServlet {
+public class FrontController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = Logger.getLogger(Controller.class);
+    private static final Logger LOG = Logger.getLogger(FrontController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            proccessRequest(req, resp);
+            processRequest(req, resp);
         } catch (DBException e) {
-            e.printStackTrace();
+            LOG.debug("FrontController doGet exception : " + e);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            proccessRequest(req, resp);
+            processRequest(req, resp);
         } catch (DBException e) {
-            e.printStackTrace();
+            LOG.debug("FrontController doPost exception : " + e);
         }
     }
 
@@ -51,9 +50,9 @@ public class Controller extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    private void proccessRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, DBException {
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, DBException {
 
-        LOG.debug("Controller starts");
+        LOG.debug("FrontController starts");
 
         // extract command name from the request
         String commandName = req.getParameter("command");
@@ -73,7 +72,7 @@ public class Controller extends HttpServlet {
 
         LOG.trace("Forward address --> " + forward);
 
-        LOG.debug("Controller finished, now go to forward address --> " + forward);
+        LOG.debug("FrontController finished, now go to forward address --> " + forward);
 
         // go to forward
         req.getRequestDispatcher(forward).forward(req, resp);

@@ -27,8 +27,8 @@
     <%-- CONTENT --%>
 
 
-    <table id="list_users">
-        <thead>
+    <table id="list_users" class="table table-bordered table-striped">
+        <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>login</th>
@@ -76,16 +76,16 @@
                         <form action="controller" method="post">
                             <input type="hidden" name="command" value="changeRoleCommand"/>
                             <input type="hidden" name="user_id" value="${user.id}">
-                            <input type="submit" value="${changeRole}">
                             <input type="hidden" name="user_current_role" value="${user.roleId}">
+                            <button type="submit" class = "button btn-info">${changeRole}</button>
                         </form>
                 </td>
                 <td>
                     <form action="controller" method="post">
                         <input type="hidden" name="command" value="changeUserStatusCommand"/>
                         <input type="hidden" name="user_id" value="${user.id}">
-                        <input type="submit" value="${changeStatus}">
-                        <input type="hidden" name="user_current_status" value="${user.roleId}">
+                        <input type="hidden" name="user_current_status" value="${user.userStatus}">
+                        <button type="submit" class = "button btn-warning">${changeStatus}</button>
                     </form>
                 </td>
             </tr>

@@ -35,4 +35,22 @@ public interface UserRepository {
      * @return User entity.
      */
     User createUser(User user) ;
+
+    /**
+     * Returns a user salt for password.
+     *
+     * @param id
+     *            User identifier.
+     * @return String .
+     */
+    String getSalt(Long id);
+
+    /**
+     * Returns a user hash algorithm for password.
+     *
+     * @param id
+     *            User identifier.
+     * @return String .
+     */
+    String getHashAlgorithm(Long id);
 }

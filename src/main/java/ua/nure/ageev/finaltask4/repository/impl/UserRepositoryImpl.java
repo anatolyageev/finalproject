@@ -11,7 +11,6 @@ import ua.nure.ageev.finaltask4.security.SecurePassword;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 public class UserRepositoryImpl extends AbstractRepository implements UserRepository {
@@ -37,6 +36,14 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
             ",last_name\n" +
             "FROM user_account ua, users u \n" +
             "where u.account_id = ua.id AND ua.id = ?";
+
+    private static final String SQL_FIND_USER_SALT = "SELECT password_salt " +
+            "FROM user_account ua " +
+            "where ua.id = ?";
+
+    private static final String SQL_FIND_USER_HASH_ALGORITHM = "SELECT password_hash_algorithm " +
+            "FROM user_account ua " +
+            "where ua.id = ?";
 
     private static final String SQL_FIND_ALL_USERS = "SELECT * FROM user_account ua, users u WHERE u.account_id = ua.id";
 
@@ -142,8 +149,8 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
         ResultSet rs = null;
         Connection con = null;
         LOG.trace("Repository impl method createUser --> " + user);
-        byte[] salt = SecurePassword.getSalt();
-        LOG.trace("Repository impl method createUser salt --> " + Base64.getEncoder().encodeToString(salt));
+        String salt = SecurePassword.getSalt();
+        LOG.trace("Repository impl method createUser salt --> " + salt);
         String securePassword = SecurePassword.getSecurePassword(user.getPassword(), salt);
         try {
             con = manager.getConnection();
@@ -151,7 +158,7 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
             ps = con.prepareStatement(SQL_INSERT_NEW_USER_ACCOUNT_INFO, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getLogin());
             ps.setString(2, securePassword);
-            ps.setString(3, Base64.getEncoder().encodeToString(salt));
+            ps.setString(3, salt);
             ps.setString(4, SecurePassword.getHashing());
             if (ps.executeUpdate() > 0) {
                 rs = ps.getGeneratedKeys();
@@ -176,6 +183,68 @@ public class UserRepositoryImpl extends AbstractRepository implements UserReposi
         }
         LOG.debug("Repository method createUser  --> " + user);
         return user;
+    }
+
+    /**
+     * Returns a user salt for password.
+     *
+     * @param id User identifier.
+     * @return String .
+     */
+    @Override
+    public String getSalt(Long id) {
+        String salt = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method getSalt --> " + id);
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_FIND_USER_SALT);
+            ps.setLong(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                salt = rs.getString(Fields.USER_PASSWORD_SALT);
+            }
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.trace("Repository method getSalt by id returned --> " + salt);
+        return salt;
+    }
+
+    /**
+     * Returns a user hash algorithm for password.
+     *
+     * @param id User identifier.
+     * @return String .
+     */
+    @Override
+    public String getHashAlgorithm(Long id) {
+        String hashAlgorithm = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection con = null;
+        LOG.trace("Repository impl method getHashAlgorithm --> " + id);
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_FIND_USER_HASH_ALGORITHM);
+            ps.setLong(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                hashAlgorithm = rs.getString(Fields.USER_PASSWORD_HASH_ALGORITHM);
+            }
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps, rs);
+        }
+        LOG.trace("Repository method getHashAlgorithm by id returned --> " + hashAlgorithm);
+        return hashAlgorithm;
     }
 
 

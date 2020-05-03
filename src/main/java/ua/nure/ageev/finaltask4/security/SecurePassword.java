@@ -23,12 +23,13 @@ public class SecurePassword {
      *        salt
      * @return String.
      */
-    public static String getSecurePassword(String passwordToHash, byte[] salt)
+    public static String getSecurePassword(String passwordToHash, String salt)
     {
+
         String generatedPassword = null;
         try {
             MessageDigest md = MessageDigest.getInstance(HASHING);
-            md.update(salt);
+            md.update(salt.getBytes());
             byte[] bytes = md.digest(passwordToHash.getBytes());
             generatedPassword = bytesToHex(bytes);
         }
@@ -58,7 +59,7 @@ public class SecurePassword {
      *
      * @return byte array.
      */
-    public static byte[] getSalt()
+    public static String getSalt()
     {
         byte[] salt = new byte[16];
         try{
@@ -68,6 +69,7 @@ public class SecurePassword {
         catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return salt;
+        return bytesToHex(salt);
     }
+
 }
