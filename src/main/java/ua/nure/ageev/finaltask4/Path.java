@@ -17,6 +17,8 @@ public final class Path {
 	public static final String PAGE_USER_TEST = "/WEB-INF/jsp/user/user_test.jsp";
 
 	public static final String PAGE_ADMIN_PAGE = "/WEB-INF/jsp/admin/list_quizes.jsp";
+
+
 	public static final String PAGE_SETTINGS = "/WEB-INF/jsp/settings.jsp";
 	public static final String PAGE_ADMIN_CREATE_SUBJECT = "/WEB-INF/jsp/admin/createSubject.jsp";
 	public static final String PAGE_ADMIN_EDIT_SUBJECT = "/WEB-INF/jsp/admin/editSubject.jsp";
@@ -34,8 +36,6 @@ public final class Path {
 	public static final String PAGE_QUIZZE_LIST = "/WEB-INF/jsp/user/userQuizzes.jsp";
 
 	// commands
-	public static final String COMMAND_LIST_ORDERS = "/controller?command=listOrders";
-	public static final String COMMAND_LIST_MENU = "/controller?command=listMenu";
 	public static final String COMMAND_LIST_USERS = "/controller?command=listUsersCommand";
 
 }

@@ -35,7 +35,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
+    public User createUser(User user)  {
         return repository.createUser(user);
+    }
+
+    @Override
+    public String getSalt(Long id) {
+        LOG.trace("Service method getSalt --> " + id);
+        return repository.getSalt(id);
+    }
+
+    @Override
+    public String getHashAlgorithm(Long id) {
+        LOG.trace("Service method getHashAlgorithm --> " + id);
+        return repository.getHashAlgorithm(id);
     }
 }

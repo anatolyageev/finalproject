@@ -18,19 +18,12 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <!--    <dependency>-->
-        <!--      <groupId>mysql</groupId>-->
-        <!--      <artifactId>mysql-connector-java</artifactId>-->
-        <!--      <version>8.0.15</version>-->
-        <!--    </dependency>-->
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
@@ -43,22 +36,16 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.14</version>
         </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -71,14 +58,12 @@
             <scope>test</scope>
         </dependency>
 
-
     </dependencies>
 
     <build>
         <finalName>final-project-temp</finalName>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <pluginManagement>
             <plugins>
-
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>
@@ -87,16 +72,6 @@
                         <path>/</path>
                     </configuration>
                 </plugin>
-
-                <!--        <plugin>-->
-                <!--          <groupId>org.apache.maven.plugins</groupId>-->
-                <!--          <artifactId>maven-compiler-plugin</artifactId>-->
-                <!--          <configuration>-->
-                <!--            <source>8</source>-->
-                <!--            <target>8</target>-->
-                <!--          </configuration>-->
-                <!--        </plugin>-->
-
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>

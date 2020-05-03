@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row">
         <%--        <div class="col-md-4 order-md-1 mb-5">--%>
-        <div class="col-md-4 order-md-1 mr-5">
+        <div class="col-md-6 order-md-1 mr-5">
             <table class="table table-borderless">
                 <%--            <div>--%>
                 <%--                <div class="btn-group-vertical" role="group" mb-5>--%>
@@ -51,7 +51,7 @@
         </div>
 
 
-        <div class="col-md-3 order-md-2 ">
+        <div class="col-md-4 order-md-2 ">
             <fmt:message key="crate_subject.text1"/>
             <ul>
                 <li><fmt:message key="crate_subject.text2"/></li>

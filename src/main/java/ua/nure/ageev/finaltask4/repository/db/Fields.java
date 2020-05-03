@@ -15,6 +15,8 @@ public final class Fields {
 	
 	public static final String USER_LOGIN = "user_name";
 	public static final String USER_PASSWORD = "password";
+	public static final String USER_PASSWORD_SALT = "password_salt";
+	public static final String USER_PASSWORD_HASH_ALGORITHM = "password_hash_algorithm";
 	public static final String USER_FIRST_NAME = "first_name";
 	public static final String USER_LAST_NAME = "last_name";
 	public static final String USER_ROLE_ID = "role_id";
