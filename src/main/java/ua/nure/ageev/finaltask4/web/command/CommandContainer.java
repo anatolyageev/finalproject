@@ -19,6 +19,7 @@ public class CommandContainer {
         commands.put("registration", new RegistrationCommand());
         commands.put("noCommand", new NoCommand());
         commands.put("viewSettings", new ViewSettingsCommand());
+        commands.put("languageChangeCommand", new LanguageChangeCommand());
 
         //user commands
         commands.put("goToUserPageCommand", new GoToUserPageCommand());

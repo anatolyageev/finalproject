@@ -6,6 +6,7 @@ import ua.nure.ageev.finaltask4.exception.AppException;
 import ua.nure.ageev.finaltask4.exception.DBException;
 import ua.nure.ageev.finaltask4.web.command.Command;
 import ua.nure.ageev.finaltask4.web.command.CommandContainer;
+import ua.nure.ageev.finaltask4.web.utils.Action;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +30,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            processRequest(req, resp);
+            processRequest(req, resp, Action.GET);
         } catch (DBException e) {
             LOG.debug("FrontController doGet exception : " + e);
         }
@@ -38,7 +39,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            processRequest(req, resp);
+            processRequest(req, resp, Action.POST);
         } catch (DBException e) {
             LOG.debug("FrontController doPost exception : " + e);
         }
@@ -50,7 +51,7 @@ public class FrontController extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, DBException {
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp, Action action) throws ServletException, IOException, DBException {
 
         LOG.debug("FrontController starts");
 
@@ -62,20 +63,26 @@ public class FrontController extends HttpServlet {
         Command command = CommandContainer.get(commandName);
         LOG.trace("Obtaned command: " + command);
 
-        // execute command and get forward address
-        String forward = Path.PAGE_ERROR_PAGE;
+        // execute command and get path address
+        String path = Path.PAGE_ERROR_PAGE;
         try {
-            forward = command.execute(req,resp);
+            path = command.execute(req,resp);
         }catch (AppException ex) {
             req.setAttribute("errorMessage", ex.getMessage());
         }
 
-        LOG.trace("Forward address --> " + forward);
+        if(action == Action.GET){
+            req.getRequestDispatcher(path).forward(req, resp);
+        }else {
+            resp.sendRedirect(path);
+        }
 
-        LOG.debug("FrontController finished, now go to forward address --> " + forward);
+        LOG.trace("Forward address --> " + path);
 
-        // go to forward
-        req.getRequestDispatcher(forward).forward(req, resp);
+        LOG.debug("FrontController finished, now go to path address --> " + path);
+
+        // go to path
+
     }
 
 }

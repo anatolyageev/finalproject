@@ -37,5 +37,6 @@ public final class Path {
 
 	// commands
 	public static final String COMMAND_LIST_USERS = "/controller?command=listUsersCommand";
+	public static final String COMMAND_USER_PAGE = "/controller?command=listUsersCommand";
 
 }

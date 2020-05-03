@@ -79,11 +79,11 @@ public class LoginCommand extends Command {
             List<User> userList = DataHelper.getUsersList();
             // put user list to request
             request.setAttribute("userList", userList);
-            forward = Path.PAGE_USER_USER_LIST;
+            forward = path+Path.COMMAND_LIST_USERS;
         }
         String local = (String) session.getAttribute("currentLocale");
         if (userRole == Role.CLIENT) {
-            path = request.getContextPath() + "/controller?command=goToUserPageCommand";
+           // path = request.getContextPath() + "/controller?command=goToUserPageCommand";
             List<UserResult> userResultList = userResultService.findAllByParent(user.getId(), local);
             LOG.debug("UserTestFinishCommand get questionList : " + userResultList);
             session.setAttribute("userResultList", userResultList);

@@ -48,8 +48,8 @@ CREATE TABLE user_account
 (
     id                      BIGINT             NOT NULL auto_increment PRIMARY KEY,
     user_name               VARCHAR(20) UNIQUE NOT NULL,
-    password                VARCHAR(20)        NOT NULL,
-    password_salt           VARCHAR(20),
+    password                VARCHAR(100)        NOT NULL,
+    password_salt           VARCHAR(100),
     password_hash_algorithm VARCHAR(20),
 -- this declaration contains the foreign key constraint	
 -- role_id in users table is associated with id in roles table

@@ -61,6 +61,7 @@ public class CommandAccessFilter  implements Filter {
         accessibleCommands.add("registration");
         accessibleCommands.add("noCommand");
         accessibleCommands.add("viewSettings");
+        accessibleCommands.add("languageChangeCommand");
 
         // client commands
         clientCommands.add("goToUserPageCommand");
