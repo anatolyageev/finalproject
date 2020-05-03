@@ -7,6 +7,7 @@ import ua.nure.ageev.finaltask4.domain.User;
 import ua.nure.ageev.finaltask4.domain.UserResult;
 import ua.nure.ageev.finaltask4.exception.AppException;
 import ua.nure.ageev.finaltask4.repository.impl.UserResultRepositoryImpl;
+import ua.nure.ageev.finaltask4.security.VerifyProvidedPassword;
 import ua.nure.ageev.finaltask4.services.UserResultService;
 import ua.nure.ageev.finaltask4.services.UserService;
 import ua.nure.ageev.finaltask4.services.impl.UserResultServiceImpl;
@@ -45,8 +46,13 @@ public class LoginCommand extends Command {
         UserService userService = new UserServiceImpl();
         UserResult userResult = new UserResult();
         String login = request.getParameter("login");
+
+
+
         UserResultService userResultService = new UserResultServiceImpl(new UserResultRepositoryImpl());
         LOG.trace("Requst parametr: login --> " + login);
+
+
         String path = request.getContextPath();
         String password = request.getParameter("password");
 
@@ -57,8 +63,12 @@ public class LoginCommand extends Command {
         User user = userService.getOne(login);
         LOG.trace("Found in DB: user --> " + user);
 
-        if (user == null || !password.equals(user.getPassword())) {
+        if (user == null || !VerifyProvidedPassword.isPasswordCorrect(password,user)) {
             throw new AppException("Cannot find user with such login/password");
+        }
+
+        if (!user.getUserStatus()) {
+            throw new AppException("User was blocked by administration. Pleas send mail to admin@admin.com");
         }
 
         Role userRole = Role.getRole(user);
@@ -94,6 +104,7 @@ public class LoginCommand extends Command {
         LOG.info("User " + user + " logged as " + userRole.toString().toLowerCase());
 
         LOG.debug("Command finished");
+
         return forward;
     }
 }

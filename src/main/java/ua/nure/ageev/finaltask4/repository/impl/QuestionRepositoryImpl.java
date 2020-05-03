@@ -19,15 +19,15 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
     private static final String SQL_FIND_ALL_QUESTION = "SELECT * FROM tests s, tests_locale sl " +
             "WHERE s.id = sl.test_id AND sl.lang_ind = ?";
 
-    private static final String SQL_FIND_QUESTION_BY_ID = "SELECT * FROM tests t, tests_locale tl " +
-            "WHERE t.id = tl.test_id " +
+    private static final String SQL_FIND_QUESTION_BY_ID = "SELECT * FROM questions t, questions_locale tl " +
+            "WHERE t.id = tl.question_id " +
             "AND tl.lang_ind = ? AND t.id = ?";
 
     private static final String SQL_FIND_ALL_QUESTION_BY_PARENT = "SELECT * FROM questions t, questions_locale tl " +
             "WHERE t.id = tl.question_id " +
             "AND tl.lang_ind = ? AND t.test_id = ?";
 
-    private static final String SQL_DELETE_QUESTION = "DELETE FROM tests WHERE id = ?";
+    private static final String SQL_DELETE_QUESTION = "DELETE FROM questions WHERE id = ?";
 
     private static final String SQL_DELETE_QUESTION_LOCALE = "DELETE FROM tests_locale WHERE test_id = ?";
 
@@ -38,6 +38,11 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
     private static final String SQL_QUESTION_INSERT_NAME = "INSERT  INTO questions_locale " +
             "(question_id, lang_ind, question_text) " +
             "VALUES (?,?,?)";
+
+    private static final String SQL_UPDATE_QUESTION_TEXT = "UPDATE questions_locale " +
+            "SET question_text = ? " +
+            "WHERE question_id = ? " +
+            "AND lang_ind = ?";
 
     @Override
     public Question getOne(Long id, String locale) {
@@ -66,13 +71,28 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
     }
 
     @Override
-    public Question update(Question question, String s) {
+    public Question update(Question question, String locale) {
         return null;
     }
 
     @Override
-    public void delete(Long aLong) {
+    public void delete(Long id) {
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("Repository impl method delete for Question.");
 
+        try {
+            con = manager.getConnection();
+            ps = con.prepareStatement(SQL_DELETE_QUESTION);
+            ps.setLong(1, id);
+            ps.executeUpdate();
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps);
+        }
+        LOG.trace("Repository method delete for Question finished;");
     }
 
     @Override
@@ -131,7 +151,25 @@ public class QuestionRepositoryImpl extends AbstractRepository implements Questi
 
     @Override
     public Question updateName(Question question, String locale) {
-        return null;
+        PreparedStatement ps = null;
+        Connection con = null;
+        LOG.trace("Repository impl method updateName for Question.");
+        try {
+            con = manager.getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(SQL_UPDATE_QUESTION_TEXT);
+            ps.setString(1, question.getQuestionText());
+            ps.setLong(2, question.getId());
+            ps.setString(3, locale);
+            ps.executeUpdate();
+            con.commit();
+        } catch (SQLException | DBException ex) {
+            LOG.error(Messages.ERR_CANNOT_OBTAIN_CATEGORIES, ex);
+        } finally {
+            manager.close(con, ps);
+        }
+        LOG.trace("Repository method updateName for Question finished;");
+        return question;
     }
 
     @Override

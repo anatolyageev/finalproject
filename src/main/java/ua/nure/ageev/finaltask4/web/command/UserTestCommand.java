@@ -97,7 +97,7 @@ public class UserTestCommand extends Command {
         Integer counter =0;
         for (Answer a:
              answerList) {
-            if(a.isCorrectAnswer()){
+            if(a.getCorrectAnswer()){
                 counter++;
             }
         }

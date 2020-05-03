@@ -1,7 +1,6 @@
 package ua.nure.ageev.finaltask4.web.command;
 
 import ua.nure.ageev.finaltask4.exception.AppException;
-import ua.nure.ageev.finaltask4.exception.DBException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

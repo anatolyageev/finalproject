@@ -21,9 +21,9 @@ public class AdminRepositoryImpl extends AbstractRepository implements AdminRepo
     private static final String SQL_CHANGE_ROLE_USER = "UPDATE user_account SET role_id = 1\n" +
             "WHERE id = ?";
     private static final String SQL_CHANGE_STATUS_USER_ACTIVE = "UPDATE users SET user_status = 1\n" +
-            "WHERE id = ?";
+            "WHERE account_id = ?";
     private static final String SQL_CHANGE_STATUS_USER_NOT_ACTIVE = "UPDATE users SET user_status = 0\n" +
-            "WHERE id = ?";
+            "WHERE account_id = ?";
 
 
     /**

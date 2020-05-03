@@ -59,7 +59,7 @@ public class UserAnswerCommand extends  Command {
             LOG.debug("UserAnswerCommand get answers : " + answers);
             for (int i = 0; i < answers.length; i++) {
                 answerIdUser.put(Long.parseLong(answers[i]),true);
-                if (answerService.getOne(Long.parseLong(answers[i]), local).isCorrectAnswer()) {
+                if (answerService.getOne(Long.parseLong(answers[i]), local).getCorrectAnswer()) {
                     mapAnswer.put(questionId, true);
 
                 } else {

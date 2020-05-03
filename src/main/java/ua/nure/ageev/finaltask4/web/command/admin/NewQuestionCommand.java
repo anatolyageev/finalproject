@@ -19,7 +19,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NewQuestionCommand extends Command {
 
@@ -58,14 +60,24 @@ public class NewQuestionCommand extends Command {
         Long questionId = question.getId();
         LOG.debug("NewQuestionCommand answerList" + answerList);
 
-//        List<Answer> answerListEn = answerService.findAllByParent(questionId,ConstantsForCommands.LANGUAGE_EN);
-//        List<Answer> answerListRu = answerService.findAllByParent(questionId,ConstantsForCommands.LANGUAGE_RU);
+
+        List<Answer> answerListEn = answerService.findAllByParent(questionId, ConstantsForCommands.LANGUAGE_EN);
+        List<Answer> answerListRu = answerService.findAllByParent(questionId, ConstantsForCommands.LANGUAGE_RU);
+
+        Map<Long, String> answersRu = new HashMap<>();
+        for (Answer a:answerListRu) {
+            answersRu.put(a.getId(),a.getAnswerText());
+        }
+
+        request.setAttribute("answerListEn",answerListEn);
+        request.setAttribute("answersRu",answersRu);
+
         request.setAttribute("questionId",questionId);
-        request.setAttribute("answerList",answerList);
+       // request.setAttribute("answerList",answerList);
 
 
         LOG.debug("NewQuestionCommand end");
-        return Path.PAGE_ADMIN_CREATE_ANSWER;
+        return Path.PAGE_ADMIN_EDIT_ANSWER;
     }
 
 

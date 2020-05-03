@@ -30,8 +30,9 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void delete(Long aLong) {
-
+    public void delete(Long id) {
+        LOG.trace("Service method delete for Question " );
+        repository.delete(id);
     }
 
     @Override
@@ -69,6 +70,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Question updateName(Question question, String locale) {
-        return null;
+        LOG.trace("Service method updateName for Question " );
+        return repository.updateName(question, locale);
     }
 }

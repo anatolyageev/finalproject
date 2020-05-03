@@ -16,7 +16,7 @@ public class ChangeUserStatusCommand extends Command{
 
     private static final long serialVersionUID = -1573481555177573283L;
 
-    private static final Logger LOG = Logger.getLogger(ChangeRoleCommand.class);
+    private static final Logger LOG = Logger.getLogger(ChangeUserStatusCommand.class);
 
     /**
      * Execution method for ChangeUserStatusCommand.
@@ -31,6 +31,7 @@ public class ChangeUserStatusCommand extends Command{
         AdminService adminService = new AdminServiceImpl(new AdminRepositoryImpl());
         Long userId = Long.parseLong(request.getParameter("user_id"));
         boolean currentStatus = Boolean.parseBoolean(request.getParameter("user_current_status"));
+        LOG.debug("currentStatus is  --> " + currentStatus);
         if (!currentStatus){
             adminService.setUserStatusActive(userId);
         }else{

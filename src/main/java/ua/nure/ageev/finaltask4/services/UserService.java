@@ -9,5 +9,7 @@ public interface UserService {
     User getOne(String login);
     User getOne(long id);
     void deleteUser(Long id);
-    User createUser(User user);
+    User createUser(User user) ;
+    String getSalt(Long id);
+    String getHashAlgorithm(Long id);
 }
