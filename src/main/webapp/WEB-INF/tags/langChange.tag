@@ -8,8 +8,9 @@
     <c:when test="${sessionScope.currentLocale == 'ru'}">
         <fmt:setLocale value="ru"/>
         <fmt:setBundle basename="local"/>
-        <form class="form-inline mt-2 mt-md-0" action="#" method="post">
+        <form class="form-inline mt-2 mt-md-0" action="controller" method="post">
             <fmt:message key="local.local_button.english" var="en_button"/>
+            <input type="hidden" name="command" value="changeLanguageCommand"/>
             <input type="hidden" name="lang" value="en"/>
             <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="${en_button}"/>
             <br>
@@ -18,8 +19,9 @@
     <c:otherwise>
         <fmt:setLocale value="en"/>
         <fmt:setBundle basename="local"/>
-        <form class="form-inline mt-2 mt-md-0" action="#" method="post">
+        <form class="form-inline mt-2 mt-md-0" action="controller" method="post">
             <fmt:message key="local.local_button.russian" var="ru_button"/>
+            <input type="hidden" name="command" value="changeLanguageCommand"/>
             <input type="hidden" name="lang" value="ru"/>
             <input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="${ru_button}"/><br>
         </form>

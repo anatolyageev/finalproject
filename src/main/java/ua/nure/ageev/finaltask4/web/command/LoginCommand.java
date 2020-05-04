@@ -63,7 +63,7 @@ public class LoginCommand extends Command {
         User user = userService.getOne(login);
         LOG.trace("Found in DB: user --> " + user);
 
-        if (user == null || !VerifyProvidedPassword.isPasswordCorrect(password,user)) {
+        if (user.getLogin() == null || !VerifyProvidedPassword.isPasswordCorrect(password,user)) {
             throw new AppException("Cannot find user with such login/password");
         }
 

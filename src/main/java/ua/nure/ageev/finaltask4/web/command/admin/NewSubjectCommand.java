@@ -9,11 +9,14 @@ import ua.nure.ageev.finaltask4.services.SubjectService;
 import ua.nure.ageev.finaltask4.services.impl.SubjectServiceImpl;
 import ua.nure.ageev.finaltask4.web.command.Command;
 import ua.nure.ageev.finaltask4.web.utils.ConstantsForCommands;
+import ua.nure.ageev.finaltask4.web.utils.DataHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class NewSubjectCommand extends Command {
 
@@ -33,6 +36,8 @@ public class NewSubjectCommand extends Command {
 
         SubjectService subjectService = new SubjectServiceImpl(new SubjectRepositoryImpl());
         String shortName = request.getParameter("nameShort");
+        String local = DataHelper.getLanguage(request);
+        HttpSession session = request.getSession();
         String nameEn = request.getParameter("nameEn");
         String nameRu = request.getParameter("nameRu");
         String encoding = request.getCharacterEncoding();
@@ -46,6 +51,9 @@ public class NewSubjectCommand extends Command {
 
         subject.setSubjectName(nameRu);
         subjectService.createSubjectLocale(subject,ConstantsForCommands.LANGUAGE_RU);
+
+        List<Subject> subjects = subjectService.getAll(local);
+        session.setAttribute("subjectList", subjects);
 
         return Path.PAGE_ADMIN_PAGE;
     }

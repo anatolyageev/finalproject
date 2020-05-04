@@ -60,17 +60,17 @@ Header (top area).
 
 
             <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-             <%--===========================================================================
-             Type user name if the user object is presented in the current session.
-             ===========================================================================--%>
+                    <%--===========================================================================
+                    Type user name if the user object is presented in the current session.
+                    ===========================================================================--%>
                 <li class="nav-item">
                     <a class="nav-link p-2 disabled" >
                         <c:out value="${user.firstName} ${user.lastName}"/>
                     </a>
                 </li>
-            <%--===========================================================================
-            Type user role name if the user object is presented in the current session.
-            ===========================================================================--%>
+                    <%--===========================================================================
+                    Type user role name if the user object is presented in the current session.
+                    ===========================================================================--%>
                 <li class="nav-item">
                     <a class="nav-link p-2 disabled"  target="_blank" rel="noopener">
                         <c:if test="${not empty userRole}">
@@ -79,19 +79,19 @@ Header (top area).
                     </a>
                 </li>
 
-     <%--===========================================================================
-    Type link to logout
-    ===========================================================================--%>
+                    <%--===========================================================================
+                   Type link to logout
+                   ===========================================================================--%>
                 <li class="nav-item">
                     <a class="nav-link p-2" href="controller?command=logout" target="_blank" rel="noopener"
                        aria-label="Slack">
-                            <fmt:message
-                                    key="tag.logout"/>
+                        <fmt:message
+                                key="tag.logout"/>
                     </a>
                 </li>
             </ul>
 
-<%--            <tags:langChange curr_lang="${locale}" curr_uri="${pageContext.request.requestURI}"/>--%>
+            <tags:langChange curr_lang="${locale}" curr_uri="${pageContext.request.requestURI}"/>
 
 
 
@@ -110,5 +110,6 @@ Header (top area).
     </header>
 
 </c:if>
+
 
 

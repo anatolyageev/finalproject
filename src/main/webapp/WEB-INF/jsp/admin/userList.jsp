@@ -13,7 +13,7 @@
 
 <body>
 <%-- HEADER --%>
-<%@ include file="/WEB-INF/jspf/headerSettings.jsp" %>
+<%@ include file="/WEB-INF/jspf/headerLeanguage.jsp" %>
 <%-- HEADER --%>
 <div class="container">
 <div>
@@ -30,13 +30,13 @@
     <table id="list_users" class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>ID</th>
-            <th>login</th>
+            <th>id</th>
+            <th><fmt:message key="login.login_form.login"/></th>
 
-            <th>firstName</th>
-            <th>lastName</th>
-            <th>role</th>
-            <th>status</th>
+            <th><fmt:message key="registration.registration_form.first_name"/></th>
+            <th><fmt:message key="registration.registration_form.last_name"/></th>
+            <th><fmt:message key="admin.table_header.role"/></th>
+            <th><fmt:message key="admin.table_header.status"/></th>
             <th>${changeRole}</th>
             <th>${changeStatus}</th>
         </tr>
