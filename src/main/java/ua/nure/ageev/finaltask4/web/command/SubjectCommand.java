@@ -33,11 +33,11 @@ public class SubjectCommand extends Command {
         LOG.debug("SubjectCommand starts");
         HttpSession session = request.getSession();
         String getRequestURI = request.getRequestURI();
-        LOG.debug("SubjectCommand get getRequestURI: " +getRequestURI );
+        LOG.debug("SubjectCommand get getRequestURI: " + getRequestURI);
         String local = (String) session.getAttribute("currentLocale");
         LOG.debug("SubjectCommand get locale: " + local);
-        if(local == null){
-            local ="en";
+        if (local == null) {
+            local = "en";
         }
         LOG.debug("SubjectCommand get locale after if: " + local);
         SubjectService subjectService = new SubjectServiceImpl(new SubjectRepositoryImpl());

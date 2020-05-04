@@ -28,7 +28,7 @@ public class CreateTestCommand extends Command {
         LOG.debug("CreateSubjectCommand starts");
         Long subjectId = Long.parseLong(request.getParameter("subjectId"));
 
-        request.setAttribute("subjectId",subjectId);
+        request.setAttribute("subjectId", subjectId);
         LOG.debug("CreateSubjectCommand finished");
         return Path.PAGE_ADMIN_CREATE_TEST;
     }

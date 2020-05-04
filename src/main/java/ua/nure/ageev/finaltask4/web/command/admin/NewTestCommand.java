@@ -45,9 +45,9 @@ public class NewTestCommand extends Command {
         List testListRu = testService.findAll(ConstantsForCommands.LANGUAGE_RU);
         LOG.debug("testListRu: " + testListRu);
 
-        LOG.debug("DataHelper.findPersonByName(testListEn,nameEn) " + DataHelper.findPersonByName(testListEn,nameEn));
+        LOG.debug("DataHelper.findPersonByName(testListEn,nameEn) " + DataHelper.findPersonByName(testListEn, nameEn));
 
-        if (DataHelper.findPersonByName(testListEn,nameEn)|| (DataHelper.findPersonByName(testListRu,nameRu))) {
+        if (DataHelper.findPersonByName(testListEn, nameEn) || (DataHelper.findPersonByName(testListRu, nameRu))) {
             LOG.debug("Duplicated test found.");
             throw new AppException("Test with such name already exist");
         }

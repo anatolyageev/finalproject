@@ -19,18 +19,19 @@ Defines the web form.
         </div>
         <form id="login" action="controller" class="input-group" method="post">
             <input type="hidden" name="command" value="login"/>
-            <input type="text" class="input-field" name="login" placeholder="User Id" required>
-            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
-<%--            <input type="checkbox" class="check-box"><span>Remember Password</span>--%>
+            <input type="text" class="input-field" name="login" style="color:#999999" placeholder="User Id" required>
+            <input type="password" class="input-field" name="password" placeholder="Enter Password"
+                   style="color:#999999" required>
             <button type="submit" class="submit-btn">${loginButton}</button>
         </form>
-        <form id="register" action="controller"  class="input-group" method="post">
+        <form id="register" action="controller" class="input-group" method="post">
             <input type="hidden" name="command" value="registration"/>
-            <input type="text" class="input-field" name="login" placeholder="User Id" required>
-            <input type="text" class="input-field" name="name" placeholder="Name" required>
-            <input type="text" class="input-field" name="last_name" placeholder="Last Name" required>
-            <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
-<%--            <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>--%>
+            <input type="text" class="input-field" name="login" style="color:#999999" placeholder="User Id" required>
+            <input type="text" class="input-field" name="name" style="color:#999999" placeholder="Name" required>
+            <input type="text" class="input-field" name="last_name" style="color:#999999" placeholder="Last Name"
+                   required>
+            <input type="password" class="input-field" name="password" style="color:#999999"
+                   placeholder="Enter Password" required>
             <button type="submit" class="submit-btn">Register</button>
         </form>
         <c:if test="${not empty reg_error}">
@@ -47,13 +48,14 @@ Defines the web form.
     var x = document.getElementById("login");
     var y = document.getElementById("register");
     var z = document.getElementById("btn");
-    function register(){
+
+    function register() {
         x.style.left = "-400px";
         y.style.left = "50px";
         z.style.left = "110px";
     }
 
-    function login(){
+    function login() {
         x.style.left = "50px";
         y.style.left = "450px";
         z.style.left = "0";

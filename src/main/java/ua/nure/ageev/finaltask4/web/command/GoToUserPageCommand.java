@@ -39,10 +39,10 @@ public class GoToUserPageCommand extends Command {
         UserResult userResult = new UserResult();
         UserResultService userResultService = new UserResultServiceImpl(new UserResultRepositoryImpl());
         String local = (String) session.getAttribute("currentLocale");
-        User user = (User)session.getAttribute("user");
-        List<UserResult> userResultList = userResultService.findAllByParent(user.getId(),local);
+        User user = (User) session.getAttribute("user");
+        List<UserResult> userResultList = userResultService.findAllByParent(user.getId(), local);
         LOG.debug("UserTestFinishCommand get questionList : " + userResultList);
-        session.setAttribute("userResultList",userResultList);
+        session.setAttribute("userResultList", userResultList);
 
         LOG.debug("Command  GoToUserPageCommand finished");
         return Path.PAGE_USER_PAGE;

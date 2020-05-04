@@ -50,10 +50,10 @@ public class UpdateTestCommand extends Command {
         test.setTestName(nameEn);
         LOG.debug("UpdateTestCommand updated test" + test);
 
-        testService.update(test,local);
-        testService.updateName(test,ConstantsForCommands.LANGUAGE_EN);
+        testService.update(test, local);
+        testService.updateName(test, ConstantsForCommands.LANGUAGE_EN);
         test.setTestName(nameRu);
-        testService.updateName(test,ConstantsForCommands.LANGUAGE_RU);
+        testService.updateName(test, ConstantsForCommands.LANGUAGE_RU);
 
         List<Test> testList = testService.findAllByParent(subjectId, local);
         request.setAttribute("test", testList);

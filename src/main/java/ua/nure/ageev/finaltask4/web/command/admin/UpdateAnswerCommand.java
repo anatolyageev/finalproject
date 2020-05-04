@@ -40,9 +40,9 @@ public class UpdateAnswerCommand extends Command {
         setCorrectAnswers(correctAnswers);
 
         Enumeration e = request.getParameterNames();
-        while (e.hasMoreElements()){
+        while (e.hasMoreElements()) {
             String paramName = (String) e.nextElement();
-            if(paramName.matches("\\d+_\\w{2}")){
+            if (paramName.matches("\\d+_\\w{2}")) {
                 Answer tempAnswer = new Answer();
                 String value = request.getParameter(paramName);
                 LOG.debug("UpdateAnswerCommand value: " + value);
@@ -61,11 +61,10 @@ public class UpdateAnswerCommand extends Command {
         return Path.PAGE_ADMIN_QUESTIONS;
     }
 
-
-
     public void setCorrectAnswers(List<String> correctAnswers) {
-        AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl()); ;
-        for (String s: correctAnswers) {
+        AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
+        ;
+        for (String s : correctAnswers) {
             Answer tempAnswer = new Answer();
             tempAnswer.setId(Long.parseLong(s));
             tempAnswer.setCorrectAnswer(true);

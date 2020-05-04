@@ -31,7 +31,7 @@ CREATE TABLE roles
 -- this two commands insert data into roles table
 -- --------------------------------------------------------------
 -- ATTENTION!!!
--- we use ENUM as the Role entity, so the numeration must started 
+-- we use ENUM as the Role entity, so the numeration must started
 -- from 0 with the step equaled to 1
 -- --------------------------------------------------------------
 INSERT INTO roles
@@ -48,19 +48,19 @@ CREATE TABLE user_account
 (
     id                      BIGINT             NOT NULL auto_increment PRIMARY KEY,
     user_name               VARCHAR(20) UNIQUE NOT NULL,
-    password                VARCHAR(20)        NOT NULL,
-    password_salt           VARCHAR(20),
+    password                VARCHAR(100)       NOT NULL,
+    password_salt           VARCHAR(100),
     password_hash_algorithm VARCHAR(20),
--- this declaration contains the foreign key constraint	
+-- this declaration contains the foreign key constraint
 -- role_id in users table is associated with id in roles table
 -- role_id of user = id of role
     role_id                 INTEGER            NOT NULL,
     INDEX rol_ind (role_id),
     FOREIGN KEY (role_id) REFERENCES roles (id)
--- removing a row with some ID from roles table implies removing 
+-- removing a row with some ID from roles table implies removing
 -- all rows from users table for which ROLES_ID=ID
 -- default value is ON DELETE RESTRICT, it means you cannot remove
--- row with some ID from the roles table if there are rows in 
+-- row with some ID from the roles table if there are rows in
 -- users table with ROLES_ID=ID
         ON DELETE CASCADE
 -- the same as previous but updating is used insted deleting
@@ -84,18 +84,18 @@ CREATE TABLE users
     id          BIGINT      NOT NULL auto_increment PRIMARY KEY,
     first_name  VARCHAR(20) NOT NULL,
     last_name   VARCHAR(20) NOT NULL,
--- this declaration of status of user Active true, not activ - false;	
+-- this declaration of status of user Active true, not activ - false;
     user_status BOOLEAN DEFAULT TRUE,
--- this declaration contains the foreign key constraint	
+-- this declaration contains the foreign key constraint
 -- account_id in users table is associated with id in users table
 -- account_id of user = id of user account
     account_id  BIGINT      NOT NULL,
     INDEX acc_ind (account_id),
     FOREIGN KEY (account_id) REFERENCES user_account (id)
--- removing a row with some ID from roles table implies removing 
+-- removing a row with some ID from roles table implies removing
 -- all rows from users table for which ROLES_ID=ID
 -- default value is ON DELETE RESTRICT, it means you cannot remove
--- row with some ID from the roles table if there are rows in 
+-- row with some ID from the roles table if there are rows in
 -- users table with ACCOUNT_ID=ID
         ON DELETE CASCADE
 -- the same as previous but updating is used insted deleting

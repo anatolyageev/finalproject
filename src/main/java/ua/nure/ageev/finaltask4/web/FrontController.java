@@ -18,7 +18,6 @@ import java.io.IOException;
  * FrontController servlet.
  *
  * @author A.Ageev
- *
  */
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
@@ -65,8 +64,8 @@ public class FrontController extends HttpServlet {
         // execute command and get forward address
         String forward = Path.PAGE_ERROR_PAGE;
         try {
-            forward = command.execute(req,resp);
-        }catch (AppException ex) {
+            forward = command.execute(req, resp);
+        } catch (AppException ex) {
             req.setAttribute("errorMessage", ex.getMessage());
         }
 

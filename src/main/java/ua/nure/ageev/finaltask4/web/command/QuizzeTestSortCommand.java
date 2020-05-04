@@ -42,22 +42,22 @@ public class QuizzeTestSortCommand extends Command {
         String sortDirection = request.getParameter("sort");
         List<Test> test = new ArrayList<>();
 
-        test = (ArrayList)session.getAttribute("testList");
+        test = (ArrayList) session.getAttribute("testList");
 
         LOG.debug("QuizzeTestSortCommand gets array test: " + test);
 
-        switch(sortDirection) {
+        switch (sortDirection) {
             case "name":
                 test.sort((a, b) -> a.getTestName().compareTo(b.getTestName()));
                 break;
             case "level":
-                test.sort((a, b) -> a.getDifficultyLevel()-b.getDifficultyLevel());
+                test.sort((a, b) -> a.getDifficultyLevel() - b.getDifficultyLevel());
                 break;
             case "number":
-                test.sort((a, b) -> a.getQuestionQuantity()-b.getQuestionQuantity());
+                test.sort((a, b) -> a.getQuestionQuantity() - b.getQuestionQuantity());
                 break;
             case "minutes":
-                test.sort((a, b) -> a.getMinutesToComplite()-b.getMinutesToComplite());
+                test.sort((a, b) -> a.getMinutesToComplite() - b.getMinutesToComplite());
                 break;
             default:
                 test.sort((a, b) -> a.getId().compareTo(b.getId()));

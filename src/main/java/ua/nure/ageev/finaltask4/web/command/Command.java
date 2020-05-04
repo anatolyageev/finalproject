@@ -12,7 +12,6 @@ import java.io.Serializable;
  * Main class for the Command pattern implementation.
  *
  * @author A.Ageev
- *
  */
 public abstract class Command implements Serializable {
     private static final long serialVersionUID = 8879403039606311780L;
@@ -22,7 +21,7 @@ public abstract class Command implements Serializable {
      *
      * @return Address to go once the command is executed.
      */
-    public abstract String execute(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException,
+    public abstract String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException,
             AppException;
 
     @Override

@@ -37,14 +37,14 @@ public class EditSubjectCommand extends Command {
         Subject subject = new Subject();
         subject.setId(subjectId);
         Subject subjectEn = subjectService.getOne(subject, ConstantsForCommands.LANGUAGE_EN);
-        Subject subjectRu = subjectService.getOne(subject,ConstantsForCommands.LANGUAGE_RU);
+        Subject subjectRu = subjectService.getOne(subject, ConstantsForCommands.LANGUAGE_RU);
 
-        request.setAttribute("subjectEn",subjectEn);
+        request.setAttribute("subjectEn", subjectEn);
         LOG.debug("Set attribute subjectEn --> " + subjectEn);
-        request.setAttribute("subjectRu",subjectRu);
+        request.setAttribute("subjectRu", subjectRu);
         LOG.debug("Set attribute subjectRu --> " + subjectRu);
 
-        request.setAttribute("subjectId",subjectId);
+        request.setAttribute("subjectId", subjectId);
         LOG.debug("EditSubjectCommand subjectId" + subjectId);
         return Path.PAGE_ADMIN_EDIT_SUBJECT;
     }

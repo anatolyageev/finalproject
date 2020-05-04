@@ -1,6 +1,5 @@
 package ua.nure.ageev.finaltask4.web.command;
 
-
 import org.apache.log4j.Logger;
 import ua.nure.ageev.finaltask4.Path;
 import ua.nure.ageev.finaltask4.exception.AppException;
@@ -15,13 +14,13 @@ import java.io.IOException;
  * Class for the Command pattern implementation.
  *
  * @author A.Ageev
- *
  */
-public class LogoutCommand extends Command{
+public class LogoutCommand extends Command {
 
     private static final long serialVersionUID = 1L;
 
     private static final Logger LOG = Logger.getLogger(LogoutCommand.class);
+
     /**
      * Execution method for command.
      *

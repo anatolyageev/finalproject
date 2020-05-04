@@ -16,16 +16,16 @@ import java.util.List;
 /**
  * List User command.
  *
- *
  * @author A.Ageev
  */
 
 
-public class ListUsersCommand extends  Command{
+public class ListUsersCommand extends Command {
 
     private static final long serialVersionUID = -1573481565177573283L;
 
     private static final Logger LOG = Logger.getLogger(ListUsersCommand.class);
+
     /**
      * Execution method for ListUser command.
      *

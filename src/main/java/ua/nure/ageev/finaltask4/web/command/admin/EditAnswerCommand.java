@@ -41,12 +41,12 @@ public class EditAnswerCommand extends Command {
         List<Answer> answerListRu = answerService.findAllByParent(questionId, ConstantsForCommands.LANGUAGE_RU);
 
         Map<Long, String> answersRu = new HashMap<>();
-        for (Answer a:answerListRu) {
-            answersRu.put(a.getId(),a.getAnswerText());
+        for (Answer a : answerListRu) {
+            answersRu.put(a.getId(), a.getAnswerText());
         }
 
-        request.setAttribute("answerListEn",answerListEn);
-        request.setAttribute("answersRu",answersRu);
+        request.setAttribute("answerListEn", answerListEn);
+        request.setAttribute("answersRu", answersRu);
 
         LOG.debug("EditAnswerCommand finished");
         return Path.PAGE_ADMIN_EDIT_ANSWER;

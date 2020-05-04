@@ -15,7 +15,13 @@ public class VerifyProvidedPassword {
     private VerifyProvidedPassword(){
         //to hide implicit public constructor
     }
-
+    /**
+     * Method check does password encrypted or not and than check accordingly .
+     *
+     * @param providedPassword not encrypted password,
+     *        user
+     * @return String.
+     */
     public static boolean isPasswordCorrect(String providedPassword,  User user){
         UserService userService = new UserServiceImpl();
         String hashAlgorithm = userService.getHashAlgorithm(user.getId());

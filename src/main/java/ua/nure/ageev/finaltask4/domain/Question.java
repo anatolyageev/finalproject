@@ -3,7 +3,12 @@ package ua.nure.ageev.finaltask4.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question extends LongID{
+/**
+ * Abstract class for ID ;
+ *
+ * @author A.Ageev
+ */
+public class Question extends LongID {
     private static final long serialVersionUID = 1L;
 
     private String questionText;

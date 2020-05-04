@@ -47,45 +47,44 @@ public class UserTestCommand extends Command {
 
         HttpSession session = request.getSession();
         String local = DataHelper.getLanguage(request);
+
         LOG.debug("UserTestCommand get locale after if: " + local);
+
         Long testId = Long.parseLong(request.getParameter("test_id"));
-       // Long questionId = Long.parseLong(request.getParameter("question_id"));
         Map<Long, Boolean> answerIdUser = new HashMap<>();
         QuestionService questionService = new QuestionServiceImpl(new QuestionRepositoryImpl());
         AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
         TestService testService = new TestServiceImpl(new TestRepositoryImpl());
-        List<Question> questionList = questionService.findAllByParent(testId,local);
+        List<Question> questionList = questionService.findAllByParent(testId, local);
         List<UserAnswer> userAnswerList = new ArrayList<>();
-        Map<Long,Boolean> mapAnswer = new HashMap<>();
+        Map<Long, Boolean> mapAnswer = new HashMap<>();
         Test currentTest = testService.getOne(testId, local);
         currentTest.setQuestionQuantity(questionList.size());
 
         LOG.debug("Found in DB: Question list --> " + questionList);
 
-        for (Question q:questionList) {
+        for (Question q : questionList) {
             Long questionId = q.getId();
-            List<Answer> answerList = answerService.findAllByParent(questionId,local);
+            List<Answer> answerList = answerService.findAllByParent(questionId, local);
             q.setNumberCorrectAnswers(getCorrNum(answerList));
             q.setAnswers(answerList);
         }
         fillUserAnswer(questionList, userAnswerList);
 
-
         LOG.debug("Found in DB: Question list answers added --> " + questionList);
-
 
         session.setAttribute("mapAnswer", mapAnswer);
         session.setAttribute("currentTest", currentTest);
         session.setAttribute("questionList", questionList);
-        session.setAttribute("answerIdUser",answerIdUser);
-        //request.setAttribute("testList", test);
+        session.setAttribute("answerIdUser", answerIdUser);
+
         LOG.debug("Set the session attribute: questionList --> " + questionList);
         LOG.debug("UserTestCommand finished");
         return Path.PAGE_USER_TEST;
     }
 
     private void fillUserAnswer(List<Question> questionList, List<UserAnswer> userAnswerList) {
-        for (Question q:questionList) {
+        for (Question q : questionList) {
             UserAnswer userAnswer = new UserAnswer();
             Long questionId = q.getId();
             userAnswer.setQuestionId(questionId);
@@ -94,10 +93,10 @@ public class UserTestCommand extends Command {
     }
 
     private Integer getCorrNum(List<Answer> answerList) {
-        Integer counter =0;
-        for (Answer a:
-             answerList) {
-            if(a.getCorrectAnswer()){
+        Integer counter = 0;
+        for (Answer a :
+                answerList) {
+            if (a.getCorrectAnswer()) {
                 counter++;
             }
         }

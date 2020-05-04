@@ -23,7 +23,7 @@ import java.util.Set;
 //        filterName = "CommandAccessFilter",
 //        urlPatterns = {"/controller/*"}
 //)
-public class CommandAccessFilter  implements Filter {
+public class CommandAccessFilter implements Filter {
 
     private static final Logger LOG = Logger.getLogger(CommandAccessFilter.class);
 
@@ -120,7 +120,7 @@ public class CommandAccessFilter  implements Filter {
 
         if (accessibleCommands.contains(command)) {
             LOG.debug("This command can be accessed by all users: " + command);
-          chain.doFilter(httpRequest, httpResponse);
+            chain.doFilter(httpRequest, httpResponse);
 
         } else {
             LOG.debug("This command can be accessed only by logged in users: " + command);

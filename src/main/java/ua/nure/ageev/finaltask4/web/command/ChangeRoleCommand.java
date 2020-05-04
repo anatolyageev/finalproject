@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ChangeRoleCommand extends Command{
+public class ChangeRoleCommand extends Command {
 
     private static final long serialVersionUID = -1573481565177573283L;
 
@@ -31,14 +31,13 @@ public class ChangeRoleCommand extends Command{
         AdminService adminService = new AdminServiceImpl(new AdminRepositoryImpl());
         Long userId = Long.parseLong(request.getParameter("user_id"));
         Integer currentRole = Integer.parseInt(request.getParameter("user_current_role"));
-        if (currentRole==1){
+        if (currentRole == 1) {
             adminService.setUserRoleAdmin(userId);
-        }else{
+        } else {
             adminService.setUserRoleUser(userId);
         }
 
         LOG.debug("Set the requested role to user id --> " + userId);
-
         LOG.debug("ChangeRoleCommand finished");
         return Path.COMMAND_LIST_USERS;
     }

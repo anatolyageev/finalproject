@@ -11,13 +11,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
-public class RegistrationCommand extends Command{
+public class RegistrationCommand extends Command {
 
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = Logger.getLogger(RegistrationCommand.class);
-
 
 
     /**
@@ -37,7 +35,7 @@ public class RegistrationCommand extends Command{
         String password = request.getParameter("password");
         User user = userService.getOne(login);
 
-        if(userService.getOne(login).getLogin()!=null){
+        if (userService.getOne(login).getLogin() != null) {
             String errorMsg = "User alredy exist!";
             request.setAttribute("reg_error", errorMsg);
             LOG.debug(errorMsg);
@@ -58,7 +56,7 @@ public class RegistrationCommand extends Command{
             return Path.PAGE_LOGIN;
         }
 
-        if (!name.matches( "(^[А-ЯЁ][а-яё]+)|(^[A-Z][a-z]+)") || !lastName.matches( "(^[А-ЯЁ][а-яё]+)|(^[A-Z][a-z]+)")) {
+        if (!name.matches("(^[А-ЯЁ][а-яё]+)|(^[A-Z][a-z]+)") || !lastName.matches("(^[А-ЯЁ][а-яё]+)|(^[A-Z][a-z]+)")) {
             String errorMsg = "Name/Last name should begin with capital letter and not contains digit";
             request.setAttribute("reg_error", errorMsg);
             LOG.debug(errorMsg);
@@ -70,7 +68,7 @@ public class RegistrationCommand extends Command{
         LOG.debug(lastName);
         LOG.debug(password);
 
-        user =new User();
+        user = new User();
         user.setLogin(login);
         user.setFirstName(name);
         user.setLastName(lastName);

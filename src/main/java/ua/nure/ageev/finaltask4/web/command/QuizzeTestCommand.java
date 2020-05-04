@@ -20,6 +20,7 @@ public class QuizzeTestCommand extends Command {
     private static final long serialVersionUID = -1573444565199573283L;
 
     private static final Logger LOG = Logger.getLogger(QuizzeTestCommand.class);
+
     /**
      * Execution method for command.
      *
@@ -32,16 +33,16 @@ public class QuizzeTestCommand extends Command {
         LOG.debug("QuizzeTestCommand starts");
         HttpSession session = request.getSession();
         String getRequestURI = request.getRequestURI();
-        LOG.debug("QuizzeTestCommand get getRequestURI: " +getRequestURI );
+        LOG.debug("QuizzeTestCommand get getRequestURI: " + getRequestURI);
         String local = (String) session.getAttribute("currentLocale");
         LOG.debug("SubjectCommand get locale: " + local);
-        if(local == null){
-            local ="en";
+        if (local == null) {
+            local = "en";
         }
         LOG.debug("QuizzeTestCommand get locale after if: " + local);
         Long subjectId = Long.parseLong(request.getParameter("subject_id"));
         TestService testService = new TestServiceImpl(new TestRepositoryImpl());
-        List<Test> test = testService.findAllByParent(subjectId,local);
+        List<Test> test = testService.findAllByParent(subjectId, local);
         LOG.debug("Found in DB: test list --> " + test);
 
         session.setAttribute("testList", test);

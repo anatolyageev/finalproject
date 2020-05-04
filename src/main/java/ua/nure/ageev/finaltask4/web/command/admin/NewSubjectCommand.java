@@ -44,13 +44,13 @@ public class NewSubjectCommand extends Command {
         LOG.debug("encoding page: " + encoding);
         Subject subject = new Subject();
         subject.setSubjectName(shortName);
-        subject = subjectService.createSubject(subject,shortName);
+        subject = subjectService.createSubject(subject, shortName);
 
         subject.setSubjectName(nameEn);
         subjectService.createSubjectLocale(subject, ConstantsForCommands.LANGUAGE_EN);
 
         subject.setSubjectName(nameRu);
-        subjectService.createSubjectLocale(subject,ConstantsForCommands.LANGUAGE_RU);
+        subjectService.createSubjectLocale(subject, ConstantsForCommands.LANGUAGE_RU);
 
         List<Subject> subjects = subjectService.getAll(local);
         session.setAttribute("subjectList", subjects);

@@ -43,17 +43,17 @@ public class SessionLocaleFilter implements Filter {
             session.setAttribute("currentLocale", lang);
         }
 
-        if(name==null){
+        if (name == null) {
             Locale userPreferredLocale = req.getLocale();
             Enumeration userPreferredLocales = req.getLocales();
-            LOG.debug("Preferred Locale: " + userPreferredLocale.toString().substring(0,2));
-            session.setAttribute("currentLocale",userPreferredLocale.toString().substring(0,2));
-            ((HttpServletResponse)servletResponse).setHeader("Content-Language", "ru");
+            LOG.debug("Preferred Locale: " + userPreferredLocale.toString().substring(0, 2));
+            session.setAttribute("currentLocale", userPreferredLocale.toString().substring(0, 2));
+            ((HttpServletResponse) servletResponse).setHeader("Content-Language", "ru");
         }
 
         name = (String) session.getAttribute("currentLocale");
 
-        LOG.debug("Current locale: "+name);
+        LOG.debug("Current locale: " + name);
 
         LOG.debug("Filter finished");
         filterChain.doFilter(servletRequest, servletResponse);

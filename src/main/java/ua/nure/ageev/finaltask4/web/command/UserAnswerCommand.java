@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserAnswerCommand extends  Command {
+public class UserAnswerCommand extends Command {
 
     private static final long serialVersionUID = -1555444566799343283L;
 
@@ -40,25 +40,25 @@ public class UserAnswerCommand extends  Command {
         String local = (String) session.getAttribute("currentLocale");
 
         LOG.debug("UserAnswerCommand get locale: " + local);
-        if(local == null){
-            local ="en";
+        if (local == null) {
+            local = "en";
         }
         LOG.debug("UserAnswerCommand get locale after if: " + local);
 
-        Map<Long,Boolean> mapAnswer = (HashMap) session.getAttribute("mapAnswer");
-        Map<Long,Boolean> answerIdUser = (HashMap)session.getAttribute("answerIdUser");
+        Map<Long, Boolean> mapAnswer = (HashMap) session.getAttribute("mapAnswer");
+        Map<Long, Boolean> answerIdUser = (HashMap) session.getAttribute("answerIdUser");
         LOG.debug("UserAnswerCommand get mapAnswer : " + mapAnswer);
-        List<Question> questionList = (ArrayList)session.getAttribute("questionList");
+        List<Question> questionList = (ArrayList) session.getAttribute("questionList");
         LOG.debug("UserAnswerCommand get questionList : " + questionList);
 
-        if(request.getParameter("question_id")!=null ) {
+        if (request.getParameter("question_id") != null) {
             Long questionId = Long.parseLong(request.getParameter("question_id"));
             LOG.debug("UserAnswerCommand get questionId : " + questionId);
             AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
             String[] answers = request.getParameterValues("answer_id");
             LOG.debug("UserAnswerCommand get answers : " + answers);
             for (int i = 0; i < answers.length; i++) {
-                answerIdUser.put(Long.parseLong(answers[i]),true);
+                answerIdUser.put(Long.parseLong(answers[i]), true);
                 if (answerService.getOne(Long.parseLong(answers[i]), local).getCorrectAnswer()) {
                     mapAnswer.put(questionId, true);
 

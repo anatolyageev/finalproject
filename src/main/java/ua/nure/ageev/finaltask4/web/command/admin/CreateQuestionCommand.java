@@ -28,7 +28,6 @@ public class CreateQuestionCommand extends Command {
         LOG.debug("CreateQuestionCommand starts");
 
 
-
         LOG.debug("CreateQuestionCommand finished");
         return Path.PAGE_ADMIN_CREATE_QUESTION;
     }

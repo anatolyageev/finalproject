@@ -30,14 +30,14 @@ public class AdminPageChange extends Command {
         Integer pgeNo;
         HttpSession session = request.getSession();
 
-        if(session.getAttribute("pageId")==null) {
-            session.setAttribute("pageId",0);
-            pgeNo =0;
-        }else {
+        if (session.getAttribute("pageId") == null) {
+            session.setAttribute("pageId", 0);
+            pgeNo = 0;
+        } else {
             pgeNo = Integer.parseInt(request.getParameter("page"));
         }
         LOG.debug("AdminPageChange get pageNo: " + pgeNo);
-        session.setAttribute("pageId",pgeNo);
+        session.setAttribute("pageId", pgeNo);
         LOG.debug("AdminPageChange get pageNo: " + pgeNo);
         return Path.PAGE_ADMIN_QUESTIONS;
     }

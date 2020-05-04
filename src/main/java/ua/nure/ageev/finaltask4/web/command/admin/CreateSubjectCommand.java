@@ -28,7 +28,6 @@ public class CreateSubjectCommand extends Command {
         LOG.debug("CreateSubjectCommand starts");
 
 
-
         LOG.debug("CreateSubjectCommand finished");
         return Path.PAGE_ADMIN_CREATE_SUBJECT;
     }

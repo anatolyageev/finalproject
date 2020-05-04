@@ -16,6 +16,7 @@ public class AdminPageCommand extends Command {
 
     private static final long serialVersionUID = 34L;
     private static final Logger LOG = Logger.getLogger(AdminPageCommand.class);
+
     /**
      * Execution method for AdminPageCommand command.
      *
@@ -33,6 +34,4 @@ public class AdminPageCommand extends Command {
         LOG.debug("Command AdminPageCommand finished");
         return Path.PAGE_USER_USER_LIST;
     }
-
-
 }

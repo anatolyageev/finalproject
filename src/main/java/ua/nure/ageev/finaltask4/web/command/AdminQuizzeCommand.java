@@ -50,8 +50,4 @@ public class AdminQuizzeCommand extends Command {
 
         return Path.PAGE_ADMIN_PAGE;
     }
-
-
-
-
 }

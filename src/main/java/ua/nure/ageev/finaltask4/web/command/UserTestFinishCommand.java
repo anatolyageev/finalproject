@@ -39,16 +39,15 @@ public class UserTestFinishCommand extends Command {
         HttpSession session = request.getSession();
         String local = (String) session.getAttribute("currentLocale");
         LOG.debug("UserAnswerCommand get locale: " + local);
-        if(local == null){
-            local ="en";
+        if (local == null) {
+            local = "en";
         }
         LOG.debug("UserAnswerCommand get locale after if: " + local);
-        Test currentTest = (Test)session.getAttribute("currentTest");
-        User user = (User)session.getAttribute("user");
-        Map<Long,Boolean> mapAnswer = (HashMap) session.getAttribute("mapAnswer");
+        Test currentTest = (Test) session.getAttribute("currentTest");
+        User user = (User) session.getAttribute("user");
+        Map<Long, Boolean> mapAnswer = (HashMap) session.getAttribute("mapAnswer");
         LOG.debug("UserAnswerCommand get mapAnswer : " + mapAnswer);
         UserResultService userResultService = new UserResultServiceImpl(new UserResultRepositoryImpl());
-
 
         userResult.setEvaluation(calculateUserResult(currentTest, mapAnswer));
         userResult.setUserId(user.getId());
@@ -56,13 +55,13 @@ public class UserTestFinishCommand extends Command {
 
         LOG.debug("UserTestFinishCommand get userResult : " + userResult);
 
-        userResult = userResultService.insert(user.getId(),userResult);
+        userResult = userResultService.insert(user.getId(), userResult);
 
         LOG.debug("UserTestFinishCommand get questionList : " + userResult);
 
-        List<UserResult> userResultList = userResultService.findAllByParent(user.getId(),local);
+        List<UserResult> userResultList = userResultService.findAllByParent(user.getId(), local);
         LOG.debug("UserTestFinishCommand get questionList : " + userResultList);
-        session.setAttribute("userResultList",userResultList);
+        session.setAttribute("userResultList", userResultList);
 
         return Path.PAGE_USER_PAGE;
     }
@@ -71,7 +70,7 @@ public class UserTestFinishCommand extends Command {
         Integer count = Math.toIntExact(mapAnswer.entrySet().stream().filter(x -> x.getValue()).count());
         LOG.debug("UserTestFinishCommand get count of correct answers : " + count);
         LOG.debug("UserTestFinishCommand get count of number of questions : " + currentTest.getQuestionQuantity());
-        Long evaluation =Math.round(100*((double)count/currentTest.getQuestionQuantity()));
+        Long evaluation = Math.round(100 * ((double) count / currentTest.getQuestionQuantity()));
 
         return Math.round(evaluation);
     }

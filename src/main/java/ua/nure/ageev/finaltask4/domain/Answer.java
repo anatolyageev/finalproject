@@ -1,6 +1,12 @@
 package ua.nure.ageev.finaltask4.domain;
 
-public class Answer extends LongID{
+/**
+ * Abstract class for ID ;
+ *
+ * @author A.Ageev
+ */
+
+public class Answer extends LongID {
 
     private static final long serialVersionUID = 1L;
 

@@ -35,14 +35,14 @@ public class QuizzeAnswerCommand extends Command {
         HttpSession session = request.getSession();
         String local = (String) session.getAttribute("currentLocale");
         LOG.debug("QuizzeQuestionCommand get locale: " + local);
-        if(local == null){
-            local ="en";
+        if (local == null) {
+            local = "en";
         }
         LOG.debug("QuizzeQuestionCommand get locale after if: " + local);
 
         Long questionId = Long.parseLong(request.getParameter("question_id"));
         AnswerService answerService = new AnswerServiceImpl(new AnswerRepositoryImpl());
-        List<Answer> answerList = answerService.findAllByParent(questionId,local);
+        List<Answer> answerList = answerService.findAllByParent(questionId, local);
         LOG.debug("Found in DB: Answer list --> " + answerList);
 
         session.setAttribute("answerList", answerList);

@@ -50,31 +50,27 @@ public class NewQuestionCommand extends Command {
         LOG.debug("NewQuestionCommand question" + question);
 
         question.setQuestionText(questionEn);
-        questionService.insertName(question,ConstantsForCommands.LANGUAGE_EN);
+        questionService.insertName(question, ConstantsForCommands.LANGUAGE_EN);
         LOG.debug("NewQuestionCommand questionEn" + question);
 
         question.setQuestionText(questionRu);
-        questionService.insertName(question,ConstantsForCommands.LANGUAGE_RU);
+        questionService.insertName(question, ConstantsForCommands.LANGUAGE_RU);
         LOG.debug("NewQuestionCommand questionRu" + question);
         List<Answer> answerList = DataHelper.answersCreation(question);
         Long questionId = question.getId();
         LOG.debug("NewQuestionCommand answerList" + answerList);
 
-
         List<Answer> answerListEn = answerService.findAllByParent(questionId, ConstantsForCommands.LANGUAGE_EN);
         List<Answer> answerListRu = answerService.findAllByParent(questionId, ConstantsForCommands.LANGUAGE_RU);
 
         Map<Long, String> answersRu = new HashMap<>();
-        for (Answer a:answerListRu) {
-            answersRu.put(a.getId(),a.getAnswerText());
+        for (Answer a : answerListRu) {
+            answersRu.put(a.getId(), a.getAnswerText());
         }
 
-        request.setAttribute("answerListEn",answerListEn);
-        request.setAttribute("answersRu",answersRu);
-
-        request.setAttribute("questionId",questionId);
-       // request.setAttribute("answerList",answerList);
-
+        request.setAttribute("answerListEn", answerListEn);
+        request.setAttribute("answersRu", answersRu);
+        request.setAttribute("questionId", questionId);
 
         LOG.debug("NewQuestionCommand end");
         return Path.PAGE_ADMIN_EDIT_ANSWER;

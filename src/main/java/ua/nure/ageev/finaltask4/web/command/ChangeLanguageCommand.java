@@ -32,9 +32,9 @@ public class ChangeLanguageCommand extends Command {
         Role userRole = (Role) session.getAttribute("userRole");
         session.setAttribute("currentLocale", lang);
         LOG.debug("LanguageChangeCommand finished");
-        if(userRole == Role.ADMIN){
+        if (userRole == Role.ADMIN) {
             return Path.COMMAND_LIST_USERS;
-        }else{
+        } else {
             return Path.PAGE_USER_PAGE;
         }
     }

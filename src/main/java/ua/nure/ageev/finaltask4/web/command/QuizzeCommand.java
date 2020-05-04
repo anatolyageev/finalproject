@@ -25,7 +25,6 @@ public class QuizzeCommand extends Command {
 
     private static final Logger LOG = Logger.getLogger(QuizzeCommand.class);
 
-
     /**
      * Execution method for QuizzeCommand.
      *
@@ -39,8 +38,8 @@ public class QuizzeCommand extends Command {
         HttpSession session = request.getSession();
         String local = (String) session.getAttribute("currentLocale");
         LOG.debug("QuizzeCommand get locale: " + local);
-        if(local == null){
-            local ="en";
+        if (local == null) {
+            local = "en";
         }
         LOG.debug("SubjectCommand get locale after if: " + local);
         SubjectService subjectService = new SubjectServiceImpl(new SubjectRepositoryImpl());

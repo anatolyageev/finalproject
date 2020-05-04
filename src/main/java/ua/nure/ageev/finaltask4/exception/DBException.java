@@ -3,7 +3,7 @@ package ua.nure.ageev.finaltask4.exception;
 /**
  * An exception that provides information on a database access error.
  * 
- * @author D.Kolesnikov
+ * @author Anatoliy Ageev
  * 
  */
 public class DBException extends AppException {

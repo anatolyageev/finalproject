@@ -36,14 +36,14 @@ public class EditTestCommand extends Command {
         Long testId = Long.parseLong(request.getParameter("testId"));
         Long subjectId = Long.parseLong(request.getParameter("subjectId"));
 
-        Test testEn = testService.getOne(testId,ConstantsForCommands.LANGUAGE_EN);
-        Test testRu = testService.getOne(testId,ConstantsForCommands.LANGUAGE_RU);
+        Test testEn = testService.getOne(testId, ConstantsForCommands.LANGUAGE_EN);
+        Test testRu = testService.getOne(testId, ConstantsForCommands.LANGUAGE_RU);
 
-        request.setAttribute("testEn",testEn);
+        request.setAttribute("testEn", testEn);
         LOG.debug("Set attribute testEn --> " + testEn);
-        request.setAttribute("testRu",testRu);
+        request.setAttribute("testRu", testRu);
         LOG.debug("Set attribute testRu --> " + testRu);
-        request.setAttribute("subjectId",subjectId);
+        request.setAttribute("subjectId", subjectId);
         LOG.debug("EditTestCommand subjectId" + subjectId);
         return Path.PAGE_ADMIN_EDIT_TEST;
     }

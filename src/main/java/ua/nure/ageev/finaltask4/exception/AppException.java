@@ -2,24 +2,23 @@ package ua.nure.ageev.finaltask4.exception;
 
 /**
  * An exception that provides information on an application error.
- * 
- * @author D.Kolesnikov
- * 
+ *
+ * @author Anatoliy Ageev
  */
 public class AppException extends Exception {
 
-	private static final long serialVersionUID = 8288779062647218916L;
+    private static final long serialVersionUID = 8288779062647218916L;
 
-	public AppException() {
-		super();
-	}
+    public AppException() {
+        super();
+    }
 
-	public AppException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public AppException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public AppException(String message) {
-		super(message);
-	}
+    public AppException(String message) {
+        super(message);
+    }
 
 }

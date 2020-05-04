@@ -11,7 +11,7 @@ public class EncodingFilter implements Filter {
 
     private static final Logger LOG = Logger.getLogger(EncodingFilter.class);
 
-    private static final String FILTERABLE_CONTENT_TYPE="application/x-www-form-urlencoded";
+    private static final String FILTERABLE_CONTENT_TYPE = "application/x-www-form-urlencoded";
 
     private static final String ENCODING_DEFAULT = "UTF-8";
 
@@ -31,7 +31,7 @@ public class EncodingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         LOG.debug("EncodingFilter starts");
-        HttpServletRequest httpRequest = (HttpServletRequest)req;
+        HttpServletRequest httpRequest = (HttpServletRequest) req;
         LOG.trace("Request uri --> " + httpRequest.getRequestURI());
         String contentType = req.getContentType();
         LOG.trace("contentType --> " + contentType);

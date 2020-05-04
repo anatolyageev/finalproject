@@ -47,11 +47,8 @@ public class LoginCommand extends Command {
         UserResult userResult = new UserResult();
         String login = request.getParameter("login");
 
-
-
         UserResultService userResultService = new UserResultServiceImpl(new UserResultRepositoryImpl());
         LOG.trace("Requst parametr: login --> " + login);
-
 
         String path = request.getContextPath();
         String password = request.getParameter("password");
@@ -63,7 +60,7 @@ public class LoginCommand extends Command {
         User user = userService.getOne(login);
         LOG.trace("Found in DB: user --> " + user);
 
-        if (user.getLogin() == null || !VerifyProvidedPassword.isPasswordCorrect(password,user)) {
+        if (user.getLogin() == null || !VerifyProvidedPassword.isPasswordCorrect(password, user)) {
             throw new AppException("Cannot find user with such login/password");
         }
 

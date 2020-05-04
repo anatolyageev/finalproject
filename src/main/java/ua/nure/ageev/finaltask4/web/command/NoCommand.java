@@ -13,13 +13,13 @@ import java.io.IOException;
  * Class for the NoCommand.
  *
  * @author A.Ageev
- *
  */
 public class NoCommand extends Command {
 
     private static final long serialVersionUID = -2785976616686657267L;
 
     private static final Logger LOG = Logger.getLogger(NoCommand.class);
+
     /**
      * Execution method for command.
      *
@@ -29,13 +29,13 @@ public class NoCommand extends Command {
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, AppException {
-            LOG.debug("NoCommand starts");
+        LOG.debug("NoCommand starts");
 
-            String errorMessage = "No such command";
-            request.setAttribute("errorMessage", errorMessage);
-            LOG.error("Set the request attribute: errorMessage --> " + errorMessage);
+        String errorMessage = "No such command";
+        request.setAttribute("errorMessage", errorMessage);
+        LOG.error("Set the request attribute: errorMessage --> " + errorMessage);
 
-            LOG.debug("NoCommand finished");
-            return Path.PAGE_ERROR_PAGE;
+        LOG.debug("NoCommand finished");
+        return Path.PAGE_ERROR_PAGE;
     }
 }
