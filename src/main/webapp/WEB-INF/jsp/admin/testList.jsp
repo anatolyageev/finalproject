@@ -21,6 +21,7 @@
                 <th>Difficulty Level</th>
                 <th>Number of question</th>
                 <th>minutesToComplite</th>
+                <th> Average Evaluation</th>
                 </tr>
                 </thead>
 
@@ -36,6 +37,7 @@
                     <td>${test.difficultyLevel}</td>
                     <td>${test.questionQuantity}</td>
                     <td>${test.minutesToComplite}</td>
+                    <td>${test.averageEvaluation}</td>
                     <td>
                         <form action="controller" method=post>
                             <input type="hidden" name="command" value="editTestCommand"/>

@@ -22,16 +22,20 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
             "WHERE t.id = tl.test_id AND tl.lang_ind = ?";
 
     private static final String SQL_FIND_TEST_BY_ID = "SELECT t.id,tl.test_name, " +
-            "(SELECT  count(*) FROM questions q where q.test_id = t.id) question_quantity, t.difficulty, min_to_complete, subject_id" +
+            "(SELECT  count(*) FROM questions q where q.test_id = t.id) question_quantity, " +
+            "(SELECT  avg(evaluation) FROM users_results ur WHERE ur.test_id = t.id) aver_evaluation, "+
+            "t.difficulty, min_to_complete, subject_id" +
             " FROM tests t, tests_locale tl " +
             "WHERE t.id = tl.test_id " +
             "AND tl.lang_ind = ? AND t.id = ?";
 
     private static final String SQL_FIND_ALL_TEST_BY_PARENT = "SELECT t.id,tl.test_name, " +
-            "(SELECT  count(*) FROM questions q where q.test_id = t.id) question_quantity, t.difficulty, min_to_complete, subject_id " +
-            "FROM tests t, tests_locale tl " +
-            "WHERE t.id = tl.test_id " +
-            "AND tl.lang_ind = ? AND t.subject_id = ?";
+            "(SELECT  count(*) FROM questions q where q.test_id = t.id) question_quantity, " +
+            "(SELECT  avg(evaluation) FROM users_results ur WHERE ur.test_id = t.id) aver_evaluation, "+
+            "t.difficulty, min_to_complete, subject_id "+
+                    "FROM tests t, tests_locale tl "+
+                    "WHERE t.id = tl.test_id "+
+                    "AND tl.lang_ind = ? AND t.subject_id = ?";
 
     private static final String SQL_INSERT_TEST = "INSERT  INTO tests " +
             "(difficulty, min_to_complete, subject_id) " +
@@ -92,7 +96,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
             ps = con.prepareStatement(SQL_UPDATE_TEST);
             ps.setInt(1, test.getDifficultyLevel());
             ps.setInt(2, test.getMinutesToComplite());
-            ps.setLong(3,test.getId());
+            ps.setLong(3, test.getId());
             LOG.trace("TestId: " + test.getId());
             LOG.trace("Test: " + test);
             int result = ps.executeUpdate();
@@ -275,6 +279,7 @@ public class TestRepositoryImpl extends AbstractRepository implements TestReposi
         Test test = new Test();
         test.setId(rs.getLong(Fields.ENTITY_ID));
         test.setDifficultyLevel(rs.getInt(Fields.TEST_DIFFICULTY_LEVEL));
+        test.setAverageEvaluation(rs.getDouble(Fields.TEST_AVG_EVALUATION));
         test.setTestName(rs.getString(Fields.TEST_NAME));
         test.setMinutesToComplite(rs.getInt(Fields.TEST_MINUTES_TO_COMPLETE));
         test.setQuestionQuantity(rs.getInt(Fields.TEST_QUESTION_QUANTITY));
