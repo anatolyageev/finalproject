@@ -28,6 +28,7 @@ public final class Fields {
     public static final String TEST_MINUTES_TO_COMPLETE = "min_to_complete";
     public static final String TEST_NAME = "test_name";
     public static final String TEST_QUESTION_QUANTITY = "question_quantity";
+    public static final String TEST_AVG_EVALUATION = "aver_evaluation";
 
     public static final String QUESTION_TEXT = "question_text";
 

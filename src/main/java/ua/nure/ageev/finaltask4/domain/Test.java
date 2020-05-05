@@ -13,9 +13,19 @@ public class Test extends LongID {
 
     private Integer minutesToComplite;
 
+    private Double averageEvaluation;
+
     private String testName;
 
     private List<Question> questions = new ArrayList<>();
+
+    public Double getAverageEvaluation() {
+        return averageEvaluation;
+    }
+
+    public void setAverageEvaluation(Double averageEvaluation) {
+        this.averageEvaluation = averageEvaluation;
+    }
 
     public Integer getQuestionQuantity() {
         return questionQuantity;
